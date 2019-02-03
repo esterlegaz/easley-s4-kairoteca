@@ -3,8 +3,8 @@ import React, { Component } from "react"
 class Status extends Component {
   render() {
     return (
-      <div className="card__loan" onClick={this.props.handleLoan}>
-      {this.props.loan}
+      <div className="book__status" onClick={this.props.handleLoan}>
+      {this.props.status}
       </div>
     )
   }
