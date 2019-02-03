@@ -6,22 +6,42 @@ import CardDetail from './components/Detail/CardDetail';
 
 
 class App extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
-      loan: 'prueba'
+      loan: 'prueba',
+      bookList: []
     };
+
+    this.paintList = this.paintList.bind(this);
+  }
+
+  componentDidMount() {
+    this.paintList();
   }
 
   handleLoan() {
     console.log('Funciono');
   }
 
+  paintList() {
+    api.books()
+      .then(data => {
+        const books = data.data.map(item => {
+          return item
+        });
+        this.setState({
+          bookList: books
+        })
+      })
+  }
+
+
   render() {
-    api.books().then(console.log)
+
     return (
       <div className="App">
-        <List />
+        <List bookList={this.state.bookList} />
         <CardDetail loan={this.state.loan} handleLoan={this.handleLoan} />
       </div>
     )
