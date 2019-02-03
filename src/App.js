@@ -41,8 +41,7 @@ class App extends Component {
 
     return (
       <div className="App">
-        <List bookList={this.state.bookList} />
-        {/* <CardDetail loan={this.state.loan} handleLoan={this.handleLoan} /> */}
+        <List bookList={this.state.bookList} loan={this.state.loan} handleLoan={this.handleLoan}/>
       </div>
     )
   }
