@@ -3,10 +3,10 @@ import Status from './Status';
 
 class CardDetail extends Component {
   render() {
-    const {author, title, tags} = this.props.item;
+    const {author, title, tags, status} = this.props.item;
     return (
       <div>
-        <Status loan={this.props.loan} handleLoan={this.props.handleLoan} />
+        <Status status={status} handleLoan={this.props.handleLoan} />
         <h2 className="book__title">{title}</h2>
         <h3 className="book__author">{author}</h3>
         <ul className="book__tags--list">

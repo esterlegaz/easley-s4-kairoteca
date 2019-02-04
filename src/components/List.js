@@ -9,7 +9,7 @@ class List extends Component {
           {this.props.haveBooks && this.props.bookList.map(item => {
             return (
               <li key={item.id} className="book__list">
-                <CardDetail item={item} loan={this.props.loan} handleLoan={this.props.handleLoan}/>
+                <CardDetail item={item} handleLoan={this.props.handleLoan}/>
               </li>
             )
           })}

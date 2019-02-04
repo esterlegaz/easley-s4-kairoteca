@@ -3,11 +3,11 @@ import "./App.scss";
 import api from "./api";
 import List from "./components/List";
 
+
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      loan: 'prueba',
       bookList: [],
       haveBooks: false
     };
@@ -41,7 +41,7 @@ class App extends Component {
 
     return (
       <div className="App">
-        <List bookList={this.state.bookList} haveBooks={this.state.haveBooks} loan={this.state.loan} handleLoan={this.handleLoan}/>
+        <List bookList={this.state.bookList} haveBooks={this.state.haveBooks} handleLoan={this.handleLoan}/>
       </div>
     )
   }
