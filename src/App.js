@@ -10,10 +10,13 @@ class App extends Component {
     super(props);
     this.state = {
       bookList: [],
-      haveBooks: false
+      haveBooks: false,
+      query: ''
     };
 
     this.paintList = this.paintList.bind(this);
+    this.getFilter = this.getFilter.bind(this);
+    this.filterBookList = this.filterBookList.bind(this);
   }
 
   componentDidMount() {
@@ -37,11 +40,26 @@ class App extends Component {
       })
   }
 
+  getFilter(e) {
+    const query = e.currentTarget.value;
+    this.setState({
+      query: query
+    })
+  }
+
+  filterBookList(){
+    const {bookList, query} = this.state;
+      return bookList.filter(item => item.title.toUpperCase().includes(query.toUpperCase()));
+  }
+
   render() {
     return (
       <div className="App">
         <Header />
-        <Main bookList={this.state.bookList} haveBooks={this.state.haveBooks} handleLoan={this.handleLoan} />
+        <label htmlFor="filter">
+        <input id="filter" type="text" placeholder="Buscar" onKeyUp={this.getFilter}/>
+        </label>
+        <Main bookList={this.filterBookList()} haveBooks={this.state.haveBooks} handleLoan={this.handleLoan} />
         <Footer />
       </div>
     )
