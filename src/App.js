@@ -1,31 +1,51 @@
 import React, { Component } from "react"
-import logo from "./logo.svg"
-import "./App.css"
-
-import api from "./api"
+import "./App.scss";
+import api from "./api";
+import List from "./components/List";
+import Header from './components/Header';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      bookList: [],
+      haveBooks: false
+    };
+
+    this.paintList = this.paintList.bind(this);
+  }
+
+  componentDidMount() {
+    this.paintList();
+  }
+
+  handleLoan() {
+    console.log('Funciono');
+  }
+
+  paintList() {
+    api.books()
+      .then(data => {
+        const books = data.data.map(item => {
+          return item
+        });
+        this.setState({
+          bookList: books,
+          haveBooks: true
+        })
+      })
+  }
+
+
   render() {
-    api.books().then(console.log)
+
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        <Header />
+        <List bookList={this.state.bookList} haveBooks={this.state.haveBooks} handleLoan={this.handleLoan} />
       </div>
     )
   }
 }
 
-export default App
+export default App;
