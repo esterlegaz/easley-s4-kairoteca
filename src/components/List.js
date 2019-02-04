@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import CardDetail from './Detail/CardDetail';
 
 class List extends Component {
@@ -18,5 +19,11 @@ class List extends Component {
     )
   }
 }
+
+List.propTypes = {
+  haveBooks: PropTypes.bool.isRequired,
+  handleLoan: PropTypes.func.isRequired,
+  bookList: PropTypes.array.isRequired
+};
 
 export default List;
