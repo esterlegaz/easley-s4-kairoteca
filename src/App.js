@@ -1,4 +1,5 @@
-import React, { Component } from "react"
+import React, { Component } from "react";
+import Footer from "./components/Footer";
 import "./App.scss";
 import api from "./api";
 import List from "./components/List";
@@ -43,6 +44,7 @@ class App extends Component {
       <div className="App">
         <Header />
         <List bookList={this.state.bookList} haveBooks={this.state.haveBooks} handleLoan={this.handleLoan} />
+        <Footer />
       </div>
     )
   }
