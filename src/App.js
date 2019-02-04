@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Header from './components/Header';
-import List from "./components/List";
+import Main from "./components/Main";
 import Footer from "./components/Footer";
 import api from "./api";
 import "./App.scss";
@@ -41,7 +41,7 @@ class App extends Component {
     return (
       <div className="App">
         <Header />
-        <List bookList={this.state.bookList} haveBooks={this.state.haveBooks} handleLoan={this.handleLoan} />
+        <Main bookList={this.state.bookList} haveBooks={this.state.haveBooks} handleLoan={this.handleLoan} />
         <Footer />
       </div>
     )
