@@ -5,7 +5,7 @@ class CardDetail extends Component {
   render() {
     return (
       <div>
-        <Status loan={this.props.loan} handleLoan={this.props.handleLoan} />
+        <Status status={this.props.status} handleLoan={this.props.handleLoan} />
         <h2 className="book__title">{this.props.title}</h2>
         <h3 className="book__author">{this.props.author}</h3>
         <ul className="book__tags--list">
