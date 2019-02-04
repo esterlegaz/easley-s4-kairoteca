@@ -1,4 +1,5 @@
-import React, { Component } from "react"
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 
 class Status extends Component {
   render() {
@@ -9,5 +10,9 @@ class Status extends Component {
     )
   }
 }
+
+Status.propTypes = {
+  handleLoan: PropTypes.func.isRequired
+};
 
 export default Status;

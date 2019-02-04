@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import Status from './Status';
 import Icons from './Icons';
 
@@ -26,5 +27,12 @@ class CardDetail extends Component {
     )
   }
 }
+
+
+CardDetail.propTypes = {
+  handleLoan: PropTypes.func.isRequired,
+  item: PropTypes.object.isRequired
+};
+
 
 export default CardDetail;
