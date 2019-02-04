@@ -2,15 +2,14 @@ import React, { Component } from "react"
 import "./App.scss";
 import api from "./api";
 import List from "./components/List";
-import CardDetail from './components/Detail/CardDetail';
-
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
       loan: 'prueba',
-      bookList: []
+      bookList: [],
+      haveBooks: false
     };
 
     this.paintList = this.paintList.bind(this);
@@ -31,7 +30,8 @@ class App extends Component {
           return item
         });
         this.setState({
-          bookList: books
+          bookList: books,
+          haveBooks: true
         })
       })
   }
@@ -41,7 +41,7 @@ class App extends Component {
 
     return (
       <div className="App">
-        <List bookList={this.state.bookList} loan={this.state.loan} handleLoan={this.handleLoan}/>
+        <List bookList={this.state.bookList} haveBooks={this.state.haveBooks} loan={this.state.loan} handleLoan={this.handleLoan}/>
       </div>
     )
   }
