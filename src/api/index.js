@@ -8,7 +8,7 @@ const doBook = id => ({
   title: name.title(),
   author: name.findName(),
   description: random.words(),
-  tags: ["programing", "react", "javascript"],
+  tags: ["programming", "react", "javascript"],
   year: 2018,
   status: "pending",
   type: "digital"
