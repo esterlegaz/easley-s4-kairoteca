@@ -3,7 +3,7 @@ import Footer from "./components/Footer";
 import "./App.scss";
 import api from "./api";
 import List from "./components/List";
-
+import Header from './components/Header';
 
 class App extends Component {
   constructor(props) {
@@ -42,8 +42,9 @@ class App extends Component {
 
     return (
       <div className="App">
-        <List bookList={this.state.bookList} haveBooks={this.state.haveBooks} handleLoan={this.handleLoan}/>
-        <Footer/>
+        <Header />
+        <List bookList={this.state.bookList} haveBooks={this.state.haveBooks} handleLoan={this.handleLoan} />
+        <Footer />
       </div>
     )
   }
