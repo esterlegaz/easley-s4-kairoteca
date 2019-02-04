@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import Footer from "./components/Footer";
-import "./App.scss";
-import api from "./api";
-import List from "./components/List";
 import Header from './components/Header';
+import List from "./components/List";
+import Footer from "./components/Footer";
+import api from "./api";
+import "./App.scss";
 
 class App extends Component {
   constructor(props) {
@@ -37,9 +37,7 @@ class App extends Component {
       })
   }
 
-
   render() {
-
     return (
       <div className="App">
         <Header />
