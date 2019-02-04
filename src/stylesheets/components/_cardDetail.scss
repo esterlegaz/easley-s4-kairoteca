@@ -1,9 +1,38 @@
+.book__information{
+    display: flex;
+    justify-content: space-between;
+    margin: 28px 10px 0;
+}
+
+.book__detail{
+    margin: 45px;
+}
+
 .book__title{
-    font-size: 24px;
-    font-weight: 500;
+    font-size: 20px;
+    color: $colorBookTitle;
 }
 
 .book__author{
-    font-size: 20px;
-    font-weight: 400;
+    font-size: 16px;
+    color: $colorBookAuthor;
+}
+
+.book__tags--list{
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0;
+}
+
+.book__tags--item{
+    text-transform: capitalize;
+    font-size: 16px;
+    line-height: 24px;
+    height: 25px;
+    background: $colorBookTags;
+    border-radius: 15px;
+    color: $colorTagsContent;
+    padding: 0 10px;
+    margin: 5px 5px 5px 0;
 }
