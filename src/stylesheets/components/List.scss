@@ -1,0 +1,13 @@
+.book__container{
+    list-style: none;
+    padding: 5px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.book__list{
+    border: 2px solid black;
+    margin: 5px;
+    padding: 5px;
+    width: 200px;
+}
