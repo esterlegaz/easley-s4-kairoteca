@@ -9,7 +9,8 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      bookList: []
+      bookList: [],
+      haveBooks: false
     };
 
     this.paintList = this.paintList.bind(this);
@@ -30,7 +31,8 @@ class App extends Component {
           return item
         });
         this.setState({
-          bookList: books
+          bookList: books,
+          haveBooks: true
         })
       })
   }
@@ -40,7 +42,7 @@ class App extends Component {
 
     return (
       <div className="App">
-        <List bookList={this.state.bookList} handleLoan={this.handleLoan}/>
+        <List bookList={this.state.bookList} haveBooks={this.state.haveBooks} handleLoan={this.handleLoan}/>
         <Footer/>
       </div>
     )
