@@ -1,5 +1,6 @@
-import React, { Component } from "react"
+import React, { Component } from "react";
 import Status from './Status';
+import Icons from './Icons';
 
 class CardDetail extends Component {
   render() {
@@ -7,6 +8,7 @@ class CardDetail extends Component {
     return (
       <div>
         <Status status={status} handleLoan={this.props.handleLoan} />
+        <Icons />
         <h2 className="book__title">{title}</h2>
         <h3 className="book__author">{author}</h3>
         <ul className="book__tags--list">
