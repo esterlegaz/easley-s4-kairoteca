@@ -53,10 +53,9 @@ class App extends Component {
         const tags = book.tags.filter(tag => tag.toUpperCase().includes(query.toUpperCase()));
         const title = book.title.toUpperCase().includes(query.toUpperCase());
         return tags.length > 0 || title;
-       
       })
   }
- 
+
   render() {
     return (
       <div className="App">
