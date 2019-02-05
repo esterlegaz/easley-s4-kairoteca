@@ -49,8 +49,8 @@ class App extends Component {
 
   filterBookList(){
     const {bookList, query} = this.state;
-    const tag = query;
-      return bookList.filter(item => item.tags.toString().indexOf(tag)>=0);
+    const tag = query.toUpperCase();
+      return bookList.filter(item => item.tags.toString().toUpperCase().indexOf(tag)>=0);
   }
 
   render() {
