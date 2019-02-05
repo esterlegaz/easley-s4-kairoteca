@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import Header from './components/Header';
-import Main from "./components/Main";
-import Footer from "./components/Footer";
+import Header from './components/Layout/Header';
+import Main from "./components/Layout/Main";
+import Footer from "./components/Layout/Footer";
 import api from "./api";
 import "./App.scss";
 
@@ -61,10 +61,7 @@ class App extends Component {
     return (
       <div className="App">
         <Header />
-        <label htmlFor="filter">
-        <input id="filter" type="text" placeholder="Buscar" onKeyUp={this.getFilter}/>
-        </label>
-        <Main bookList={this.filterBookList()} haveBooks={this.state.haveBooks} handleLoan={this.handleLoan} />
+        <Main getFilter={this.getFilter} bookList={this.filterBookList()} haveBooks={this.state.haveBooks} handleLoan={this.handleLoan} />
         <Footer />
       </div>
     )

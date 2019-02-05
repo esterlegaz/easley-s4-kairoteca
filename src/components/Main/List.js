@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import CardDetail from './Detail/CardDetail';
+import CardDetail from './../Detail/CardDetail';
 
 class List extends Component {
   render() {
