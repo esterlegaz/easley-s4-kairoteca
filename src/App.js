@@ -11,7 +11,7 @@ class App extends Component {
     this.state = {
       bookList: [],
       haveBooks: false,
-      query: ''
+      query: '',
     };
 
     this.paintList = this.paintList.bind(this);
@@ -47,11 +47,16 @@ class App extends Component {
     })
   }
 
-  filterBookList(){
+  filterBookList() {
     const {bookList, query} = this.state;
-      return bookList.filter(item => item.title.toUpperCase().includes(query.toUpperCase()));
+      return bookList.filter(book =>{
+        const tags = book.tags.filter(tag => tag.toUpperCase().includes(query.toUpperCase()));
+        const title = book.title.toUpperCase().includes(query.toUpperCase());
+        return tags.length > 0 || title;
+       
+      })
   }
-
+ 
   render() {
     return (
       <div className="App">
