@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import Header from './components/Header';
-import Main from "./components/Main";
-import Footer from "./components/Footer";
+import Header from './components/Layout/Header';
+import Main from "./components/Layout/Main";
+import Footer from "./components/Layout/Footer";
 import api from "./api";
 import "./App.scss";
 
@@ -11,7 +11,7 @@ class App extends Component {
     this.state = {
       bookList: [],
       haveBooks: false,
-      query: ''
+      query: '',
     };
 
     this.paintList = this.paintList.bind(this);
@@ -47,20 +47,21 @@ class App extends Component {
     })
   }
 
-  filterBookList(){
+  filterBookList() {
     const {bookList, query} = this.state;
-    const tag = query;
-      return bookList.filter(item => item.tags.toString().indexOf(tag)>=0);
+      return bookList.filter(book =>{
+        const tags = book.tags.filter(tag => tag.toUpperCase().includes(query.toUpperCase()));
+        const title = book.title.toUpperCase().includes(query.toUpperCase());
+        return tags.length > 0 || title;
+       
+      })
   }
-
+ 
   render() {
     return (
       <div className="App">
         <Header />
-        <label htmlFor="filter">
-        <input id="filter" type="text" placeholder="Buscar" onKeyUp={this.getFilter}/>
-        </label>
-        <Main bookList={this.filterBookList()} haveBooks={this.state.haveBooks} handleLoan={this.handleLoan} />
+        <Main getFilter={this.getFilter} bookList={this.filterBookList()} haveBooks={this.state.haveBooks} handleLoan={this.handleLoan} />
         <Footer />
       </div>
     )

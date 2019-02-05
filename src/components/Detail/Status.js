@@ -12,7 +12,8 @@ class Status extends Component {
 }
 
 Status.propTypes = {
-  handleLoan: PropTypes.func.isRequired
+  handleLoan: PropTypes.func.isRequired,
+  status: PropTypes.string.isRequired
 };
 
 export default Status;
