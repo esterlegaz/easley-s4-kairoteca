@@ -1,0 +1,19 @@
+.icons__wrapper{
+    display: flex;
+}
+
+.icons__close{
+    background: url('./images/close-black-button.svg') center center no-repeat;
+    background-size: cover;
+    width: 20px;
+    height: 20px;
+    margin-right: 20px;
+}
+
+.icons__edit{
+    background: url('./images/pencil-black.svg') center center no-repeat;
+    background-size: cover;
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+}
