@@ -71,7 +71,7 @@ class App extends Component {
         <input className="form__input" id="ISBN" type="text" placeholder="Escribe el ISBN"/>
         <label className="form__label" htmlFor="type">Elige</label>
         <select className="form__select" id="type">
-          <option>Digital/option>
+          <option>Digital></option>/option>
           <option>Físico</option>
         </select>
         <label className="form__label" htmlFor="tags">Tags</label>
