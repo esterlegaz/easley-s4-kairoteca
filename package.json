@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@material/textfield": "^0.44.0",
     "faker": "^4.1.0",
     "node-sass": "^4.11.0",
     "prop-types": "^15.6.2",
