@@ -1,5 +1,27 @@
 import { random, name } from "faker"
-import { times, find, propEq, pipe, always, findIndex, merge } from "ramda"
+import {
+  times,
+  find,
+  propEq,
+  pipe,
+  always,
+  findIndex,
+  merge,
+  take
+} from "ramda"
+
+const shuffle = xs => {
+  for (let i = xs.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1))
+    ;[xs[i], xs[j]] = [xs[j], xs[i]]
+  }
+  return xs
+}
+
+const take4Random = pipe(
+  shuffle,
+  take(6)
+)
 
 // doBook :: Number -> Object
 const doBook = id => ({
@@ -8,7 +30,21 @@ const doBook = id => ({
   title: name.title(),
   author: name.findName(),
   description: random.words(),
-  tags: ["programming", "react", "javascript"],
+  tags: take4Random([
+    "programming",
+    "react",
+    "javascript",
+    "functional programing",
+    "OOP",
+    "Design patterns",
+    "Reactive programing",
+    "Web components",
+    "Vue",
+    "GIT",
+    "Agile",
+    "Testing",
+    "SOLID"
+  ]),
   year: 2018,
   status: "pending",
   type: "digital"
@@ -57,11 +93,22 @@ const updateBook = pipe(
   toResponse
 )
 
+// deleteBook :: (Object) -> Promise Object
+const deleteBook = pipe(
+  id => {
+    const i = findIndex(propEq("id", id), BOOKS)
+    BOOKS.splice(i, 1)
+    return { deleted: true }
+  },
+  toResponse
+)
+
 const api = {
   books,
   bookById,
   createBook,
-  updateBook
+  updateBook,
+  deleteBook
 }
 
 export default api
