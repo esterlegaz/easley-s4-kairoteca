@@ -13,11 +13,13 @@ class App extends Component {
       bookList: [],
       haveBooks: false,
       query: '',
+      showPopup: false
     };
 
     this.paintList = this.paintList.bind(this);
     this.getFilter = this.getFilter.bind(this);
     this.filterBookList = this.filterBookList.bind(this);
+    this.togglePopup = this.togglePopup.bind(this);
   }
 
   componentDidMount() {
@@ -26,6 +28,12 @@ class App extends Component {
 
   handleLoan() {
     console.log('Funciono');
+  }
+
+  togglePopup() {
+    this.setState({
+      showPopup: !this.state.showPopup
+    });
   }
 
   paintList() {
@@ -62,8 +70,14 @@ class App extends Component {
     return (
       <div className="App">
         <Header />
-        <Main getFilter={this.getFilter} bookList={this.filterBookList()} haveBooks={this.state.haveBooks} handleLoan={this.handleLoan} />
-        <Form />
+        <Main getFilter={this.getFilter} bookList={this.filterBookList()} haveBooks={this.state.haveBooks} handleLoan={this.handleLoan} togglePopup={this.togglePopup}/>
+        
+        {this.state.showPopup ? 
+          <Form
+            togglePopup={this.togglePopup}
+          />
+          : null
+        }
         <Footer />
       </div>
     )

@@ -35,6 +35,7 @@ class Form extends Component {
   render() {
     return (
         <div className="form__container">
+        <div className="popup">
             <form action="/signup" method="post">
                 <TextField id="outlined-title" label="Título" className='form__textfield' /* value={this.state.name}  onChange={this.handleChange("name")}*/ margin="normal" variant="outlined" />
 
@@ -59,8 +60,9 @@ class Form extends Component {
                         </MenuItem>
                     ))}
                 </TextField>
-
                 </form>
+                <button className="close" onClick={this.props.togglePopup}> Cerrar </button>
+            </div>
             </div>
     );
   }

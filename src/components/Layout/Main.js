@@ -8,6 +8,7 @@ class Main extends Component {
     return (
         <Fragment>
             <Filter getFilter={this.props.getFilter} />
+            <button onClick={this.props.togglePopup}> Añadir libro </button>
             <List bookList={this.props.bookList} haveBooks={this.props.haveBooks} handleLoan={this.props.handleLoan}/>
         </Fragment>   
     );
