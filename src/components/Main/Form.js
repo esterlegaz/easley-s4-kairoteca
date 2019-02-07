@@ -1,9 +1,16 @@
-import React, {Component} from "react";
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
+
+import { withStyles } from '@material-ui/core/styles';
+import MenuItem from '@material-ui/core/MenuItem';
+import TextField from '@material-ui/core/TextField';
 
 class Form extends Component {
   render() {
     return (
         <form action="/signup" method="post">
+            <TextField id="outlined-title" label="Título" className='form__textfield' /* value={this.state.name}  onChange={this.handleChange("name")}*/ margin="normal" variant="outlined" />
+
         <label className="form__label" htmlFor="title">Título</label>
         <input className="form__input" id="title" type="text" placeholder="Escribe el título"/>
         <label className="form__label" htmlFor="author">Autor</label>
