@@ -11,7 +11,7 @@ class List extends Component {
             {this.props.bookList.map(item => {
               return (
                 <li key={item.id} className="book__list">
-                  <CardDetail item={item} handleLoan={this.props.handleLoan}/>
+                  <CardDetail deleteBook={this.props.deleteBook} item={item} handleLoan={this.props.handleLoan}/>
                 </li>
               )
             })}
@@ -21,7 +21,6 @@ class List extends Component {
     } else {
       return <p>No hay datos</p>
     }
-    
   }
 }
 

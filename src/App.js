@@ -17,6 +17,7 @@ class App extends Component {
     this.paintList = this.paintList.bind(this);
     this.getFilter = this.getFilter.bind(this);
     this.filterBookList = this.filterBookList.bind(this);
+    this.deleteBook = this.deleteBook.bind(this);
   }
 
   componentDidMount() {
@@ -56,11 +57,19 @@ class App extends Component {
       })
   }
 
+  async deleteBook(e){
+    const bookId = parseInt(e.currentTarget.getAttribute('data-id'));
+    console.log(bookId);
+    const result = await api.deleteBook(bookId);
+    console.log(result);
+    this.paintList();
+  }
+
   render() {
     return (
       <div className="App">
         <Header />
-        <Main getFilter={this.getFilter} bookList={this.filterBookList()} haveBooks={this.state.haveBooks} handleLoan={this.handleLoan} />
+        <Main deleteBook={this.deleteBook} getFilter={this.getFilter} bookList={this.filterBookList()} haveBooks={this.state.haveBooks} handleLoan={this.handleLoan} />
         <Footer />
       </div>
     )
