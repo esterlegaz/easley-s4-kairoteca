@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import Status from './Status';
 import Icons from './Icons';
 
@@ -9,7 +10,7 @@ class CardDetail extends Component {
       <div>
         <div className="book__information">
           <Status status={status} handleLoan={this.props.handleLoan} />
-          <Icons />
+          <Icons id={this.props.item.id} deleteBook={this.props.deleteBook} />
         </div>
         <div className="book__detail">
           <h2 className="book__title">{title}</h2>
@@ -26,5 +27,10 @@ class CardDetail extends Component {
     )
   }
 }
+
+CardDetail.propTypes = {
+  handleLoan: PropTypes.func.isRequired,
+  item: PropTypes.object.isRequired
+};
 
 export default CardDetail;
