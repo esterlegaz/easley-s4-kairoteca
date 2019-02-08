@@ -12,12 +12,14 @@ class App extends Component {
       bookList: [],
       haveBooks: false,
       query: '',
+      deletePopup: false
     };
 
     this.paintList = this.paintList.bind(this);
     this.getFilter = this.getFilter.bind(this);
     this.filterBookList = this.filterBookList.bind(this);
     this.deleteBook = this.deleteBook.bind(this);
+    this.toggleDeletePopup = this.toggleDeletePopup.bind(this);
   }
 
   componentDidMount() {
@@ -63,13 +65,20 @@ class App extends Component {
     const result = await api.deleteBook(bookId);
     console.log(result);
     this.paintList();
+    this.toggleDeletePopup();
+  }
+
+  toggleDeletePopup() {
+    this.setState({
+      deletePopup: !this.state.deletePopup
+    })
   }
 
   render() {
     return (
       <div className="App">
         <Header />
-        <Main deleteBook={this.deleteBook} getFilter={this.getFilter} bookList={this.filterBookList()} haveBooks={this.state.haveBooks} handleLoan={this.handleLoan} />
+        <Main toggleDeletePopup={this.toggleDeletePopup} deletePopup={this.state.deletePopup} deleteBook={this.deleteBook} getFilter={this.getFilter} bookList={this.filterBookList()} haveBooks={this.state.haveBooks} handleLoan={this.handleLoan} />
         <Footer />
       </div>
     )
