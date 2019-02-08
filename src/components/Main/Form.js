@@ -61,9 +61,9 @@ class Form extends Component {
                     ))}
                 </TextField>
                 </form>
-                <button className="close" onClick={this.props.togglePopup}> Cerrar </button>
-            </div>
-            </div>
+            <button className="close" onClick={this.props.togglePopup}> Cerrar </button>
+        </div>    
+        </div>
     );
   }
 }

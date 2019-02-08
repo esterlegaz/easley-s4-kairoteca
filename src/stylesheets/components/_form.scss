@@ -15,9 +15,12 @@
 }
 
 .popup{
+    width: 500px;
+    height: 100vh;
     position: absolute;
     display: flex;
     flex-direction: column;
+    flex-wrap: nowrap;
     left: 25%;
     right: 25%;
     top: 25%;
