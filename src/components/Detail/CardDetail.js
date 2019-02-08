@@ -2,10 +2,12 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import Status from './Status';
 import Icons from './Icons';
+import ViewDetail from "./ViewDetail";
 
 class CardDetail extends Component {
   render() {
     const { author, title, tags, status } = this.props.item;
+
     return (
       <div>
         <div className="book__information">
@@ -13,7 +15,7 @@ class CardDetail extends Component {
           <Icons id={this.props.item.id} deleteBook={this.props.deleteBook} />
         </div>
         <div className="book__detail">
-          <h2 className="book__title">{title}</h2>
+          <h2 className="book__title" onClick={this.props.viewDetails} title-id={this.props.item.id}>{title}</h2>
           <h3 className="book__author">{author}</h3>
           <ul className="book__tags--list">
             {tags.map((tag, index) => {
@@ -23,6 +25,10 @@ class CardDetail extends Component {
             })}
           </ul>
         </div>
+         {this.props.showPopup ?
+         <ViewDetail item={this.props.item} tag={this.tag} togglePopup={this.props.togglePopup}/>
+          : null
+        }
       </div>
     )
   }

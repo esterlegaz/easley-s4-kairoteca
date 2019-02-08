@@ -12,12 +12,15 @@ class App extends Component {
       bookList: [],
       haveBooks: false,
       query: '',
+      showPopup: false
     };
 
     this.paintList = this.paintList.bind(this);
     this.getFilter = this.getFilter.bind(this);
     this.filterBookList = this.filterBookList.bind(this);
     this.deleteBook = this.deleteBook.bind(this);
+    this.togglePopup = this.togglePopup.bind(this);
+    this.viewDetails = this.viewDetails.bind(this);
   }
 
   componentDidMount() {
@@ -26,6 +29,19 @@ class App extends Component {
 
   handleLoan() {
     console.log('Funciono');
+  }
+
+  togglePopup(){
+    this.setState({
+      showPopup: !this.state.showPopup
+    });
+  }
+
+  async viewDetails(e){
+    this.togglePopup();
+    const titleId = parseInt(e.currentTarget.getAttribute('title-id'));
+    const result = await api.bookById(titleId);
+    return result;
   }
 
   paintList() {
@@ -69,7 +85,7 @@ class App extends Component {
     return (
       <div className="App">
         <Header />
-        <Main deleteBook={this.deleteBook} getFilter={this.getFilter} bookList={this.filterBookList()} haveBooks={this.state.haveBooks} handleLoan={this.handleLoan} />
+        <Main deleteBook={this.deleteBook} getFilter={this.getFilter} bookList={this.filterBookList()} haveBooks={this.state.haveBooks} handleLoan={this.handleLoan} showPopup={this.state.showPopup} togglePopup={this.togglePopup} viewDetails={this.viewDetails}/>
         <Footer />
       </div>
     )

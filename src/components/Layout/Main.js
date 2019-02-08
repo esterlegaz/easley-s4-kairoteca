@@ -8,7 +8,7 @@ class Main extends Component {
     return (
         <Fragment>
             <Filter getFilter={this.props.getFilter} />
-            <List deleteBook={this.props.deleteBook} bookList={this.props.bookList} haveBooks={this.props.haveBooks} handleLoan={this.props.handleLoan}/>
+            <List deleteBook={this.props.deleteBook} bookList={this.props.bookList} haveBooks={this.props.haveBooks} handleLoan={this.props.handleLoan} showPopup={this.props.showPopup} togglePopup={this.props.togglePopup} viewDetails={this.props.viewDetails}/>
         </Fragment>
     );
   }
