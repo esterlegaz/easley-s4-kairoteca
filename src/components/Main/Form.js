@@ -35,17 +35,7 @@ const state = [
 ]
 
 class Form extends Component {
-    state = {
-        chipData: [
-        ],
-    };
-
-    handleChip = chipData => {
-        this.setState({
-            chipData
-        })
-    }
-
+   
     render() {
         return (
             <div className="form__container">

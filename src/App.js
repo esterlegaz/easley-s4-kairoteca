@@ -13,13 +13,15 @@ class App extends Component {
       bookList: [],
       haveBooks: false,
       query: '',
-      showPopup: false
+      showPopup: false,
+      chipData: []
     };
 
     this.paintList = this.paintList.bind(this);
     this.getFilter = this.getFilter.bind(this);
     this.filterBookList = this.filterBookList.bind(this);
     this.togglePopup = this.togglePopup.bind(this);
+    this.getTags = this.getTags.bind(this);
   }
 
   componentDidMount() {
@@ -57,27 +59,57 @@ class App extends Component {
   }
 
   filterBookList() {
-    const {bookList, query} = this.state;
-      return bookList.filter(book =>{
-        const tags = book.tags.filter(tag => tag.toUpperCase().includes(query.toUpperCase()));
-        const title = book.title.toUpperCase().includes(query.toUpperCase());
-        return tags.length > 0 || title;
-       
-      })
+    const { bookList, query } = this.state;
+    return bookList.filter(book => {
+      const tags = book.tags.filter(tag => tag.toUpperCase().includes(query.toUpperCase()));
+      const title = book.title.toUpperCase().includes(query.toUpperCase());
+      return tags.length > 0 || title;
+
+    })
   }
- 
+
+  getTags() {
+    api.books()
+      .then(coso => {
+        const books = coso.data.map(item => {
+          return item.tags
+        });
+        this.setState({
+          chipData: books
+        })
+      })
+    // if (tag !== '')
+    // getTags = [...getTags, tag]
+
+    // const books = this.state.bookList.map((book) => {
+//aqui recorre cada objeto 
+// va a los tags los recorre y los guarda
+//pasa al siguiente objeto recorre los tags, mira si son diferentes y si si, los añade, si no, no los añade
+//asi con todos y lo guarda en un array final
+
+  //     const tags = book.tags.map(tag => {
+  //     return tag
+  //   })
+
+  //   this.setState({
+  //     chipData: tags
+  //   })
+
+  // })
+};
+
   render() {
     return (
       <div className="App">
         <Header />
-        <Main getFilter={this.getFilter} bookList={this.filterBookList()} haveBooks={this.state.haveBooks} handleLoan={this.handleLoan} togglePopup={this.togglePopup}/>
-        
-        {this.state.showPopup ? 
-          <Form
-            togglePopup={this.togglePopup}
-          />
+        <button onClick={this.getTags}>SUPUTAMADRE</button>
+        <Main getFilter={this.getFilter} bookList={this.filterBookList()} haveBooks={this.state.haveBooks} handleLoan={this.handleLoan} togglePopup={this.togglePopup} />
+
+        {this.state.showPopup ?
+          <Form togglePopup={this.togglePopup} suggestions={this.state.bookList} />
           : null
         }
+
         <Footer />
       </div>
     )
