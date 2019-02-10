@@ -70,12 +70,13 @@ class App extends Component {
 
   getTags() {
     api.books()
-      .then(coso => {
-        const books = coso.data.map(item => {
+      .then(books => {
+        const tags = books.data.map(item => {
           return item.tags
         });
+        const mergedTags = [].concat.apply([],tags);
         this.setState({
-          chipData: books
+          chipData: mergedTags
         })
       })
     // if (tag !== '')
