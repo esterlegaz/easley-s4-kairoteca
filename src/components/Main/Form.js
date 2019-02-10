@@ -35,7 +35,17 @@ const state = [
 ]
 
 class Form extends Component {
-   
+    constructor(props) {
+        super(props);
+        this.state = {
+          chips: []
+        }
+      }
+     
+      handleChip = chips => {
+        this.setState({ chips });
+      }
+
     render() {
         return (
             <div className="form__container">
@@ -55,7 +65,7 @@ class Form extends Component {
                             ))}
                         </TextField>
                         <div>
-                            <Chips value={this.state.chipData} onChange={this.handleChip} suggestions={['JavaScript', 'React', 'Programming']}/>
+                            <Chips value={this.state.chips} onChange={this.handleChip} suggestions={this.props.arrayTags}/>
                         </div>
 
                         <TextField id="outlined-select-state" select label="Estado" className="form__textfield" /*value={this.state.currency} onChange={this.handleChange('currency')} */ margin="normal" variant="outlined">

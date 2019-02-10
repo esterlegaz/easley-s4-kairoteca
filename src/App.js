@@ -26,6 +26,7 @@ class App extends Component {
 
   componentDidMount() {
     this.paintList();
+    this.getTags();
   }
 
   handleLoan() {
@@ -74,40 +75,23 @@ class App extends Component {
         const tags = books.data.map(item => {
           return item.tags
         });
-        const mergedTags = [].concat.apply([],tags);
+
+        const mergedTags = [...new Set( [].concat.apply([],tags))];
+
         this.setState({
           chipData: mergedTags
         })
       })
-    // if (tag !== '')
-    // getTags = [...getTags, tag]
-
-    // const books = this.state.bookList.map((book) => {
-//aqui recorre cada objeto 
-// va a los tags los recorre y los guarda
-//pasa al siguiente objeto recorre los tags, mira si son diferentes y si si, los añade, si no, no los añade
-//asi con todos y lo guarda en un array final
-
-  //     const tags = book.tags.map(tag => {
-  //     return tag
-  //   })
-
-  //   this.setState({
-  //     chipData: tags
-  //   })
-
-  // })
 };
 
   render() {
     return (
       <div className="App">
         <Header />
-        <button onClick={this.getTags}>SUPUTAMADRE</button>
         <Main getFilter={this.getFilter} bookList={this.filterBookList()} haveBooks={this.state.haveBooks} handleLoan={this.handleLoan} togglePopup={this.togglePopup} />
 
         {this.state.showPopup ?
-          <Form togglePopup={this.togglePopup} suggestions={this.state.bookList} />
+          <Form togglePopup={this.togglePopup} suggestions={this.state.bookList} arrayTags={this.state.chipData}/>
           : null
         }
 
