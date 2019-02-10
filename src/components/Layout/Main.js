@@ -8,13 +8,17 @@ class Main extends Component {
     return (
         <Fragment>
             <Filter getFilter={this.props.getFilter} />
-            <List deleteBook={this.props.deleteBook} bookList={this.props.bookList} haveBooks={this.props.haveBooks} handleLoan={this.props.handleLoan}/>
+            <List popId={this.props.popId} toggleDeletePopup={this.props.toggleDeletePopup} deletePopup={this.props.deletePopup} deleteBook={this.props.deleteBook} bookList={this.props.bookList} haveBooks={this.props.haveBooks} handleLoan={this.props.handleLoan}/>
         </Fragment>
     );
   }
 }
 
 Main.propTypes = {
+  getFilter: PropTypes.func.isRequired,
+  toggleDeletePopup: PropTypes.func.isRequired,
+  deletePopup: PropTypes.bool.isRequired,
+  deleteBook: PropTypes.func.isRequired,
   haveBooks: PropTypes.bool.isRequired,
   handleLoan: PropTypes.func.isRequired,
   bookList: PropTypes.array.isRequired
