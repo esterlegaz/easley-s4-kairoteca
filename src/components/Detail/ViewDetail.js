@@ -15,6 +15,7 @@ class ViewDetail extends Component {
     
      return (
        <Fragment>
+         <div className="detail__wrapper">
          <ul className="list__view-details">
            <li className="list__item">
              <h2 className="list__item--title">Título</h2>
@@ -34,7 +35,7 @@ class ViewDetail extends Component {
            </li>
            <li className="list__item">
              <h2 className="list__item--title">Tags</h2>
-             <div className="list__item--content">
+             <div className="list__item--content-tags">
                <ul className="list__tags--list">
                  {tags.map((tag, index) => {
                    return (
@@ -49,7 +50,9 @@ class ViewDetail extends Component {
              <div className="list__item--content">{status}</div>
            </li>
          </ul>
-         <Link className="link__close" to="/">Cerrar</Link>
+          <Link className="link__close" to="/">CERRAR</Link>
+          
+         </div>
        </Fragment>
     )
   } else {
@@ -61,6 +64,7 @@ class ViewDetail extends Component {
       );
    }
   };
+  
 }
 
 ViewDetail.propTypes = {
