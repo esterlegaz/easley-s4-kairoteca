@@ -46,7 +46,6 @@ class Form extends Component {
         tags: [],
         status: ''
       },
-      chips:[]
     }
     this.titleRef = React.createRef();
     this.authorRef = React.createRef();
@@ -57,16 +56,11 @@ class Form extends Component {
     this.handleChange = this.handleChange.bind(this);
   }
 
-  // handleChip = chips => {
-  //   const {newBook}= this.state;
-  //   const tags= newBook.tags.push(`${chips}`);
-  //   return tags
-  // }
-
   handleChip = chips => {
-    this.setState({chips})
-  }
-
+  const { newBook } = this.state;
+  const addBook = { ...newBook, tags: chips }
+  this.setState({newBook: addBook})
+}
   handleChange = field => event => {
     const { newBook } = this.state;
     const addBook = { ...newBook, [field]: event.currentTarget.value }
@@ -109,7 +103,7 @@ class Form extends Component {
             </FormControl>
 
             <FormControl className="form__textfield" variant="outlined">
-              <Chips value={this.state.chips} onChange={this.handleChip} suggestions={this.props.arrayTags} />
+              <Chips value={this.state.newBook.tags} onChange={this.handleChip} suggestions={this.props.arrayTags} />
             </FormControl>
 
             <FormControl className="form__textfield" variant="outlined">
