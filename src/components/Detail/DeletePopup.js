@@ -18,7 +18,9 @@ class DeletePopup extends Component {
 }
 
 DeletePopup.propTypes = {
-    deleteBook: PropTypes.func.isRequired
+    deleteBook: PropTypes.func.isRequired,
+    id: PropTypes.number.isRequired,
+    toggleDeletePopup: PropTypes.func.isRequired
 };
 
 export default DeletePopup;

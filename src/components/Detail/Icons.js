@@ -3,16 +3,15 @@ import PropTypes from "prop-types";
 import DeletePopup from './DeletePopup';
 
 class Icons extends Component {
-  showDeletePopup(isVisible, bookId, popId ){
-    if(isVisible === true && popId === bookId){
+  showDeletePopup(isVisible, bookId, popId) {
+    if (isVisible === true && popId === bookId) {
       return (
-      <DeletePopup id={bookId} deleteBook={this.props.deleteBook} toggleDeletePopup={this.props.toggleDeletePopup} />
+        <DeletePopup id={bookId} deleteBook={this.props.deleteBook} toggleDeletePopup={this.props.toggleDeletePopup} />
       )
     }
     else {
       return null
     }
-    
   }
 
   render() {
@@ -30,21 +29,7 @@ Icons.propTypes = {
   toggleDeletePopup: PropTypes.func.isRequired,
   deletePopup: PropTypes.bool.isRequired,
   deleteBook: PropTypes.func.isRequired,
-  id: PropTypes.number.isRequired
+  id: PropTypes.number.isRequired,
 };
 
 export default Icons;
-
-// if(this.props.deletePopup === true){
-//   return (
-//   <DeletePopup id={this.props.id} deleteBook={this.props.deleteBook} toggleDeletePopup={this.props.toggleDeletePopup} />
-//   )
-// }
-// else {
-//   return null
-// }
-
-// {this.props.deletePopup ? 
-//   <DeletePopup id={this.props.id} deleteBook={this.props.deleteBook} toggleDeletePopup={this.props.toggleDeletePopup} />
-//   : null
-// }

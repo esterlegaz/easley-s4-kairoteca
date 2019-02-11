@@ -29,10 +29,6 @@ class App extends Component {
     this.paintList();
   }
 
-  handleLoan() {
-    console.log('Funciono');
-  }
-
   paintList() {
     api.books()
       .then(data => {
@@ -87,7 +83,7 @@ class App extends Component {
         <Header />
         <Switch>
           <Route exact path="/" render={() => (
-            <Main popId={this.state.popId} toggleDeletePopup={this.toggleDeletePopup} deletePopup={this.state.deletePopup} deleteBook={this.deleteBook} getFilter={this.getFilter} bookList={this.filterBookList()} haveBooks={this.state.haveBooks} handleLoan={this.handleLoan} />
+            <Main popId={this.state.popId} toggleDeletePopup={this.toggleDeletePopup} deletePopup={this.state.deletePopup} deleteBook={this.deleteBook} getFilter={this.getFilter} bookList={this.filterBookList()} haveBooks={this.state.haveBooks}/>
           )} />
           <Route path="/book/:id" render={props => <ViewDetail match={props.match} bookList={this.state.bookList} />} />
         </Switch>
