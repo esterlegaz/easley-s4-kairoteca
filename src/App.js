@@ -1,9 +1,11 @@
 import React, { Component } from "react";
+import { Route, Switch } from 'react-router-dom';
 import Header from './components/Layout/Header';
 import Main from "./components/Layout/Main";
 import Footer from "./components/Layout/Footer";
 import api from "./api";
 import "./App.scss";
+import ViewDetail from "./components/Detail/ViewDetail";
 
 class App extends Component {
   constructor(props) {
@@ -79,7 +81,12 @@ class App extends Component {
     return (
       <div className="App">
         <Header />
-        <Main popId={this.state.popId} toggleDeletePopup={this.toggleDeletePopup} deletePopup={this.state.deletePopup} deleteBook={this.deleteBook} getFilter={this.getFilter} bookList={this.filterBookList()} haveBooks={this.state.haveBooks} />
+        <Switch>
+          <Route exact path="/" render={() => (
+            <Main popId={this.state.popId} toggleDeletePopup={this.toggleDeletePopup} deletePopup={this.state.deletePopup} deleteBook={this.deleteBook} getFilter={this.getFilter} bookList={this.filterBookList()} haveBooks={this.state.haveBooks}/>
+          )} />
+          <Route path="/book/:id" render={props => <ViewDetail match={props.match} bookList={this.state.bookList} />} />
+        </Switch>
         <Footer />
       </div>
     )
