@@ -5,7 +5,6 @@ import Icons from './Icons';
 import ViewDetail from "./ViewDetail";
 
 class CardDetail extends Component {
-
   showDetailPopup(isVisible, bookId, popId){
     if (isVisible === true && popId===bookId){
       return (
@@ -16,8 +15,10 @@ class CardDetail extends Component {
     }
   }
   render() {
-    const { author, title, tags, status } = this.props.item;
-
+    console.log(this.props.detailPopup);
+    console.log(this.props.item.id);
+    console.log(this.props.detailId);
+    const { author, title, tags, status, id } = this.props.item;
     return (
       <div>
         <div className="book__information">

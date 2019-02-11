@@ -4,12 +4,12 @@ import PropTypes from "prop-types";
 
 class ViewDetail extends Component {
   render() {
-    const {author, title, tags, status, ISBN, type, id} = this.props.item;
+    const {author, title, tags, status, ISBN, type} = this.props.item;
      return (
       <ul className="list__view-details">
         <li className="list__item--title">
           <h2 className="list__item--title">Título</h2>
-          <div className="list__item--content" data-detailtitleid={id}>{title}</div>
+          <div className="list__item--content">{title}</div>
         </li>
         <li className="list__item--title">
           <h2 className="list__item--title">Autor</h2>

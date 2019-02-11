@@ -20,7 +20,7 @@ class App extends Component {
     this.getFilter = this.getFilter.bind(this);
     this.filterBookList = this.filterBookList.bind(this);
     this.deleteBook = this.deleteBook.bind(this);
-    this.togglePopup = this.toggleDetailPopup.bind(this);
+    this.toggleDetailPopup = this.toggleDetailPopup.bind(this);
     this.viewDetails = this.viewDetails.bind(this);
   }
 
@@ -38,14 +38,14 @@ class App extends Component {
       detailPopup: !this.state.detailPopup,
       detailId: newId
     });
+    this.viewDetails();
   }
 
   async viewDetails(e){
-    this.toggleDetailPopup();
     const titleId = parseInt(e.currentTarget.getAttribute('data-titleid'));
     const result = await api.bookById(titleId);
     this.setState({
-      detailId: '',
+      detailId: titleId,
       detailPopup: !this.state.detailPopup
     })
     return result;
