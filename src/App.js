@@ -1,9 +1,11 @@
 import React, { Component } from "react";
+import { Route, Switch } from 'react-router-dom';
 import Header from './components/Layout/Header';
 import Main from "./components/Layout/Main";
 import Footer from "./components/Layout/Footer";
 import api from "./api";
 import "./App.scss";
+import ViewDetail from "./components/Detail/ViewDetail";
 
 class App extends Component {
   constructor(props) {
@@ -12,16 +14,12 @@ class App extends Component {
       bookList: [],
       haveBooks: false,
       query: '',
-      detailId: '',
-      detailPopup: false
     };
 
     this.paintList = this.paintList.bind(this);
     this.getFilter = this.getFilter.bind(this);
     this.filterBookList = this.filterBookList.bind(this);
     this.deleteBook = this.deleteBook.bind(this);
-    this.toggleDetailPopup = this.toggleDetailPopup.bind(this);
-    this.viewDetails = this.viewDetails.bind(this);
   }
 
   componentDidMount() {
@@ -30,25 +28,6 @@ class App extends Component {
 
   handleLoan() {
     console.log('Funciono');
-  }
-
-  toggleDetailPopup(e){
-    const newId = parseInt(e.currentTarget.getAttribute('data-detailtitleid'));
-    this.setState({
-      detailPopup: !this.state.detailPopup,
-      detailId: newId
-    });
-    this.viewDetails();
-  }
-
-  async viewDetails(e){
-    const titleId = parseInt(e.currentTarget.getAttribute('data-titleid'));
-    const result = await api.bookById(titleId);
-    this.setState({
-      detailId: titleId,
-      detailPopup: !this.state.detailPopup
-    })
-    return result;
   }
 
   paintList() {
@@ -82,9 +61,7 @@ class App extends Component {
 
   async deleteBook(e){
     const bookId = parseInt(e.currentTarget.getAttribute('data-id'));
-    console.log(bookId);
     const result = await api.deleteBook(bookId);
-    console.log(result);
     this.paintList();
   }
 
@@ -92,7 +69,12 @@ class App extends Component {
     return (
       <div className="App">
         <Header />
-        <Main deleteBook={this.deleteBook} getFilter={this.getFilter} bookList={this.filterBookList()} haveBooks={this.state.haveBooks} handleLoan={this.handleLoan} showPopup={this.state.showPopup} togglePopup={this.togglePopup} viewDetails={this.viewDetails} detaiId={this.state.detailId} detailPopup={this.state.detailPopup}/>
+        <Switch>
+          <Route exact path="/" render={() => (
+            <Main deleteBook={this.deleteBook} getFilter={this.getFilter} bookList={this.filterBookList()} haveBooks={this.state.haveBooks} handleLoan={this.handleLoan} />
+          )} />
+          <Route path="/book/:id" render={props => <ViewDetail match={props.match} bookList={this.state.bookList} />} />
+        </Switch>
         <Footer />
       </div>
     )
