@@ -12,10 +12,11 @@
     margin-right: 10px;
 }
 
-.card_detail_icons{
-  border: 0;
-  outline: none;
-  background-size: cover;
-  width: 20px;
-  height: 20px;
+.card__detail--icons{
+    border: 0;
+    outline: none;
+    background-size: cover;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
 }
