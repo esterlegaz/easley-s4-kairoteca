@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-
 import { withStyles } from '@material-ui/core/styles';
 import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
+import FormControl from '@material-ui/core/FormControl';
+import InputLabel from '@material-ui/core/InputLabel';
+import OutlinedInput from '@material-ui/core/OutlinedInput';
 import Paper from '@material-ui/core/Paper';
 // import Chip from '@material-ui/core/Chip';
 import Chips from 'react-chips';
@@ -38,19 +40,43 @@ class Form extends Component {
     constructor(props) {
         super(props);
         this.state = {
-          chips: []
+            chips: [],
+            newBook:{
+                title:'',
+                author:'',
+                ISBN:'',
+                type:'',
+                tags:[],
+                status:'',
+                name: ''
+            }
         }
-      }
-     
-      handleChip = chips => {
+        this.labelRef=React.createRef();
+    }
+
+    handleChip = chips => {
         this.setState({ chips });
-      }
+    }
+
+    handleChange(e){
+        const {newBook} = this.state;
+        const addBook = {...newBook, name: e.currentTarget.value}
+        this.setState({
+            newBook: addBook
+        })
+    }
 
     render() {
         return (
             <div className="form__container">
                 <div className="popup">
                     <form action="/signup" method="post">
+                        <FormControl className='formControl' variant="outlined">
+                            <InputLabel ref={this.labelRef} htmlFor="component-outlined">
+                                Name
+                            </InputLabel>
+                            <OutlinedInput id="component-outlined" value={this.state.name} onChange={this.handleChange} labelWidth={this.labelRef ? this.labelRef.offsetWidth : 0} />
+                        </FormControl>
                         <TextField id="outlined-title" label="Título" className='form__textfield' /* value={this.state.name}  onChange={this.handleChange("name")}*/ margin="normal" variant="outlined" />
 
                         <TextField id="outlined-author" label="Autor" className='form__textfield' /* value={this.state.name}  onChange={this.handleChange("name")}*/ margin="normal" variant="outlined" />
@@ -65,7 +91,7 @@ class Form extends Component {
                             ))}
                         </TextField>
                         <div>
-                            <Chips value={this.state.chips} onChange={this.handleChip} suggestions={this.props.arrayTags}/>
+                            <Chips value={this.state.chips} onChange={this.handleChip} suggestions={this.props.arrayTags} />
                         </div>
 
                         <TextField id="outlined-select-state" select label="Estado" className="form__textfield" /*value={this.state.currency} onChange={this.handleChange('currency')} */ margin="normal" variant="outlined">
