@@ -1,0 +1,43 @@
+.delete__popup{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    background-color: rgba(0,0,0, 0.5);
+}
+
+.delete__popup--content{
+    position: absolute;
+    left: 30%;
+    right: 30%;
+    top: 30%;
+    bottom: 30%;
+    margin: auto;
+    background: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 25px;
+}
+
+.delete__pop-up--title{
+    color: $colorBookTitle;
+    margin: 5px;
+    text-align: center;
+}
+
+.delete__pop-up--btn-container{
+    margin: 15px;
+}
+
+.delete__pop-up--btn{
+    color: $colorBookTitle;
+    margin: 5px;
+    width: 50px;
+    padding: 2px;
+}
