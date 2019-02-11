@@ -27,10 +27,6 @@ class App extends Component {
     this.paintList();
   }
 
-  handleLoan() {
-    console.log('Funciono');
-  }
-
   paintList() {
     api.books()
       .then(data => {
@@ -63,7 +59,6 @@ class App extends Component {
   async deleteBook(e) {
     this.paintList();
     const bookId = parseInt(e.currentTarget.getAttribute('data-id'));
-    console.log('>', bookId);
     const result = await api.deleteBook(bookId);
     this.setState({
       deletePopup: !this.state.deletePopup,
@@ -84,7 +79,7 @@ class App extends Component {
     return (
       <div className="App">
         <Header />
-        <Main popId={this.state.popId} toggleDeletePopup={this.toggleDeletePopup} deletePopup={this.state.deletePopup} deleteBook={this.deleteBook} getFilter={this.getFilter} bookList={this.filterBookList()} haveBooks={this.state.haveBooks} handleLoan={this.handleLoan} />
+        <Main popId={this.state.popId} toggleDeletePopup={this.toggleDeletePopup} deletePopup={this.state.deletePopup} deleteBook={this.deleteBook} getFilter={this.getFilter} bookList={this.filterBookList()} haveBooks={this.state.haveBooks} />
         <Footer />
       </div>
     )
