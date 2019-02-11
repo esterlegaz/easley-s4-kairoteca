@@ -1,0 +1,23 @@
+.list__view-details {
+    width: 523px;
+    height: 683px;
+    list-style: none;
+}
+
+.list__item--content {
+    width: 360px;
+    height: 48px;
+    line-height: 19px;
+    margin: 16px 12px 88px 12px;
+    border-bottom: 1px  solid $colorBookAuthor;
+    font-size: 16px;
+    font-weight: regular;
+}
+.list__item--title {
+    font-weight: regular;
+    font-size: 12px;
+    color: $colorKairos;
+    line-height: 14px;
+    letter-spacing: 0.4px;
+}
+
