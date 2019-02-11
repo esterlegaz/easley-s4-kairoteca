@@ -28,7 +28,6 @@ class CardDetail extends Component {
   }
 }
 
-
 CardDetail.propTypes = {
   handleLoan: PropTypes.func.isRequired,
   item: PropTypes.object.isRequired

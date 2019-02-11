@@ -10,7 +10,7 @@ class Main extends Component {
             <Filter getFilter={this.props.getFilter} />
             <button onClick={this.props.togglePopup}> Añadir libro </button>
             <List bookList={this.props.bookList} haveBooks={this.props.haveBooks} handleLoan={this.props.handleLoan}/>
-        </Fragment>   
+        </Fragment>
     );
   }
 }

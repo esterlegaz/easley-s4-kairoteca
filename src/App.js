@@ -82,7 +82,14 @@ class App extends Component {
           chipData: mergedTags
         })
       })
-};
+  };
+
+  createBook(){
+    api.createBook ()
+    .then(createBook => {
+      
+    })
+  }
 
   render() {
     return (
