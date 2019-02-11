@@ -14,7 +14,9 @@ class App extends Component {
       haveBooks: false,
       query: '',
       showPopup: false,
-      chipData: []
+      chipData: [],
+      deletePopup: false,
+      popId: ''
     };
 
     this.paintList = this.paintList.bind(this);
@@ -22,6 +24,8 @@ class App extends Component {
     this.filterBookList = this.filterBookList.bind(this);
     this.togglePopup = this.togglePopup.bind(this);
     this.getTags = this.getTags.bind(this);
+    this.deleteBook = this.deleteBook.bind(this);
+    this.toggleDeletePopup = this.toggleDeletePopup.bind(this);
   }
 
   componentDidMount() {
@@ -83,6 +87,28 @@ class App extends Component {
         })
       })
 };
+    
+  
+
+  async deleteBook(e) {
+    this.paintList();
+    const bookId = parseInt(e.currentTarget.getAttribute('data-id'));
+    console.log('>', bookId);
+    const result = await api.deleteBook(bookId);
+    this.setState({
+      deletePopup: !this.state.deletePopup,
+      popId: ''
+    })
+    return result;
+  }
+
+  toggleDeletePopup(e) {
+    const newId = parseInt(e.currentTarget.getAttribute('data-popid'));
+    this.setState({
+      deletePopup: !this.state.deletePopup,
+      popId: newId
+    });
+  }
 
   render() {
     return (
@@ -95,6 +121,7 @@ class App extends Component {
           : null
         }
 
+        <Main popId={this.state.popId} toggleDeletePopup={this.toggleDeletePopup} deletePopup={this.state.deletePopup} deleteBook={this.deleteBook} getFilter={this.getFilter} bookList={this.filterBookList()} haveBooks={this.state.haveBooks} handleLoan={this.handleLoan} />
         <Footer />
       </div>
     )

@@ -10,7 +10,7 @@ class CardDetail extends Component {
       <div>
         <div className="book__information">
           <Status status={status} handleLoan={this.props.handleLoan} />
-          <Icons />
+          <Icons popId={this.props.popId} toggleDeletePopup = {this.props.toggleDeletePopup} deletePopup={this.props.deletePopup} id={this.props.item.id} deleteBook={this.props.deleteBook} />
         </div>
         <div className="book__detail">
           <h2 className="book__title">{title}</h2>
@@ -28,11 +28,12 @@ class CardDetail extends Component {
   }
 }
 
-
 CardDetail.propTypes = {
+  toggleDeletePopup: PropTypes.func.isRequired,
+  deletePopup: PropTypes.bool.isRequired,
+  deleteBook: PropTypes.func.isRequired,
   handleLoan: PropTypes.func.isRequired,
   item: PropTypes.object.isRequired
 };
-
 
 export default CardDetail;
