@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import CardDetail from './../Detail/CardDetail';
-import {Link} from 'react-router-dom';
 
 class List extends Component {
   render() {
@@ -12,10 +11,8 @@ class List extends Component {
             {this.props.bookList.map(item => {
               return (
                 <li key={item.id} className="book__list">
-                  <Link to={`./book/${item.id}`} className="book__list-link">
-                    <CardDetail deleteBook={this.props.deleteBook} item={item} handleLoan={this.props.handleLoan} />
-                  </Link>
-                </li> 
+                  <CardDetail deleteBook={this.props.deleteBook} item={item} handleLoan={this.props.handleLoan} />
+                </li>
               )
             })}
           </ul>
