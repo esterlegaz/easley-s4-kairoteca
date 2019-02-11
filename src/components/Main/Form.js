@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
 import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
 import InputLabel from '@material-ui/core/InputLabel';
 import OutlinedInput from '@material-ui/core/OutlinedInput';
 import Chips from 'react-chips';
@@ -39,45 +40,29 @@ class Form extends Component {
     super(props);
     this.state = {
       chips: [],
-      newBook:{
-        title:'',
-        author:'',
-        ISBN:'',
-        type:'',
-        tags:[],
-        status:''
+      newBook: {
+        title: '',
+        author: '',
+        ISBN: '',
+        type: '',
+        tags: [],
+        status: ''
       }
     }
     this.titleRef = React.createRef();
     this.authorRef = React.createRef();
-    this.handleChangeTitle = this.handleChangeTitle.bind(this);
-    this.handleChangeAuthor = this.handleChangeAuthor.bind(this);
-    this.handleChangeISBN = this.handleChangeISBN.bind(this);
+    this.ISBNRef = React.createRef();
+    this.typeRef = React.createRef();
+    this.handleChange = this.handleChange.bind(this);
   }
 
   handleChip = chips => {
     this.setState({ chips });
   }
 
-  handleChangeTitle(e){
-    const {newBook} = this.state;
-    const addBook = {...newBook, title: e.currentTarget.value}
-    this.setState({
-      newBook: addBook
-    })
-  }
-
-  handleChangeAuthor(e){
-    const {newBook} = this.state;
-    const addBook = {...newBook, author: e.currentTarget.value}
-    this.setState({
-      newBook: addBook
-    })
-  }
-
-  handleChangeISBN(e){
-    const {newBook} = this.state;
-    const addBook = {...newBook, ISBN: e.currentTarget.value}
+  handleChange = field => event => {
+    const { newBook } = this.state;
+    const addBook = { ...newBook, [field]: event.currentTarget.value }
     this.setState({
       newBook: addBook
     })
@@ -90,26 +75,31 @@ class Form extends Component {
           <form action="/signup" method="post">
             <FormControl className="form__textfield" variant="outlined">
               <InputLabel ref={this.titleRef} htmlFor="outlined-title">Título</InputLabel>
-              <OutlinedInput label="Título" id="outlined-title" onKeyUp={this.handleChangeTitle} labelWidth={this.titleRef ? this.titleRef.offsetWidth : 0} />
+              <OutlinedInput label="Título" id="outlined-title" onKeyUp={this.handleChange('title')} labelWidth={this.titleRef ? this.titleRef.offsetWidth : 0} />
             </FormControl>
 
             <FormControl className="form__textfield" variant="outlined">
               <InputLabel ref={this.titleRef} htmlFor="outlined-author">Autor</InputLabel>
-              <OutlinedInput label="Autor" id="outlined-author" onKeyUp={this.handleChangeAuthor} labelWidth={this.authorRef ? this.authorRef.offsetWidth : 0} />
+              <OutlinedInput label="Autor" id="outlined-author" onKeyUp={this.handleChange('author')} labelWidth={this.authorRef ? this.authorRef.offsetWidth : 0} />
             </FormControl>
 
             <FormControl className="form__textfield" variant="outlined">
               <InputLabel ref={this.ISBNRef} htmlFor="outlined-ISBN">ISBN</InputLabel>
-              <OutlinedInput label="ISBN" id="outlined-ISBN" onKeyUp={this.handleChangeISBN} labelWidth={this.ISBNRef ? this.ISBNRef.offsetWidth : 0} />
+              <OutlinedInput label="ISBN" id="outlined-ISBN" onKeyUp={this.handleChange('ISBN')} labelWidth={this.ISBNRef ? this.ISBNRef.offsetWidth : 0} />
             </FormControl>
-            
-            <TextField id="outlined-select-types" select label="Tipo" className="form__textfield" /*value={this.state.currency} onChange={this.handleChange('currency')} */ margin="normal" variant="outlined">
-              {types.map(option => (
-                <MenuItem key={option.value} value={option.value}>
-                  {option.label}
-                </MenuItem>
-              ))}
-            </TextField>
+
+            <FormControl className="form__textfield" variant="outlined">
+             <InputLabel ref={this.typeRef} htmlFor="type">Tipo</InputLabel>
+              <Select native value={this.state.newBook.type} onChange={this.handleChange('type')} input={
+                <OutlinedInput name="type" labelWidth={this.typeRef ? this.typeRef.offsetWidth : 0} id="type" />}>
+                {types.map(option => {
+                  return(
+                    <option value={option.value}>{option.label}</option>
+                )}
+                )}
+              </Select>
+              </FormControl>
+
             <div>
               <Chips value={this.state.chips} onChange={this.handleChip} suggestions={this.props.arrayTags} />
             </div>
