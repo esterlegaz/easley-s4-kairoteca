@@ -49,7 +49,7 @@ class ViewDetail extends Component {
              <div className="list__item--content">{status}</div>
            </li>
          </ul>
-         <Link className="link__back" to="/">Cerrar</Link>
+         <Link className="link__close" to="/">Cerrar</Link>
        </Fragment>
     )
   } else {
