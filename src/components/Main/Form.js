@@ -44,42 +44,6 @@ const state = [
 ];
 
 class Form extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      newBook: {
-        title: '',
-        author: '',
-        ISBN: '',
-        type: '',
-        tags: [],
-        status: ''
-      },
-    }
-    this.handleChip = this.handleChip.bind(this);
-    this.handleChange = this.handleChange.bind(this);
-    this.createBook = this.createBook.bind(this);
-  }
-
-  handleChip = chips => {
-    const { newBook } = this.state;
-    const addBook = { ...newBook, tags: chips }
-    this.setState({ newBook: addBook })
-  }
-
-  handleChange = field => event => {
-    const { newBook } = this.state;
-    const addBook = { ...newBook, [field]: event.currentTarget.value }
-    this.setState({
-      newBook: addBook
-    })
-  }
-
-  createBook(){
-    const { newBook } = this.state;
-    api.createBook(newBook);
-    console.log(newBook);
-  }
 
   render() {
     return (
@@ -88,22 +52,22 @@ class Form extends Component {
           <form action="/signup" method="post">
             <FormControl className="form__textfield" variant="outlined">
               <InputLabel htmlFor="outlined-title">Título</InputLabel>
-              <OutlinedInput className="form__input" label="Título" id="outlined-title" onKeyUp={this.handleChange('title')} />
+              <OutlinedInput className="form__input" label="Título" id="outlined-title" onKeyUp={this.props.handleChange('title')} />
             </FormControl>
 
             <FormControl className="form__textfield" variant="outlined">
               <InputLabel htmlFor="outlined-author">Autor</InputLabel>
-              <OutlinedInput className="form__input" label="Autor" id="outlined-author" onKeyUp={this.handleChange('author')} />
+              <OutlinedInput className="form__input" label="Autor" id="outlined-author" onKeyUp={this.props.handleChange('author')} />
             </FormControl>
 
             <FormControl className="form__textfield" variant="outlined">
               <InputLabel htmlFor="outlined-ISBN">ISBN</InputLabel>
-              <OutlinedInput className="form__input" label="ISBN" id="outlined-ISBN" onKeyUp={this.handleChange('ISBN')} />
+              <OutlinedInput className="form__input" label="ISBN" id="outlined-ISBN" onKeyUp={this.props.handleChange('ISBN')} />
             </FormControl>
 
             <FormControl className="form__textfield" variant="outlined">
               <InputLabel htmlFor="type">Tipo</InputLabel>
-              <Select className="form__input" native value={this.state.newBook.type} onChange={this.handleChange('type')} input={
+              <Select className="form__input" native value={this.props.newBook.type} onChange={this.props.handleChange('type')} input={
                 <OutlinedInput className="form__input" name="type" id="type" />}>
                 {types.map(option => {
                   return (
@@ -117,13 +81,13 @@ class Form extends Component {
             <FormControl className="form__textfield" variant="outlined">
               <p>Tags</p>
               <Chips className="form__input" label="tags"
-                value={this.state.newBook.tags} onChange={this.handleChip} suggestions={this.props.arrayTags} id="outlined-tags" />
+                value={this.props.newBook.tags} onChange={this.props.handleChip} suggestions={this.props.arrayTags} id="outlined-tags" />
             </FormControl>
 
             <FormControl className="form__textfield" variant="outlined">
               <InputLabel htmlFor="status">Estado</InputLabel>
-              <Select className="form__input" native value={this.state.newBook.status} onChange={this.handleChange('status')} input={
-                <OutlinedInput name="status" id="type" />}>
+              <Select className="form__input" native value={this.props.newBook.status} onChange={this.props.handleChange('status')} input={
+                <OutlinedInput name="status" id="status" />}>
                 {state.map(option => {
                   return (
                     <option value={option.value}>{option.label}</option>
@@ -133,7 +97,7 @@ class Form extends Component {
               </Select>
             </FormControl>
           </form>
-          <button className="form__close--btn" onClick={this.createBook}>Añadir</button>
+          <button className="form__close--btn" onClick={this.props.createBook}>Añadir</button>
           <button className="form__close--btn" onClick={this.props.togglePopup}>Cerrar</button>
         </div>
       </div>
