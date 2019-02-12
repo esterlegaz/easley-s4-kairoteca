@@ -1,14 +1,35 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
+import DeletePopup from './DeletePopup';
 
 class Icons extends Component {
+  showDeletePopup(isVisible, bookId, popId) {
+    if (isVisible === true && popId === bookId) {
+      return (
+        <DeletePopup id={bookId} deleteBook={this.props.deleteBook} toggleDeletePopup={this.props.toggleDeletePopup} />
+      )
+    }
+    else {
+      return null
+    }
+  }
+
   render() {
     return (
       <div className="icons__wrapper">
-        <div className="icons__edit"></div>  
-        <div className="icons__close"></div>  
+        <button className="card__detail--icons icons__edit"></button>
+        <button className="card__detail--icons icons__delete" data-popid={this.props.id} onClick={this.props.toggleDeletePopup}></button>
+        {this.showDeletePopup(this.props.deletePopup, this.props.id, this.props.popId)}
       </div>
     )
   }
 }
+
+Icons.propTypes = {
+  toggleDeletePopup: PropTypes.func.isRequired,
+  deletePopup: PropTypes.bool.isRequired,
+  deleteBook: PropTypes.func.isRequired,
+  id: PropTypes.number.isRequired,
+};
 
 export default Icons;

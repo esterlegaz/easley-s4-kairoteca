@@ -11,7 +11,7 @@ class List extends Component {
             {this.props.bookList.map(item => {
               return (
                 <li key={item.id} className="book__list">
-                  <CardDetail item={item} handleLoan={this.props.handleLoan}/>
+                  <CardDetail popId={this.props.popId} toggleDeletePopup={this.props.toggleDeletePopup} deletePopup={this.props.deletePopup} deleteBook={this.props.deleteBook} item={item} />
                 </li>
               )
             })}
@@ -19,15 +19,16 @@ class List extends Component {
         </div>
       );
     } else {
-      return <p>No hay datos</p>
+      return <p className="book__no-data">No hay datos</p>
     }
-    
   }
 }
 
 List.propTypes = {
+  toggleDeletePopup: PropTypes.func.isRequired,
+  deletePopup: PropTypes.bool.isRequired,
+  deleteBook: PropTypes.func.isRequired,
   haveBooks: PropTypes.bool.isRequired,
-  handleLoan: PropTypes.func.isRequired,
   bookList: PropTypes.array.isRequired
 };
 
