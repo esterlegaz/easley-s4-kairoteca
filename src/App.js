@@ -18,7 +18,7 @@ class App extends Component {
       showPopup: false,
       chipData: [],
       deletePopup: false,
-      popId: ''
+      popId: '',
     };
 
     this.paintList = this.paintList.bind(this);
@@ -84,13 +84,6 @@ class App extends Component {
         })
       })
   };
-
-  createBook() {
-    api.createBook()
-      .then(createBook => {
-
-      })
-  }
 
   async deleteBook(e) {
     this.paintList();

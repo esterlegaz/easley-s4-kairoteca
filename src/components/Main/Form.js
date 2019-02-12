@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import MenuItem from '@material-ui/core/MenuItem';
-import TextField from '@material-ui/core/TextField';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import InputLabel from '@material-ui/core/InputLabel';
 import OutlinedInput from '@material-ui/core/OutlinedInput';
+import api from "../../api/index";
 import Chips from 'react-chips';
-import Chip from '@material-ui/core/Chip';
+
+
 
 const types = [
   {
@@ -47,7 +47,6 @@ class Form extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      chips:[],
       newBook: {
         title: '',
         author: '',
@@ -59,19 +58,27 @@ class Form extends Component {
     }
     this.handleChip = this.handleChip.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.createBook = this.createBook.bind(this);
   }
 
   handleChip = chips => {
-  const { newBook } = this.state;
-  const addBook = { ...newBook, tags: chips }
-  this.setState({newBook: addBook})
-}
+    const { newBook } = this.state;
+    const addBook = { ...newBook, tags: chips }
+    this.setState({ newBook: addBook })
+  }
+
   handleChange = field => event => {
     const { newBook } = this.state;
     const addBook = { ...newBook, [field]: event.currentTarget.value }
     this.setState({
       newBook: addBook
     })
+  }
+
+  createBook(){
+    const { newBook } = this.state;
+    api.createBook(newBook);
+    console.log(newBook);
   }
 
   render() {
@@ -81,7 +88,7 @@ class Form extends Component {
           <form action="/signup" method="post">
             <FormControl className="form__textfield" variant="outlined">
               <InputLabel htmlFor="outlined-title">Título</InputLabel>
-              <OutlinedInput className="form__input" label="Título" id="outlined-title" onKeyUp={this.handleChange('title')}/>
+              <OutlinedInput className="form__input" label="Título" id="outlined-title" onKeyUp={this.handleChange('title')} />
             </FormControl>
 
             <FormControl className="form__textfield" variant="outlined">
@@ -108,9 +115,9 @@ class Form extends Component {
             </FormControl>
 
             <FormControl className="form__textfield" variant="outlined">
-                <p>Tags</p>
+              <p>Tags</p>
               <Chips className="form__input" label="tags"
-              value={this.state.newBook.tags} onChange={this.handleChip} suggestions={this.props.arrayTags} id="outlined-tags"/>
+                value={this.state.newBook.tags} onChange={this.handleChip} suggestions={this.props.arrayTags} id="outlined-tags" />
             </FormControl>
 
             <FormControl className="form__textfield" variant="outlined">
@@ -126,6 +133,7 @@ class Form extends Component {
               </Select>
             </FormControl>
           </form>
+          <button className="form__close--btn" onClick={this.createBook}>Añadir</button>
           <button className="form__close--btn" onClick={this.props.togglePopup}>Cerrar</button>
         </div>
       </div>
