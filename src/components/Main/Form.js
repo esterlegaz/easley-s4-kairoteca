@@ -52,7 +52,7 @@ class Form extends Component {
           <form action="/signup" method="post">
             <FormControl className="form__textfield" variant="outlined">
               <InputLabel htmlFor="outlined-title">Título</InputLabel>
-              <OutlinedInput className="form__input" label="Título" id="outlined-title" onKeyUp={this.props.handleChange('title')} />
+              <OutlinedInput id="outlined-title" className="form__input" label="Título" onKeyUp={this.props.handleChange('title')} />
             </FormControl>
 
             <FormControl className="form__textfield" variant="outlined">
