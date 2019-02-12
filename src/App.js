@@ -19,7 +19,23 @@ class App extends Component {
       showPopup: false,
       chipData: [],
       deletePopup: false,
-      popId: ''
+      popId: '',
+      newBook: {
+        title: '',
+        author: '',
+        ISBN: '',
+        type: '',
+        tags: [],
+        status: ''
+      },
+      editBook:{
+        title:'',
+        author: '',
+        ISBN: '',
+        type: '',
+        tags: [],
+        status: ''
+      },
     };
 
     this.paintList = this.paintList.bind(this);
@@ -30,6 +46,9 @@ class App extends Component {
     this.updateBook = this.updateBook.bind(this);
     this.deleteBook = this.deleteBook.bind(this);
     this.toggleDeletePopup = this.toggleDeletePopup.bind(this);
+    this.handleChip = this.handleChip.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.createBook = this.createBook.bind(this);
   }
 
   componentDidMount() {
@@ -87,19 +106,6 @@ class App extends Component {
       })
   };
 
-  createBook() {
-    api.createBook()
-      .then(createBook => {
-
-      })
-  }
-
-  async updateBook(e) {
-    const bookId = parseInt(e.currentTarget.getAttribute('data-id'));
-    const result = await api.updateBook(bookId);
-    return result;
-  }
-
   async deleteBook(e) {
     this.paintList();
     const bookId = parseInt(e.currentTarget.getAttribute('data-id'));
@@ -119,6 +125,47 @@ class App extends Component {
     });
   }
 
+  handleChip = chips => {
+    const { newBook } = this.state;
+    const addBook = { ...newBook, tags: chips }
+    this.setState({ newBook: addBook })
+  }
+
+  handleChange = field => event => {
+    const { newBook } = this.state;
+    const addBook = { ...newBook, [field]: event.currentTarget.value }
+    this.setState({
+      newBook: addBook
+    })
+  }
+
+  createBook(){
+    const { newBook } = this.state;
+    api.createBook(newBook);
+    this.paintList();
+    this.togglePopup();
+  }
+
+  async updateBook(e) {
+    const bookId = parseInt(e.currentTarget.getAttribute('data-id'));
+    const result = await api.updateBook(bookId);
+    return result;
+  }
+
+  handleChangeEdit = field => event => {
+    const { editBook } = this.state;
+    const addBook = { ...editBook, [field]: event.currentTarget.value }
+    this.setState({
+      editBook: addBook
+    })
+  }
+
+  handleChipEdit = chips => {
+    const { editBook } = this.state;
+    const addBook = { ...editBook, tags: chips }
+    this.setState({ editBook: addBook })
+  }
+
   render() {
     return (
       <div className="App">
@@ -133,10 +180,10 @@ class App extends Component {
         </Switch>
 
         {this.state.showPopup ?
-          <Form togglePopup={this.togglePopup} suggestions={this.state.bookList} arrayTags={this.state.chipData} />
+          <Form togglePopup={this.togglePopup} suggestions={this.state.bookList} arrayTags={this.state.chipData} handleChange={this.handleChange} handleChip={this.handleChip} createBook={this.createBook} newBook={this.state.newBook}/>
           : null
         }
-        <Edit />
+        <Edit handleChipEdit={this.handleChipEdit} arrayTags={this.state.chipData} handleChangeEdit={this.handleChangeEdit} editBook={this.state.editBook}/>
         <Footer />
       </div>
     )

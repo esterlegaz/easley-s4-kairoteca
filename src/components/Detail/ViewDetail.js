@@ -6,12 +6,12 @@ import {Link} from 'react-router-dom';
 class ViewDetail extends Component {
   render() {
     const {bookList} = this.props;
-    const bookId = this.props.match.params.id; 
-    
+    const bookId = this.props.match.params.id;
+
     if (bookList.length > 0 && bookId < bookList.length) {
       const myBook = bookList[bookId];
       const {author , title, tags, status, ISBN, type}= myBook;
-    
+
      return (
        <Fragment>
          <div className="detail__wrapper">
@@ -49,7 +49,7 @@ class ViewDetail extends Component {
              <div className="list__item--content list__item--type">{status}</div>
            </li>
          </ul>
-          <Link className="link__close" to="/">Cerrar</Link>       
+          <Link className="link__close" to="/">Cerrar</Link>
          </div>
        </Fragment>
     )
@@ -62,12 +62,7 @@ class ViewDetail extends Component {
       );
    }
   };
-  
 }
-
-ViewDetail.propTypes = {
-  item: PropTypes.object.isRequired
-};
 
 export default ViewDetail;
 
