@@ -61,13 +61,8 @@ class ViewDetail extends Component {
         </Fragment>
       );
    }
-  };
-  
+  };  
 }
-
-ViewDetail.propTypes = {
-  item: PropTypes.object.isRequired
-};
 
 export default ViewDetail;
 
