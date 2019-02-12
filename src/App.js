@@ -33,10 +33,6 @@ class App extends Component {
     this.getTags();
   }
 
-  handleLoan() {
-    console.log('Funciono');
-  }
-
   togglePopup() {
     this.setState({
       showPopup: !this.state.showPopup
@@ -69,7 +65,6 @@ class App extends Component {
       const tags = book.tags.filter(tag => tag.toUpperCase().includes(query.toUpperCase()));
       const title = book.title.toUpperCase().includes(query.toUpperCase());
       return tags.length > 0 || title;
-
     })
   }
 
@@ -80,20 +75,24 @@ class App extends Component {
           return item.tags
         });
 
-        const mergedTags = [...new Set( [].concat.apply([],tags))];
+        const mergedTags = [...new Set([].concat.apply([], tags))];
 
         this.setState({
           chipData: mergedTags
         })
       })
-};
-    
-  
+  };
+
+  createBook() {
+    api.createBook()
+      .then(createBook => {
+
+      })
+  }
 
   async deleteBook(e) {
     this.paintList();
     const bookId = parseInt(e.currentTarget.getAttribute('data-id'));
-    console.log('>', bookId);
     const result = await api.deleteBook(bookId);
     this.setState({
       deletePopup: !this.state.deletePopup,
@@ -114,14 +113,13 @@ class App extends Component {
     return (
       <div className="App">
         <Header />
-        <Main getFilter={this.getFilter} bookList={this.filterBookList()} haveBooks={this.state.haveBooks} handleLoan={this.handleLoan} togglePopup={this.togglePopup} />
+        <Main popId={this.state.popId} toggleDeletePopup={this.toggleDeletePopup} deletePopup={this.state.deletePopup} deleteBook={this.deleteBook} getFilter={this.getFilter} bookList={this.filterBookList()} haveBooks={this.state.haveBooks} togglePopup={this.togglePopup} />
 
         {this.state.showPopup ?
-          <Form togglePopup={this.togglePopup} suggestions={this.state.bookList} arrayTags={this.state.chipData}/>
+          <Form togglePopup={this.togglePopup} suggestions={this.state.bookList} arrayTags={this.state.chipData} />
           : null
         }
 
-        <Main popId={this.state.popId} toggleDeletePopup={this.toggleDeletePopup} deletePopup={this.state.deletePopup} deleteBook={this.deleteBook} getFilter={this.getFilter} bookList={this.filterBookList()} haveBooks={this.state.haveBooks} handleLoan={this.handleLoan} />
         <Footer />
       </div>
     )

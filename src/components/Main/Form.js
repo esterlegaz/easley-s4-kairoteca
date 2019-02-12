@@ -1,87 +1,136 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import { withStyles } from '@material-ui/core/styles';
 import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
-import Paper from '@material-ui/core/Paper';
-// import Chip from '@material-ui/core/Chip';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
+import InputLabel from '@material-ui/core/InputLabel';
+import OutlinedInput from '@material-ui/core/OutlinedInput';
 import Chips from 'react-chips';
 
 const types = [
-    {
-        value: 'digital',
-        label: 'digital',
-    },
-    {
-        value: 'físico',
-        label: 'físico',
-    },
+  {
+    value: 'digital',
+    label: 'digital',
+  },
+  {
+    value: 'físico',
+    label: 'físico',
+  },
 ]
 
 const state = [
-    {
-        value: 'Disponible',
-        label: 'Disponible',
-    },
-    {
-        value: 'Prestado',
-        label: 'Prestado',
-    },
-    {
-        value: 'Pendiente',
-        label: 'Pendiente',
-    },
+  {
+    value: 'Disponible',
+    label: 'Disponible',
+  },
+  {
+    value: 'Prestado',
+    label: 'Prestado',
+  },
+  {
+    value: 'Pendiente',
+    label: 'Pendiente',
+  },
 ]
 
 class Form extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-          chips: []
-        }
+  constructor(props) {
+    super(props);
+    this.state = {
+      chips:[],
+      newBook: {
+        title: '',
+        author: '',
+        ISBN: '',
+        type: '',
+        tags: [],
+        status: ''
       }
-     
-      handleChip = chips => {
-        this.setState({ chips });
-      }
-
-    render() {
-        return (
-            <div className="form__container">
-                <div className="popup">
-                    <form action="/signup" method="post">
-                        <TextField id="outlined-title" label="Título" className='form__textfield' /* value={this.state.name}  onChange={this.handleChange("name")}*/ margin="normal" variant="outlined" />
-
-                        <TextField id="outlined-author" label="Autor" className='form__textfield' /* value={this.state.name}  onChange={this.handleChange("name")}*/ margin="normal" variant="outlined" />
-
-                        <TextField id="outlined-isbn" label="ISBN" className='form__textfield' /* value={this.state.name}  onChange={this.handleChange("name")}*/ margin="normal" variant="outlined" />
-
-                        <TextField id="outlined-select-types" select label="Tipo" className="form__textfield" /*value={this.state.currency} onChange={this.handleChange('currency')} */ margin="normal" variant="outlined">
-                            {types.map(option => (
-                                <MenuItem key={option.value} value={option.value}>
-                                    {option.label}
-                                </MenuItem>
-                            ))}
-                        </TextField>
-                        <div>
-                            <Chips value={this.state.chips} onChange={this.handleChip} suggestions={this.props.arrayTags}/>
-                        </div>
-
-                        <TextField id="outlined-select-state" select label="Estado" className="form__textfield" /*value={this.state.currency} onChange={this.handleChange('currency')} */ margin="normal" variant="outlined">
-                            {state.map(option => (
-                                <MenuItem key={option.value} value={option.value}>
-                                    {option.label}
-                                </MenuItem>
-                            ))}
-                        </TextField>
-
-                    </form>
-                    <button className="close" onClick={this.props.togglePopup}> Cerrar </button>
-                </div>
-            </div>
-        );
     }
+    this.titleRef = React.createRef();
+    this.authorRef = React.createRef();
+    this.ISBNRef = React.createRef();
+    this.typeRef = React.createRef();
+    this.statusRef = React.createRef();
+    this.handleChip = this.handleChip.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  handleChip = chips => {
+    this.setState({chips})
+  };
+
+  // handleChip = chips => {
+  //   const {newBook}= this.state;
+  //   const tags= newBook.tags.push(`${chips}`);
+  //   return tags
+  // }
+
+  handleChange = field => event => {
+    const { newBook } = this.state;
+    const addBook = { ...newBook, [field]: event.currentTarget.value }
+    this.setState({
+      newBook: addBook
+    })
+  }
+
+  render() {
+    return (
+      <div className="form__container">
+        <div className="popup">
+          <form action="/signup" method="post">
+            <FormControl className="form__textfield" variant="outlined">
+              <InputLabel ref={this.titleRef} htmlFor="outlined-title">Título</InputLabel>
+              <OutlinedInput label="Título" id="outlined-title" onKeyUp={this.handleChange('title')} />
+            </FormControl>
+
+            <FormControl className="form__textfield" variant="outlined">
+              <InputLabel ref={this.titleRef} htmlFor="outlined-author">Autor</InputLabel>
+              <OutlinedInput label="Autor" id="outlined-author" onKeyUp={this.handleChange('author')} labelWidth={this.authorRef ? this.authorRef.offsetWidth : 0} />
+            </FormControl>
+
+            <FormControl className="form__textfield" variant="outlined">
+              <InputLabel ref={this.ISBNRef} htmlFor="outlined-ISBN">ISBN</InputLabel>
+              <OutlinedInput label="ISBN" id="outlined-ISBN" onKeyUp={this.handleChange('ISBN')} labelWidth={this.ISBNRef ? this.ISBNRef.offsetWidth : 0} />
+            </FormControl>
+
+            <FormControl className="form__textfield" variant="outlined">
+              <InputLabel ref={this.typeRef} htmlFor="type">Tipo</InputLabel>
+              <Select native value={this.state.newBook.type} onChange={this.handleChange('type')} input={
+                <OutlinedInput name="type" labelWidth={this.typeRef ? this.typeRef.offsetWidth : 0} id="type" />}>
+                {types.map(option => {
+                  return (
+                    <option value={option.value}>{option.label}</option>
+                  )
+                }
+                )}
+              </Select>
+            </FormControl>
+
+            <FormControl className="form__textfield" variant="outlined">
+              <Chips value={this.state.chips} onChange={this.handleChip} suggestions={this.props.arrayTags} />
+            </FormControl>
+
+            <FormControl className="form__textfield" variant="outlined">
+              <InputLabel ref={this.statusRef} htmlFor="status">Estado</InputLabel>
+              <Select native value={this.state.newBook.status} onChange={this.handleChange('status')} input={
+                <OutlinedInput name="status" labelWidth={this.statusRef ? this.statusRef.offsetWidth : 0} id="type" />}>
+                {state.map(option => {
+                  return (
+                    <option value={option.value}>{option.label}</option>
+                  )
+                }
+                )}
+              </Select>
+            </FormControl>
+          </form>
+          <button className="close" onClick={this.props.togglePopup}> Cerrar </button>
+        </div>
+      </div>
+    );
+  }
 }
 
 export default Form;
