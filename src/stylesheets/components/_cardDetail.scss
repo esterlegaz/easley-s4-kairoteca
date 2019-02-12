@@ -11,6 +11,7 @@
 .book__title{
     font-size: 20px;
     color: $colorBookTitle;
+
 }
 
 .book__author{
@@ -35,4 +36,7 @@
     color: $colorTagsContent;
     padding: 0 10px;
     margin: 5px 5px 5px 0;
+}
+.book__list-link {
+    text-decoration: none;
 }

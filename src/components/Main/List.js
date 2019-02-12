@@ -19,7 +19,7 @@ class List extends Component {
         </div>
       );
     } else {
-      return <p>No hay datos</p>
+      return <p className="book__no-data">No hay datos</p>
     }
   }
 }
