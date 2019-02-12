@@ -8,7 +8,7 @@ class ViewDetail extends Component {
     const {bookList} = this.props;
     const bookId = this.props.match.params.id; 
     
-    if (bookList.length > 0 && bookId < bookList.length){
+    if (bookList.length > 0 && bookId < bookList.length) {
       const myBook = bookList[bookId];
       const {author , title, tags, status, ISBN, type}= myBook;
     

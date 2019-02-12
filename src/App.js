@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Route, Switch } from 'react-router-dom';
 import Header from './components/Layout/Header';
 import Main from "./components/Layout/Main";
+import Form from "./components/Main/Form";
 import Footer from "./components/Layout/Footer";
 import api from "./api";
 import "./App.scss";
@@ -14,6 +15,8 @@ class App extends Component {
       bookList: [],
       haveBooks: false,
       query: '',
+      showPopup: false,
+      chipData: [],
       deletePopup: false,
       popId: ''
     };
@@ -21,12 +24,21 @@ class App extends Component {
     this.paintList = this.paintList.bind(this);
     this.getFilter = this.getFilter.bind(this);
     this.filterBookList = this.filterBookList.bind(this);
+    this.togglePopup = this.togglePopup.bind(this);
+    this.getTags = this.getTags.bind(this);
     this.deleteBook = this.deleteBook.bind(this);
     this.toggleDeletePopup = this.toggleDeletePopup.bind(this);
   }
 
   componentDidMount() {
     this.paintList();
+    this.getTags();
+  }
+
+  togglePopup() {
+    this.setState({
+      showPopup: !this.state.showPopup
+    });
   }
 
   paintList() {
@@ -58,6 +70,28 @@ class App extends Component {
     })
   }
 
+  getTags() {
+    api.books()
+      .then(books => {
+        const tags = books.data.map(item => {
+          return item.tags
+        });
+
+        const mergedTags = [...new Set([].concat.apply([], tags))];
+
+        this.setState({
+          chipData: mergedTags
+        })
+      })
+  };
+
+  createBook() {
+    api.createBook()
+      .then(createBook => {
+
+      })
+  }
+
   async deleteBook(e) {
     this.paintList();
     const bookId = parseInt(e.currentTarget.getAttribute('data-id'));
@@ -81,12 +115,20 @@ class App extends Component {
     return (
       <div className="App">
         <Header />
+
         <Switch>
           <Route exact path="/" render={() => (
-            <Main popId={this.state.popId} toggleDeletePopup={this.toggleDeletePopup} deletePopup={this.state.deletePopup} deleteBook={this.deleteBook} getFilter={this.getFilter} bookList={this.filterBookList()} haveBooks={this.state.haveBooks}/>
+            <Main popId={this.state.popId} toggleDeletePopup={this.toggleDeletePopup} deletePopup={this.state.deletePopup} deleteBook={this.deleteBook} getFilter={this.getFilter} bookList={this.filterBookList()} haveBooks={this.state.haveBooks} togglePopup={this.togglePopup} />
           )} />
+
           <Route path="/book/:id" render={props => <ViewDetail match={props.match} bookList={this.state.bookList} />} />
         </Switch>
+
+        {this.state.showPopup ?
+          <Form togglePopup={this.togglePopup} suggestions={this.state.bookList} arrayTags={this.state.chipData} />
+          : null
+        }
+        
         <Footer />
       </div>
     )
