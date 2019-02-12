@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Route, Switch } from 'react-router-dom';
 import Header from './components/Layout/Header';
 import Main from "./components/Layout/Main";
+import Edit from "./components/Main/Edit";
 import Form from "./components/Main/Form";
 import Footer from "./components/Layout/Footer";
 import api from "./api";
@@ -26,6 +27,7 @@ class App extends Component {
     this.filterBookList = this.filterBookList.bind(this);
     this.togglePopup = this.togglePopup.bind(this);
     this.getTags = this.getTags.bind(this);
+    this.updateBook = this.updateBook.bind(this);
     this.deleteBook = this.deleteBook.bind(this);
     this.toggleDeletePopup = this.toggleDeletePopup.bind(this);
   }
@@ -92,6 +94,12 @@ class App extends Component {
       })
   }
 
+  async updateBook(e) {
+    const bookId = parseInt(e.currentTarget.getAttribute('data-id'));
+    const result = await api.updateBook(bookId);
+    return result;
+  }
+
   async deleteBook(e) {
     this.paintList();
     const bookId = parseInt(e.currentTarget.getAttribute('data-id'));
@@ -128,7 +136,7 @@ class App extends Component {
           <Form togglePopup={this.togglePopup} suggestions={this.state.bookList} arrayTags={this.state.chipData} />
           : null
         }
-        
+        <Edit />
         <Footer />
       </div>
     )

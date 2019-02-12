@@ -23,7 +23,7 @@ class CardDetail extends Component {
       <div>
         <div className="book__information">
           <Status status={status} />
-          <Icons popId={this.props.popId} toggleDeletePopup={this.props.toggleDeletePopup} deletePopup={this.props.deletePopup} id={this.props.item.id} deleteBook={this.props.deleteBook} />
+          <Icons popId={this.props.popId} toggleDeletePopup={this.props.toggleDeletePopup} deletePopup={this.props.deletePopup} id={this.props.item.id} deleteBook={this.props.deleteBook} item={this.props.item}/>
         </div>
         <div className="book__detail">
           <Link to={`./book/${this.props.item.id}`} className="book__list-link">
