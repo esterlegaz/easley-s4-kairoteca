@@ -132,7 +132,8 @@ class App extends Component {
   createBook(){
     const { newBook } = this.state;
     api.createBook(newBook);
-    console.log(newBook);
+    this.paintList();
+    this.togglePopup();
   }
 
   render() {
