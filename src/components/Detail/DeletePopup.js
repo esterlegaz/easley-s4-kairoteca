@@ -8,7 +8,7 @@ class DeletePopup extends Component {
         <div className="delete__popup--content">
           <div className="delete__pop-up--title">¿Seguro que quieres eliminar este libro?</div>
           <div className="delete__pop-up--btn-container">
-            <button className="delete__pop-up--btn" onClick={this.props.deleteBook}>Sí</button>
+            <button className="delete__pop-up--btn" data-id={this.props.id} onClick={this.props.deleteBook}>Sí</button>
             <button className="delete__pop-up--btn" onClick={this.props.toggleDeletePopup}>No</button>
           </div>
         </div>
