@@ -64,7 +64,7 @@ class Edit extends Component {
 
               <FormControl className="edit__textfield" variant="outlined">
                 <InputLabel htmlFor="type">Tipo</InputLabel>
-                <Select className="edit__input" /*native value={this.props.newBook.type}*/ onChange={this.props.handleChangeEdit('type')} input={
+                <Select className="edit__input" native value={this.props.editBook.type} onChange={this.props.handleChangeEdit('type')} input={
                   <OutlinedInput labelWidth="0" className="edit__input" name="type" id="type" />}>
                   {types.map((option, opindex) => {
                     return (
@@ -78,12 +78,12 @@ class Edit extends Component {
               <FormControl className="edit__textfield" variant="outlined">
                 <p>Tags</p>
                 <Chips className="edit__input" label="tags"
-                  /*value={this.props.newBook.tags}*/ onChange={this.props.handleChipEdit} suggestions={this.props.arrayTags}id="outlined-tags" />
+                  value={this.props.editBook.tags} onChange={this.props.handleChipEdit} suggestions={this.props.arrayTags} id="outlined-tags" />
               </FormControl>
 
               <FormControl className="edit__textfield" variant="outlined">
                 <InputLabel htmlFor="status">Estado</InputLabel>
-                <Select className="edit__input" /*native value={this.props.newBook.status}*/ onChange={this.props.handleChangeEdit('status')} input={
+                <Select className="edit__input" native value={this.props.editBook.status} onChange={this.props.handleChangeEdit('status')} input={
                   <OutlinedInput labelWidth="0" name="status" id="status" />}>
                   {state.map((option, index) => {
                     return (

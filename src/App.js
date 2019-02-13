@@ -28,8 +28,8 @@ class App extends Component {
         tags: [],
         status: ''
       },
-      editBook:{
-        title:'',
+      editBook: {
+        title: '',
         author: '',
         ISBN: '',
         type: '',
@@ -139,7 +139,7 @@ class App extends Component {
     })
   }
 
-  createBook(){
+  createBook() {
     const { newBook } = this.state;
     api.createBook(newBook);
     this.paintList();
@@ -180,10 +180,10 @@ class App extends Component {
         </Switch>
 
         {this.state.showPopup ?
-          <Form togglePopup={this.togglePopup} suggestions={this.state.bookList} arrayTags={this.state.chipData} handleChange={this.handleChange} handleChip={this.handleChip} createBook={this.createBook} newBook={this.state.newBook}/>
+          <Form togglePopup={this.togglePopup} suggestions={this.state.bookList} arrayTags={this.state.chipData} handleChange={this.handleChange} handleChip={this.handleChip} createBook={this.createBook} newBook={this.state.newBook} />
           : null
         }
-        <Edit handleChipEdit={this.handleChipEdit} arrayTags={this.state.chipData} handleChangeEdit={this.handleChangeEdit} editBook={this.state.editBook}/>
+        <Edit handleChipEdit={this.handleChipEdit} arrayTags={this.state.chipData} handleChangeEdit={this.handleChangeEdit} editBook={this.state.editBook} />
         <Footer />
       </div>
     )
