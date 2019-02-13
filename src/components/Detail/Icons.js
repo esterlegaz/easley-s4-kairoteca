@@ -6,7 +6,7 @@ class Icons extends Component {
   showDeletePopup(isVisible, bookId, popId) {
     if (isVisible === true && popId === bookId) {
       return (
-        <DeletePopup id={bookId} deleteBook={this.props.deleteBook} toggleDeletePopup={this.props.toggleDeletePopup} />
+        <DeletePopup id={bookId} deleteBook={this.props.deleteBook} toggleDeletePopup={this.props.toggleDeletePopup} statePopUp={this.props.statePopUp} />
       )
     }
     else {
@@ -19,7 +19,7 @@ class Icons extends Component {
       <div className="icons__wrapper">
         <button className="card__detail--icons icons__edit"></button>
         <button className="card__detail--icons icons__delete" data-popid={this.props.id} onClick={this.props.toggleDeletePopup}></button>
-        {this.showDeletePopup(this.props.deletePopup, this.props.id, this.props.popId)}
+        {this.showDeletePopup(this.props.statePopUp, this.props.id, this.props.popId)}
       </div>
     )
   }

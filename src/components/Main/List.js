@@ -11,7 +11,7 @@ class List extends Component {
             {this.props.bookList.map(item => {
               return (
                 <li key={item.id} className="book__list">
-                  <CardDetail popId={this.props.popId} toggleDeletePopup={this.props.toggleDeletePopup} deletePopup={this.props.deletePopup} deleteBook={this.props.deleteBook} item={item} />
+                  <CardDetail popId={this.props.popId} toggleDeletePopup={this.props.toggleDeletePopup}  deleteBook={this.props.deleteBook} item={item} statePopUp={this.props.statePopUp}/>
                 </li>
               )
             })}

@@ -39,6 +39,7 @@ class App extends Component {
     this.handleChip = this.handleChip.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.createBook = this.createBook.bind(this);
+    this.timeOutDeleteBook = this.timeOutDeleteBook.bind(this);
   }
 
   componentDidMount() {
@@ -106,6 +107,10 @@ class App extends Component {
     })
     return result;
   }
+  
+  timeOutDeleteBook() {
+    setTimeout(this.deleteBook,6000);
+  }
 
   toggleDeletePopup(e) {
     const newId = parseInt(e.currentTarget.getAttribute('data-popid'));
@@ -143,7 +148,7 @@ class App extends Component {
 
         <Switch>
           <Route exact path="/" render={() => (
-            <Main popId={this.state.popId} toggleDeletePopup={this.toggleDeletePopup} deletePopup={this.state.deletePopup} deleteBook={this.deleteBook} getFilter={this.getFilter} bookList={this.filterBookList()} haveBooks={this.state.haveBooks} togglePopup={this.togglePopup} />
+            <Main popId={this.state.popId} toggleDeletePopup={this.toggleDeletePopup}  deleteBook={this.timeOutDeleteBook} getFilter={this.getFilter} bookList={this.filterBookList()} haveBooks={this.state.haveBooks} togglePopup={this.togglePopup} statePopUp={this.state.deletePopup} />
           )} />
 
           <Route path="/book/:id" render={props => <ViewDetail match={props.match} bookList={this.state.bookList} />} />
