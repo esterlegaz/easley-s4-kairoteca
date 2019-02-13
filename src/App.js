@@ -15,7 +15,6 @@ class App extends Component {
       bookList: [],
       haveBooks: false,
       query: '',
-      showPopup: false,
       chipData: [],
       deletePopup: false,
       popId: '',
@@ -32,7 +31,6 @@ class App extends Component {
     this.paintList = this.paintList.bind(this);
     this.getFilter = this.getFilter.bind(this);
     this.filterBookList = this.filterBookList.bind(this);
-    this.togglePopup = this.togglePopup.bind(this);
     this.getTags = this.getTags.bind(this);
     this.deleteBook = this.deleteBook.bind(this);
     this.toggleDeletePopup = this.toggleDeletePopup.bind(this);
@@ -44,12 +42,6 @@ class App extends Component {
   componentDidMount() {
     this.paintList();
     this.getTags();
-  }
-
-  togglePopup() {
-    this.setState({
-      showPopup: !this.state.showPopup
-    });
   }
 
   paintList() {
@@ -129,11 +121,10 @@ class App extends Component {
     })
   }
 
-  createBook(){
+  createBook() {
     const { newBook } = this.state;
     api.createBook(newBook);
     this.paintList();
-    this.togglePopup();
   }
 
   render() {
@@ -143,17 +134,14 @@ class App extends Component {
 
         <Switch>
           <Route exact path="/" render={() => (
-            <Main popId={this.state.popId} toggleDeletePopup={this.toggleDeletePopup} deletePopup={this.state.deletePopup} deleteBook={this.deleteBook} getFilter={this.getFilter} bookList={this.filterBookList()} haveBooks={this.state.haveBooks} togglePopup={this.togglePopup} />
+            <Main popId={this.state.popId} toggleDeletePopup={this.toggleDeletePopup} deletePopup={this.state.deletePopup} deleteBook={this.deleteBook} getFilter={this.getFilter} bookList={this.filterBookList()} haveBooks={this.state.haveBooks} />
           )} />
 
           <Route path="/book/:id" render={props => <ViewDetail match={props.match} bookList={this.state.bookList} />} />
+          
+          <Route path="/add" render={() => (<Form suggestions={this.state.bookList} arrayTags={this.state.chipData} handleChange={this.handleChange} handleChip={this.handleChip} createBook={this.createBook} newBook={this.state.newBook} />)} />
         </Switch>
 
-        {this.state.showPopup ?
-          <Form togglePopup={this.togglePopup} suggestions={this.state.bookList} arrayTags={this.state.chipData} handleChange={this.handleChange} handleChip={this.handleChip} createBook={this.createBook} newBook={this.state.newBook}/>
-          : null
-        }
-        
         <Footer />
       </div>
     )
