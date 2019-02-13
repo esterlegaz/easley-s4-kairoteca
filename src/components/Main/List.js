@@ -10,7 +10,7 @@ class List extends Component {
           <ul className="book__container">
             {this.props.bookList.map(item => {
               return (
-                <li key={item.id} className="book__list">
+                <li key={item.id} className={`book__list ${this.props.deleteAnimation}`}>
                   <CardDetail popId={this.props.popId} toggleDeletePopup={this.props.toggleDeletePopup} deletePopup={this.props.deletePopup} deleteBook={this.props.deleteBook} item={item} />
                 </li>
               )

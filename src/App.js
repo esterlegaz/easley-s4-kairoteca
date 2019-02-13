@@ -18,6 +18,7 @@ class App extends Component {
       chipData: [],
       deletePopup: false,
       popId: '',
+      deleteAnimation: '',
       newBook: {
         title: '',
         author: '',
@@ -52,7 +53,7 @@ class App extends Component {
         });
         this.setState({
           bookList: books,
-          haveBooks: true
+          haveBooks: true,
         })
       })
   }
@@ -91,19 +92,20 @@ class App extends Component {
   async deleteBook(e) {
     this.paintList();
     const bookId = parseInt(e.currentTarget.getAttribute('data-id'));
-    const result = await api.deleteBook(bookId);
-    this.setState({
+    this.setState({    
+      popId: '',
       deletePopup: !this.state.deletePopup,
-      popId: ''
+      deleteAnimation: 'delete__book'
     })
-    return result;
+    setTimeout(await api.deleteBook(bookId), 4000);
   }
 
   toggleDeletePopup(e) {
     const newId = parseInt(e.currentTarget.getAttribute('data-popid'));
     this.setState({
       deletePopup: !this.state.deletePopup,
-      popId: newId
+      popId: newId,
+      deleteAnimation: ''
     });
   }
 
@@ -134,7 +136,7 @@ class App extends Component {
 
         <Switch>
           <Route exact path="/" render={() => (
-            <Main popId={this.state.popId} toggleDeletePopup={this.toggleDeletePopup} deletePopup={this.state.deletePopup} deleteBook={this.deleteBook} getFilter={this.getFilter} bookList={this.filterBookList()} haveBooks={this.state.haveBooks} />
+            <Main deleteAnimation={this.state.deleteAnimation} popId={this.state.popId} toggleDeletePopup={this.toggleDeletePopup} deletePopup={this.state.deletePopup} deleteBook={this.deleteBook} getFilter={this.getFilter} bookList={this.filterBookList()} haveBooks={this.state.haveBooks} />
           )} />
 
           <Route path="/book/:id" render={props => <ViewDetail match={props.match} bookList={this.state.bookList} />} />

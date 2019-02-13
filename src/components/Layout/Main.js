@@ -12,7 +12,7 @@ class Main extends Component {
         <div className="main__addbook--container">
           <Link to={'./add'}><button className="main__addbook--btn">Añadir libro</button></Link>
         </div>
-        <List popId={this.props.popId} toggleDeletePopup={this.props.toggleDeletePopup} deletePopup={this.props.deletePopup} deleteBook={this.props.deleteBook} bookList={this.props.bookList} haveBooks={this.props.haveBooks} />
+        <List deleteAnimation={this.props.deleteAnimation} popId={this.props.popId} toggleDeletePopup={this.props.toggleDeletePopup} deletePopup={this.props.deletePopup} deleteBook={this.props.deleteBook} bookList={this.props.bookList} haveBooks={this.props.haveBooks} />
       </Fragment>
     );
   }
