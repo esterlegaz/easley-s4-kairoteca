@@ -116,17 +116,24 @@ class App extends Component {
   }
 
   handleChip = chips => {
-    const { newBook } = this.state;
-    const addBook = { ...newBook, tags: chips }
-    this.setState({ newBook: addBook })
+    this.setState((prevState) => {
+      const { newBook } = prevState;
+      const addBook = { ...newBook, tags: chips }
+      return {newBook: addBook}
+    });
   }
 
-  handleChange = field => event => {
+  handleChange(e){
+    const field = e.currentTarget.getAttribute('data-field');
     const { newBook } = this.state;
-    const addBook = { ...newBook, [field]: event.currentTarget.value }
+    const addBook = { ...newBook, [field]: e.currentTarget.value }
     this.setState({
-      newBook: addBook
+        newBook: addBook
     })
+    // this.setState((prevState) => {
+     
+
+    // })
   }
 
   createBook(){
