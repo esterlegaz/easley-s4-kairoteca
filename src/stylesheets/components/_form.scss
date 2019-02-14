@@ -8,6 +8,8 @@
     right: 0;
     bottom: 0;
     margin: auto;
+    display: grid;
+    grid-template-columns: 1fr;
 }
 
 .form__textfield {
@@ -18,9 +20,6 @@
     width: 500px;
     height: 100vh;
     position: fixed;
-    display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
     left: 25%;
     right: 25%;
     top: 50%;

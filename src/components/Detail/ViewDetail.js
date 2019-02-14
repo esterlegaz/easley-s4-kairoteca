@@ -75,9 +75,5 @@ class ViewDetail extends Component {
   };
 }
 
-ViewDetail.propTypes = {
-  item: PropTypes.object.isRequired
-};
-
 export default ViewDetail;
 
