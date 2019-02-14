@@ -6,6 +6,7 @@ import Select from '@material-ui/core/Select';
 import InputLabel from '@material-ui/core/InputLabel';
 import OutlinedInput from '@material-ui/core/OutlinedInput';
 import Chips from 'react-chips';
+import Chip from '@material-ui/core/Chip';
 
 const types = [
   {
@@ -80,6 +81,18 @@ class Form extends Component {
               value={this.props.newBook.tags} onChange={this.props.handleChip} suggestions={this.props.arrayTags} id="outlined-tags" />
           </FormControl>
 
+          {/* <InputLabel htmlfor="tags">Tags</InputLabel>
+          <div id="outlined-tags" className="form__input" native value={this.props.newBook.status} onChange={this.props.handleChange('status')} input={
+              <OutlinedInput labelWidth="0" name="tags" id="outlined-tags" />}>
+              {this.props.newBook.tags.map((itemTag) => {
+                return (
+                  <Chip id="outlined-tags" value={itemTag} label={itemTag} onDelete={console.log('bla')}/>
+                )
+              }
+              )}
+            </div> */}
+
+          {/* <Chip value={itemTag} value={this.props.newBook.tags}label={this.props.newBook.tags} onDelete={this.props.handleChip}/> */}
           <FormControl className="form__textfield" variant="outlined">
             <InputLabel htmlFor="status">Estado</InputLabel>
             <Select className="form__input" native value={this.props.newBook.status} onChange={this.props.handleChange('status')} input={

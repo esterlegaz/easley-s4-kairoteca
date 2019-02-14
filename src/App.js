@@ -18,6 +18,7 @@ class App extends Component {
       chipData: [],
       deletePopup: false,
       popId: '',
+      bookItemId:'',
       deleteAnimation: '',
       newBook: {
         title: '',
@@ -38,6 +39,7 @@ class App extends Component {
     this.handleChip = this.handleChip.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.createBook = this.createBook.bind(this);
+    this.confirmDelete = this.confirmDelete.bind(this);
   }
 
   componentDidMount() {
@@ -89,23 +91,32 @@ class App extends Component {
       })
   };
 
-  async deleteBook(e) {
+  async deleteBook() {
     this.paintList();
-    const bookId = parseInt(e.currentTarget.getAttribute('data-id'));
+    const {popId} = this.state;
+    const result = await api.deleteBook(popId);
     this.setState({    
-      popId: '',
-      deletePopup: !this.state.deletePopup,
-      deleteAnimation: 'delete__book'
+      deleteAnimation: '',
+      popId: ''
     })
-    setTimeout(await api.deleteBook(bookId), 4000);
+    return result;
+  }
+
+  confirmDelete(){
+    this.setState({
+      deleteAnimation: 'delete__book',
+      deletePopup: !this.state.deletePopup,
+    })
+    setTimeout(this.deleteBook, 4000)
   }
 
   toggleDeletePopup(e) {
     const newId = parseInt(e.currentTarget.getAttribute('data-popid'));
+    const bookId = e.currentTarget.getAttribute('data-bookItem');
     this.setState({
       deletePopup: !this.state.deletePopup,
       popId: newId,
-      deleteAnimation: ''
+      bookItemId: bookId,
     });
   }
 
@@ -136,7 +147,7 @@ class App extends Component {
 
         <Switch>
           <Route exact path="/" render={() => (
-            <Main deleteAnimation={this.state.deleteAnimation} popId={this.state.popId} toggleDeletePopup={this.toggleDeletePopup} deletePopup={this.state.deletePopup} deleteBook={this.deleteBook} getFilter={this.getFilter} bookList={this.filterBookList()} haveBooks={this.state.haveBooks} />
+            <Main bookItemId={this.state.bookItemId} deleteAnimation={this.state.deleteAnimation} popId={this.state.popId} toggleDeletePopup={this.toggleDeletePopup} deletePopup={this.state.deletePopup} deleteBook={this.confirmDelete} getFilter={this.getFilter} bookList={this.filterBookList()} haveBooks={this.state.haveBooks} />
           )} />
 
           <Route path="/book/:id" render={props => <ViewDetail match={props.match} bookList={this.state.bookList} />} />
