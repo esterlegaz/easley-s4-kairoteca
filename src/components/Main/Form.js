@@ -1,10 +1,12 @@
 import React, { Component, Fragment } from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import InputLabel from '@material-ui/core/InputLabel';
 import OutlinedInput from '@material-ui/core/OutlinedInput';
 import Chips from 'react-chips';
+import Chip from '@material-ui/core/Chip';
 
 const types = [
   {
@@ -41,12 +43,10 @@ const state = [
 ];
 
 class Form extends Component {
-
   render() {
     return (
-      <div className="form__container">
-        <div className="form__popup">
-          <form action="/signup" method="post">
+      <Fragment>
+          <form className="form__container" action="/signup" method="post">
             <FormControl className="form__textfield" variant="outlined" required>
               <InputLabel htmlFor="outlined-title">Título</InputLabel>
               <OutlinedInput id="outlined-title" className="form__input" label="Título" onKeyUp={this.props.handleChange} inputProps={{ "data-field": "title" }} />
@@ -94,12 +94,12 @@ class Form extends Component {
               </Select>
             </FormControl>
           </form>
-          <div className="form__wrapper--btn">
-            <input type="submit" value="Enviar" className="form__send--btn" onClick={this.props.createBook} />
-            <button className="form__close--btn" onClick={this.props.togglePopup}>Cerrar</button>
+          <div className="form__btn--container">
+            <Link className="link__router" to='./' ><input type="submit" value="Enviar" className="form__btn" onClick={this.props.createBook} /></Link>
+            <Link className="link__router" to='./' ><button className="form__btn form__btn--close" >Cerrar</button></Link>
           </div>
-        </div>
-      </div>
+          </Fragment>
+
     );
   }
 }
