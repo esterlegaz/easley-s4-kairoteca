@@ -112,7 +112,7 @@ class App extends Component {
 
   toggleDeletePopup(e) {
     const newId = parseInt(e.currentTarget.getAttribute('data-popid'));
-    const bookId = e.currentTarget.getAttribute('data-bookItem');
+    const bookId = e.currentTarget.getAttribute('data-bookitem');
     this.setState({
       deletePopup: !this.state.deletePopup,
       popId: newId,
@@ -141,18 +141,19 @@ class App extends Component {
   }
 
   render() {
+    const {bookItemId, deleteAnimation, popId, deletePopup, haveBooks, bookList, chipData, newBook} = this.state;
     return (
       <div className="App">
         <Header />
 
         <Switch>
           <Route exact path="/" render={() => (
-            <Main bookItemId={this.state.bookItemId} deleteAnimation={this.state.deleteAnimation} popId={this.state.popId} toggleDeletePopup={this.toggleDeletePopup} deletePopup={this.state.deletePopup} deleteBook={this.confirmDelete} getFilter={this.getFilter} bookList={this.filterBookList()} haveBooks={this.state.haveBooks} />
+            <Main bookItemId={bookItemId} deleteAnimation={deleteAnimation} popId={popId} toggleDeletePopup={this.toggleDeletePopup} deletePopup={deletePopup} deleteBook={this.confirmDelete} getFilter={this.getFilter} bookList={this.filterBookList()} haveBooks={haveBooks} />
           )} />
 
-          <Route path="/book/:id" render={props => <ViewDetail match={props.match} bookList={this.state.bookList} />} />
+          <Route path="/book/:id" render={props => <ViewDetail match={props.match} bookList={bookList} />} />
           
-          <Route path="/add" render={() => (<Form suggestions={this.state.bookList} arrayTags={this.state.chipData} handleChange={this.handleChange} handleChip={this.handleChip} createBook={this.createBook} newBook={this.state.newBook} />)} />
+          <Route path="/add" render={() => (<Form suggestions={bookList} arrayTags={chipData} handleChange={this.handleChange} handleChip={this.handleChip} createBook={this.createBook} newBook={newBook} />)} />
         </Switch>
 
         <Footer />
