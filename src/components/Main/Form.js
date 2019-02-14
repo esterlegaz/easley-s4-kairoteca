@@ -95,7 +95,7 @@ class Form extends Component {
             </FormControl>
           </form>
           <div className="form__wrapper--btn">
-            <input type="submit" value="Enviar" className="form__send--btn" onChange={this.props.createBook} />
+            <input type="submit" value="Enviar" className="form__send--btn" onClick={this.props.createBook} />
             <button className="form__close--btn" onClick={this.props.togglePopup}>Cerrar</button>
           </div>
         </div>
