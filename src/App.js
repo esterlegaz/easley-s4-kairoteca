@@ -127,10 +127,10 @@ class App extends Component {
   }
 
   handleChange = field => event => {
-    const { newBook } = this.state;
-    const addBook = { ...newBook, [field]: event.currentTarget.value }
-    this.setState({
-      newBook: addBook
+    this.setState((prevState) => {
+      const { newBook } = prevState;
+      const addBook = { ...newBook, [field]: event.currentTarget.value }
+      return {newBook: addBook}
     })
   }
 
