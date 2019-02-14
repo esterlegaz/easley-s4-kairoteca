@@ -50,22 +50,22 @@ class Form extends Component {
       <div className="form__container">
         <div className="form__popup">
           <form action="/signup" method="post">
-            <FormControl className="form__textfield" variant="outlined">
+            <FormControl className="form__textfield" variant="outlined" required>
               <InputLabel htmlFor="outlined-title">Título</InputLabel>
               <OutlinedInput id="outlined-title" className="form__input" label="Título" onKeyUp={this.props.handleChange} inputProps={{"data-field":"title"}} />
             </FormControl>
 
-            <FormControl className="form__textfield" variant="outlined">
+            <FormControl className="form__textfield" variant="outlined" required>
               <InputLabel htmlFor="outlined-author">Autor</InputLabel>
               <OutlinedInput className="form__input" label="Autor" id="outlined-author" onKeyUp={this.props.handleChange} inputProps={{"data-field":"author"}}/>
             </FormControl>
 
-            <FormControl className="form__textfield" variant="outlined">
+            <FormControl className="form__textfield" variant="outlined" required>
               <InputLabel htmlFor="outlined-ISBN">ISBN</InputLabel>
               <OutlinedInput className="form__input" label="ISBN" id="outlined-ISBN" onKeyUp={this.props.handleChange} inputProps={{"data-field":"ISBN"}}/>
             </FormControl>
 
-            <FormControl className="form__textfield" variant="outlined">
+            <FormControl className="form__textfield" variant="outlined" required>
               <InputLabel htmlFor="type">Tipo</InputLabel>
               <Select className="form__input" native value={this.props.newBook.type} onChange={this.props.handleChange} input={
                 <OutlinedInput className="form__input" name="type" id="type" inputProps={{"data-field":"type"}}/>}>
@@ -78,13 +78,13 @@ class Form extends Component {
               </Select>
             </FormControl>
 
-            <FormControl className="form__textfield" variant="outlined">
-              <p>Tags</p>
+            <FormControl className="form__textfield" variant="outlined" required>
+              <p>Tags <span>*</span></p>
               <Chips className="form__input" label="tags"
                 value={this.props.newBook.tags} onChange={this.props.handleChip} suggestions={this.props.arrayTags} id="outlined-tags" />
             </FormControl>
 
-            <FormControl className="form__textfield" variant="outlined">
+            <FormControl className="form__textfield" variant="outlined" required>
               <InputLabel htmlFor="status">Estado</InputLabel>
               <Select className="form__input" native value={this.props.newBook.status} onChange={this.props.handleChange} input={
                 <OutlinedInput name="status" id="status" inputProps={{"data-field":"status"}}/>}>
@@ -97,7 +97,7 @@ class Form extends Component {
               </Select>
             </FormControl>
           </form>
-          <button className="form__close--btn" onClick={this.props.createBook}>Añadir</button>
+          <input type="submit" value="Enviar" className="form__close--btn" onChange={this.props.createBook} />
           <button className="form__close--btn" onClick={this.props.togglePopup}>Cerrar</button>
         </div>
       </div>

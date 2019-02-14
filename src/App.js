@@ -129,11 +129,7 @@ class App extends Component {
     const addBook = { ...newBook, [field]: e.currentTarget.value }
     this.setState({
         newBook: addBook
-    })
-    // this.setState((prevState) => {
-     
-
-    // })
+    });
   }
 
   createBook(){
