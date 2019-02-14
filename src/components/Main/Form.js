@@ -46,71 +46,60 @@ class Form extends Component {
   render() {
     return (
       <Fragment>
-        <form className="form__container" action="/signup" method="post">
-          <FormControl className="form__textfield" variant="outlined">
-            <InputLabel htmlFor="outlined-title">Título</InputLabel>
-            <OutlinedInput placeholder="Escribe el título" labelWidth="0" className="form__input" label="Título" id="outlined-title" onKeyUp={this.props.handleChange('title')} />
-          </FormControl>
+          <form className="form__container" action="/signup" method="post">
+            <FormControl className="form__textfield" variant="outlined" required>
+              <InputLabel htmlFor="outlined-title">Título</InputLabel>
+              <OutlinedInput id="outlined-title" className="form__input" label="Título" onKeyUp={this.props.handleChange} inputProps={{ "data-field": "title" }} />
+            </FormControl>
 
-          <FormControl className="form__textfield" variant="outlined">
-            <InputLabel htmlFor="outlined-author">Autor</InputLabel>
-            <OutlinedInput placeholder="Escribe el autor" labelWidth="0" className="form__input" label="Autor" id="outlined-author" onKeyUp={this.props.handleChange('author')} />
-          </FormControl>
+            <FormControl className="form__textfield" variant="outlined" required>
+              <InputLabel htmlFor="outlined-author">Autor</InputLabel>
+              <OutlinedInput className="form__input" label="Autor" id="outlined-author" onKeyUp={this.props.handleChange} inputProps={{ "data-field": "author" }} />
+            </FormControl>
 
-          <FormControl className="form__textfield" variant="outlined">
-            <InputLabel htmlFor="outlined-ISBN">ISBN</InputLabel>
-            <OutlinedInput placeholder="Escribe el ISBN" labelWidth="0" className="form__input" label="ISBN" id="outlined-ISBN" onKeyUp={this.props.handleChange('ISBN')} />
-          </FormControl>
+            <FormControl className="form__textfield" variant="outlined" required>
+              <InputLabel htmlFor="outlined-ISBN">ISBN</InputLabel>
+              <OutlinedInput className="form__input" label="ISBN" id="outlined-ISBN" onKeyUp={this.props.handleChange} inputProps={{ "data-field": "ISBN" }} />
+            </FormControl>
 
-          <FormControl className="form__textfield" variant="outlined">
-            <InputLabel htmlFor="type">Tipo</InputLabel>
-            <Select className="form__input" native value={this.props.newBook.type} onChange={this.props.handleChange('type')} input={
-              <OutlinedInput placeholder="Elige el tipo" labelWidth="0" className="form__input" name="type" id="type" />}>
-              {types.map((option, opindex) => {
-                return (
-                  <option key={opindex} value={option.value}>{option.label}</option>
-                )
-              }
-              )}
-            </Select>
-          </FormControl>
+            <FormControl className="form__textfield" variant="outlined" required>
+              <InputLabel htmlFor="type">Tipo</InputLabel>
+              <Select className="form__input" native value={this.props.newBook.type} onChange={this.props.handleChange} input={
+                <OutlinedInput className="form__input" name="type" id="type" inputProps={{ "data-field": "type" }} />}>
+                {types.map(option => {
+                  return (
+                    <option value={option.value}>{option.label}</option>
+                  )
+                }
+                )}
+              </Select>
+            </FormControl>
 
-          <FormControl className="form__textfield" variant="outlined">
-            <p>Tags</p>
-            <Chips placeholder="Elige las tags" className="form__input" label="tags"
-              value={this.props.newBook.tags} onChange={this.props.handleChip} suggestions={this.props.arrayTags} id="outlined-tags" />
-          </FormControl>
+            <FormControl className="form__textfield" variant="outlined" required>
+              <p>Tags <span>*</span></p>
+              <Chips className="form__input" label="tags"
+                value={this.props.newBook.tags} onChange={this.props.handleChip} suggestions={this.props.arrayTags} id="outlined-tags" />
+            </FormControl>
 
-          {/* <InputLabel htmlfor="tags">Tags</InputLabel>
-          <div id="outlined-tags" className="form__input" native value={this.props.newBook.status} onChange={this.props.handleChange('status')} input={
-              <OutlinedInput labelWidth="0" name="tags" id="outlined-tags" />}>
-              {this.props.newBook.tags.map((itemTag) => {
-                return (
-                  <Chip id="outlined-tags" value={itemTag} label={itemTag} onDelete={console.log('bla')}/>
-                )
-              }
-              )}
-            </div> */}
+            <FormControl className="form__textfield" variant="outlined" required>
+              <InputLabel htmlFor="status">Estado</InputLabel>
+              <Select className="form__input" native value={this.props.newBook.status} onChange={this.props.handleChange} input={
+                <OutlinedInput name="status" id="status" inputProps={{ "data-field": "status" }} />}>
+                {state.map(option => {
+                  return (
+                    <option value={option.value}>{option.label}</option>
+                  )
+                }
+                )}
+              </Select>
+            </FormControl>
+          </form>
+          <div className="form__btn--container">
+            <Link className="link__router" to='./' ><input type="submit" value="Enviar" className="form__btn" onClick={this.props.createBook} /></Link>
+            <Link className="link__router" to='./' ><button className="form__btn form__btn--close" >Cerrar</button></Link>
+          </div>
+          </Fragment>
 
-          {/* <Chip value={itemTag} value={this.props.newBook.tags}label={this.props.newBook.tags} onDelete={this.props.handleChip}/> */}
-          <FormControl className="form__textfield" variant="outlined">
-            <InputLabel htmlFor="status">Estado</InputLabel>
-            <Select className="form__input" native value={this.props.newBook.status} onChange={this.props.handleChange('status')} input={
-              <OutlinedInput labelWidth="0" name="status" id="status" />}>
-              {state.map((option, index) => {
-                return (
-                  <option key={index} value={option.value}>{option.label}</option>
-                )
-              }
-              )}
-            </Select>
-          </FormControl>
-        </form>
-        <div className="form__btn--container">
-          <Link className="link__router" to='./'><button className="form__close--btn" onClick={this.props.createBook}>Crear</button></Link>
-          <Link className="link__router" to='./'><button className="form__close--btn">Cancelar</button></Link>
-        </div>
-      </Fragment >
     );
   }
 }
