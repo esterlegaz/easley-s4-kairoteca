@@ -41,6 +41,7 @@ class App extends Component {
     this.createBook = this.createBook.bind(this);
     this.confirmDelete = this.confirmDelete.bind(this);
     this.goBackApp = this.goBackApp.bind(this);
+    this.colorTags = this.colorTags.bind(this);
   }
 
   componentDidMount() {
@@ -160,7 +161,35 @@ class App extends Component {
    this.props.history.push('/');
  }
 
-
+ colorTags(selectedTag) { 
+  if(selectedTag === 'javascript') {
+    return 'javascript';
+  } else if (selectedTag === 'react') {
+    return 'react';
+  } else if(selectedTag === 'Agile') {
+    return 'agile'
+  } else if(selectedTag === 'Vue') {
+    return 'vue'
+  } else if(selectedTag === 'programming') {
+    return 'programming'
+  } else if(selectedTag === 'OOP') {
+    return 'oop'
+  } else if(selectedTag === 'Design patterns') {
+    return 'design-patterns'
+  } else if(selectedTag === 'Reactive programing') {
+    return 'reactive-programming'
+  } else if(selectedTag === 'Web components') {
+    return 'web-components'
+  } else if(selectedTag === 'GIT') {
+    return 'git'
+  } else if(selectedTag === 'Testing') {
+    return 'testing'
+  } else if(selectedTag === 'SOLID') {
+    return 'solid'
+  } else {
+    return ''
+  }
+}
 
   render() {
     const {bookItemId, deleteAnimation, popId, deletePopup, haveBooks, bookList, chipData, newBook} = this.state;
@@ -173,7 +202,7 @@ class App extends Component {
             <Main bookItemId={bookItemId} deleteAnimation={deleteAnimation} popId={popId} toggleDeletePopup={this.toggleDeletePopup} deletePopup={deletePopup} deleteBook={this.confirmDelete} getFilter={this.getFilter} bookList={this.filterBookList()} haveBooks={haveBooks} colorTags={this.colorTags}/>
           )} />
 
-          <Route path="/book/:id" render={props => <ViewDetail match={props.match} bookList={bookList} />} />
+          <Route path="/book/:id" render={props => <ViewDetail match={props.match} bookList={bookList} colorTags={this.colorTags}/>} />
           
           <Route path="/add" render={() => (<Form suggestions={bookList} arrayTags={chipData} handleChange={this.handleChange} handleChip={this.handleChip} createBook={this.createBook} newBook={newBook} />)} />
         </Switch>
