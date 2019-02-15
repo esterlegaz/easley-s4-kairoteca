@@ -14,6 +14,24 @@ class CardDetail extends Component {
       return 'react';
     } else if(selectedTag === 'Agile') {
       return 'agile'
+    } else if(selectedTag === 'Vue') {
+      return 'vue'
+    } else if(selectedTag === 'programming') {
+      return 'programming'
+    } else if(selectedTag === 'OOP') {
+      return 'oop'
+    } else if(selectedTag === 'Design patterns') {
+      return 'design-patterns'
+    } else if(selectedTag === 'Reactive programing') {
+      return 'reactive-programming'
+    } else if(selectedTag === 'Web components') {
+      return 'web-components'
+    } else if(selectedTag === 'GIT') {
+      return 'git'
+    } else if(selectedTag === 'Testing') {
+      return 'testing'
+    } else if(selectedTag === 'SOLID') {
+      return 'solid'
     } else {
       return ''
     }

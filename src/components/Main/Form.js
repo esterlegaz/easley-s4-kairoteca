@@ -6,7 +6,6 @@ import Select from '@material-ui/core/Select';
 import InputLabel from '@material-ui/core/InputLabel';
 import OutlinedInput from '@material-ui/core/OutlinedInput';
 import Chips from 'react-chips';
-import Chip from '@material-ui/core/Chip';
 
 const types = [
   {
