@@ -3,15 +3,27 @@ import PropTypes from "prop-types";
 import CardDetail from './../Detail/CardDetail';
 
 class List extends Component {
+  applyClass(itemId){
+    const {bookItemId, deleteAnimation} = this.props;
+    if (itemId === bookItemId){
+      return deleteAnimation;
+    } else {
+      return '';
+    }
+  }
+
   render() {
-    if (this.props.haveBooks && this.props.bookList.length > 0) {
+    const {toggleDeletePopup, deletePopup, deleteBook, haveBooks, bookList, popId} = this.props;
+
+    if (haveBooks && bookList.length > 0) {
       return (
         <div className="book__wrapper">
           <ul className="book__container">
-            {this.props.bookList.map(item => {
+            {bookList.map(item => {
+              const bookItemId = `book-${item.id}`;
               return (
-                <li key={item.id} className="book__list">
-                  <CardDetail popId={this.props.popId} toggleDeletePopup={this.props.toggleDeletePopup} deletePopup={this.props.deletePopup} deleteBook={this.props.deleteBook} item={item} />
+                <li key={item.id} id={bookItemId} className={`book__list ${this.applyClass(bookItemId)}`}>
+                  <CardDetail bookItemId={bookItemId} popId={popId} toggleDeletePopup={toggleDeletePopup} deletePopup={deletePopup} deleteBook={deleteBook} item={item} />
                 </li>
               )
             })}
