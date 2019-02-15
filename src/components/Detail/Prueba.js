@@ -170,17 +170,17 @@ class Prueba extends Component {
         }
     }
     render() {
-        const {goBack} = this.props;
-        
-        return(
-        <div className="detail__wrapper">
-            <div className="btn__container">
-                <button className="form__btn" onClick={this.props.changeMe} >EDITAME</button>
-                <input type="submit" value="Enviar" className="form__btn" />
-                <button className="form__btn form__btn--close" onClick={goBack} >Cerrar</button>
+        const { goBack } = this.props;
+
+        return (
+            <div className="detail__wrapper">
+                <div className="btn__container">
+                    <button className="form__btn" onClick={this.props.changeMe} >EDITAME</button>
+                    <input type="submit" value="Enviar" className="form__btn" />
+                    <button className="form__btn form__btn--close" onClick={goBack} >Cerrar</button>
+                </div>
+                {this.showMeEdit()}
             </div>
-            <div>AQUI SUCEDO: {this.showMeEdit()} </div>
-        </div>
         )
     }
 
