@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, Link, withRouter } from 'react-router-dom';
 import Header from './components/Layout/Header';
 import Main from "./components/Layout/Main";
 import Form from "./components/Main/Form";
@@ -40,6 +40,7 @@ class App extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.createBook = this.createBook.bind(this);
     this.confirmDelete = this.confirmDelete.bind(this);
+    this.goBackApp = this.goBackApp.bind(this);
   }
 
   componentDidMount() {
@@ -107,12 +108,12 @@ class App extends Component {
       deleteAnimation: 'delete__book',
       deletePopup: !this.state.deletePopup,
     })
-    setTimeout(this.deleteBook, 4000)
+    setTimeout(this.deleteBook, 2000)
   }
 
   toggleDeletePopup(e) {
     const newId = parseInt(e.currentTarget.getAttribute('data-popid'));
-    const bookId = e.currentTarget.getAttribute('data-bookItem');
+    const bookId = e.currentTarget.getAttribute('data-bookitem');
     this.setState({
       deletePopup: !this.state.deletePopup,
       popId: newId,
@@ -121,38 +122,48 @@ class App extends Component {
   }
 
   handleChip = chips => {
-    const { newBook } = this.state;
-    const addBook = { ...newBook, tags: chips }
-    this.setState({ newBook: addBook })
+    this.setState((prevState) => {
+      const { newBook } = prevState;
+      const addBook = { ...newBook, tags: chips }
+      return {newBook: addBook}
+    });
   }
 
-  handleChange = field => event => {
+  handleChange(e){
+    const field = e.currentTarget.getAttribute('data-field');
     const { newBook } = this.state;
-    const addBook = { ...newBook, [field]: event.currentTarget.value }
+    const addBook = { ...newBook, [field]: e.currentTarget.value }
     this.setState({
-      newBook: addBook
-    })
+        newBook: addBook
+    });
   }
 
   createBook() {
     const { newBook } = this.state;
     api.createBook(newBook);
+    this.goBackApp();
     this.paintList();
   }
+  
+  goBackApp(){
+   this.props.history.push('/');
+ }
 
   render() {
+    const {bookItemId, deleteAnimation, popId, deletePopup, haveBooks, bookList, chipData, newBook} = this.state;
     return (
       <div className="App">
         <Header />
+        <Link to="/add">Yay</Link>
 
         <Switch>
           <Route exact path="/" render={() => (
-            <Main bookItemId={this.state.bookItemId} deleteAnimation={this.state.deleteAnimation} popId={this.state.popId} toggleDeletePopup={this.toggleDeletePopup} deletePopup={this.state.deletePopup} deleteBook={this.confirmDelete} getFilter={this.getFilter} bookList={this.filterBookList()} haveBooks={this.state.haveBooks} />
+            <Main bookItemId={bookItemId} deleteAnimation={deleteAnimation} popId={popId} toggleDeletePopup={this.toggleDeletePopup} deletePopup={deletePopup} deleteBook={this.confirmDelete} getFilter={this.getFilter} bookList={this.filterBookList()} haveBooks={haveBooks} />
           )} />
 
-          <Route path="/book/:id" render={props => <ViewDetail match={props.match} bookList={this.state.bookList} />} />
+          <Route path="/book/:id" render={props => <ViewDetail match={props.match} bookList={bookList} />} />
           
-          <Route path="/add" render={() => (<Form suggestions={this.state.bookList} arrayTags={this.state.chipData} handleChange={this.handleChange} handleChip={this.handleChip} createBook={this.createBook} newBook={this.state.newBook} />)} />
+          <Route path="/add" render={() => (<Form suggestions={bookList} arrayTags={chipData} handleChange={this.handleChange} handleChip={this.handleChip} createBook={this.createBook} newBook={newBook} />)} />
         </Switch>
 
         <Footer />
@@ -161,4 +172,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default withRouter(App);
