@@ -6,7 +6,7 @@ import Form from "./components/Main/Form";
 import Footer from "./components/Layout/Footer";
 import api from "./api";
 import "./App.scss";
-import ViewDetail from "./components/Detail/ViewDetail";
+import Prueba from "./components/Detail/Prueba";
 
 class App extends Component {
   constructor(props) {
@@ -185,8 +185,8 @@ class App extends Component {
             <Main bookItemId={bookItemId} deleteAnimation={deleteAnimation} popId={popId} toggleDeletePopup={this.toggleDeletePopup} deletePopup={deletePopup} deleteBook={this.confirmDelete} getFilter={this.getFilter} bookList={this.filterBookList()} haveBooks={haveBooks}/>
           )} />
 
-          <Route path="/book/:id" render={props => <ViewDetail match={props.match} bookList={bookList} editBook={this.state.editBook} changeMe={this.changeMe} goBack={this.goBackApp} />} />
-          
+          <Route path="/book/:id" render={props => <Prueba match={props.match} bookList={bookList} editBook={this.state.editBook} changeMe={this.changeMe} goBack={this.goBackApp} handleChange={this.handleChange} newBook={this.state.newBook} handleChip={this.handleChip} arrayTags={this.arrayTags} createBook={this.createBook} />} />
+
           <Route path="/add" render={() => (<Form suggestions={bookList} arrayTags={chipData} handleChange={this.handleChange} handleChip={this.handleChip} createBook={this.createBook} newBook={newBook} />)} />
         </Switch>
 
