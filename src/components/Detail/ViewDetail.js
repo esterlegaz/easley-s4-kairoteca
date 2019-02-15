@@ -60,7 +60,7 @@ class ViewDetail extends Component {
                 }} />
               </li>
             </ul>
-            <Link className="link__close" to="/">Cerrar</Link>
+            <Link className="link__close form__btn" to="/">Cerrar</Link>
           </div>
         </Fragment>
       )
