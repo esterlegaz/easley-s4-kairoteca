@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, Link, withRouter } from 'react-router-dom';
 import Header from './components/Layout/Header';
 import Main from "./components/Layout/Main";
 import Form from "./components/Main/Form";
@@ -40,6 +40,7 @@ class App extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.createBook = this.createBook.bind(this);
     this.confirmDelete = this.confirmDelete.bind(this);
+    this.goBackApp = this.goBackApp.bind(this);
   }
 
   componentDidMount() {
@@ -140,6 +141,7 @@ class App extends Component {
   createBook() {
     const { newBook } = this.state;
     api.createBook(newBook);
+    this.goBackApp();
     this.paintList();
     this.setState({
       newBook: {
@@ -152,13 +154,17 @@ class App extends Component {
       },
     })
   }
+  
+  goBackApp(){
+   this.props.history.push('/');
+ }
 
   render() {
     const {bookItemId, deleteAnimation, popId, deletePopup, haveBooks, bookList, chipData, newBook} = this.state;
     return (
       <div className="App">
         <Header />
-
+    
         <Switch>
           <Route exact path="/" render={() => (
             <Main bookItemId={bookItemId} deleteAnimation={deleteAnimation} popId={popId} toggleDeletePopup={this.toggleDeletePopup} deletePopup={deletePopup} deleteBook={this.confirmDelete} getFilter={this.getFilter} bookList={this.filterBookList()} haveBooks={haveBooks} />
@@ -175,4 +181,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default withRouter(App);

@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import { Link } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
@@ -43,6 +43,14 @@ const state = [
 ];
 
 class Form extends Component {
+  constructor(props) {
+    super(props);
+
+    this.goBack = this.goBack.bind(this);
+  }
+  goBack(){
+    this.props.history.push('/');
+  }
   render() {
     const {handleChange, newBook, handleChip, arrayTags, createBook} = this.props;
 
@@ -97,8 +105,8 @@ class Form extends Component {
             </FormControl>
           </form>
           <div className="form__btn--container">
-            <Link className="link__router" to='./' ><input type="submit" value="Enviar" className="form__btn" onClick={createBook} /></Link>
-            <Link className="link__router" to='./' ><button className="form__btn form__btn--close" >Cerrar</button></Link>
+            <input type="submit" value="Enviar" className="form__btn" onClick={createBook} />
+            <button className="form__btn form__btn--close" onClick={this.goBack} >Cerrar</button>
           </div>
     </Fragment>
 
@@ -114,4 +122,4 @@ Form.propTypes = {
   arrayTags: PropTypes.array.isRequired
 };
 
-export default Form;
+export default withRouter(Form);

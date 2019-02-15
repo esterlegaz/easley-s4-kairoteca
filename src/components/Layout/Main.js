@@ -11,7 +11,7 @@ class Main extends Component {
       <Fragment>
         <Filter getFilter={getFilter} />
         <div className="main__addbook--container">
-          <Link to={'./add'}><button className="main__addbook--btn">Añadir libro</button></Link>
+          <Link to="/add"><button className="main__addbook--btn">Añadir libro</button></Link>
         </div>
         <List bookItemId={bookItemId} deleteAnimation={deleteAnimation} popId={popId} toggleDeletePopup={toggleDeletePopup} deletePopup={deletePopup} deleteBook={deleteBook} bookList={bookList} haveBooks={haveBooks} />
       </Fragment>
