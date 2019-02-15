@@ -22,7 +22,7 @@ class ViewDetail extends Component {
               <li className="list__item">
                 <InputLabel id="list__item--title" htmlFor="standard-read-only-input">Título</InputLabel>
                 <TextField className="list__item--content" id="standard-read-only-input" defaultValue={title} margin="normal" InputProps={{
-                  readOnly: {editBook},
+                  readOnly: Boolean(editBook),
                 }} />
               </li>
               <li className="list__item">
@@ -34,7 +34,7 @@ class ViewDetail extends Component {
               <li className="list__item">
                 <InputLabel id="list__item--title" htmlFor="standard-read-only-input">ISBN</InputLabel>
                 <TextField className="list__item--content" id="standard-read-only-input" defaultValue={ISBN} margin="normal" InputProps={{
-                  readOnly: {editBook},
+                  readOnly: Boolean(editBook),
                 }} />
               </li>
               <li className="list__item">
