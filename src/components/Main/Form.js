@@ -66,7 +66,7 @@ class Form extends Component {
 
             <FormControl className="form__textfield" variant="outlined" required>
               <InputLabel htmlFor="type">Tipo</InputLabel>
-              <Select className="form__input" native value={this.props.newBook.type} onChange={handleChange} input={
+              <Select className="form__input" native value={newBook.type} onChange={handleChange} input={
                 <OutlinedInput className="form__input" name="type" id="type" inputProps={{ "data-field": "type" }} />}>
                 {types.map(option => {
                   return (
@@ -97,7 +97,7 @@ class Form extends Component {
             </FormControl>
           </form>
           <div className="form__btn--container">
-            <Link className="link__router" to='./' ><input type="submit" value="Enviar" className="form__btn" onChange={this.props.createBook} /></Link>
+            <Link className="link__router" to='./' ><input type="submit" value="Enviar" className="form__btn" onClick={createBook} /></Link>
             <Link className="link__router" to='./' ><button className="form__btn form__btn--close" >Cerrar</button></Link>
           </div>
     </Fragment>
