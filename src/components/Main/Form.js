@@ -66,7 +66,7 @@ class Form extends Component {
 
             <FormControl className="form__textfield" variant="outlined" required>
               <InputLabel htmlFor="type">Tipo</InputLabel>
-              <Select className="form__input" native value={this.props.newBook.type} onChange={handleChange} input={
+              <Select className="form__input" native value={newBook.type} onChange={handleChange} input={
                 <OutlinedInput className="form__input" name="type" id="type" inputProps={{ "data-field": "type" }} />}>
                 {types.map(option => {
                   return (

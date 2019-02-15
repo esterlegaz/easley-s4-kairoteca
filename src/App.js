@@ -141,6 +141,16 @@ class App extends Component {
     const { newBook } = this.state;
     api.createBook(newBook);
     this.paintList();
+    this.setState({
+      newBook: {
+        title: '',
+        author: '',
+        ISBN: '',
+        type: '',
+        tags: [],
+        status: ''
+      },
+    })
   }
 
   render() {
