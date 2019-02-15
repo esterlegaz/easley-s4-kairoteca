@@ -13,15 +13,17 @@ class List extends Component {
   }
 
   render() {
-    if (this.props.haveBooks && this.props.bookList.length > 0) {
+    const {toggleDeletePopup, deletePopup, deleteBook, haveBooks, bookList, popId} = this.props;
+
+    if (haveBooks && bookList.length > 0) {
       return (
         <div className="book__wrapper">
           <ul className="book__container">
-            {this.props.bookList.map(item => {
+            {bookList.map(item => {
               const bookItemId = `book-${item.id}`;
               return (
                 <li key={item.id} id={bookItemId} className={`book__list ${this.applyClass(bookItemId)}`}>
-                  <CardDetail bookItemId={bookItemId} popId={this.props.popId} toggleDeletePopup={this.props.toggleDeletePopup} deletePopup={this.props.deletePopup} deleteBook={this.props.deleteBook} item={item} />
+                  <CardDetail bookItemId={bookItemId} popId={popId} toggleDeletePopup={toggleDeletePopup} deletePopup={deletePopup} deleteBook={deleteBook} item={item} />
                 </li>
               )
             })}
