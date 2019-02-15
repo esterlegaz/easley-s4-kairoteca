@@ -160,6 +160,8 @@ class App extends Component {
    this.props.history.push('/');
  }
 
+
+
   render() {
     const {bookItemId, deleteAnimation, popId, deletePopup, haveBooks, bookList, chipData, newBook} = this.state;
     return (
@@ -168,7 +170,7 @@ class App extends Component {
     
         <Switch>
           <Route exact path="/" render={() => (
-            <Main bookItemId={bookItemId} deleteAnimation={deleteAnimation} popId={popId} toggleDeletePopup={this.toggleDeletePopup} deletePopup={deletePopup} deleteBook={this.confirmDelete} getFilter={this.getFilter} bookList={this.filterBookList()} haveBooks={haveBooks} />
+            <Main bookItemId={bookItemId} deleteAnimation={deleteAnimation} popId={popId} toggleDeletePopup={this.toggleDeletePopup} deletePopup={deletePopup} deleteBook={this.confirmDelete} getFilter={this.getFilter} bookList={this.filterBookList()} haveBooks={haveBooks} colorTags={this.colorTags}/>
           )} />
 
           <Route path="/book/:id" render={props => <ViewDetail match={props.match} bookList={bookList} />} />
