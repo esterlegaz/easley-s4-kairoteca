@@ -107,7 +107,7 @@ class App extends Component {
       deleteAnimation: 'delete__book',
       deletePopup: !this.state.deletePopup,
     })
-    setTimeout(this.deleteBook, 4000)
+    setTimeout(this.deleteBook, 2000)
   }
 
   toggleDeletePopup(e) {
