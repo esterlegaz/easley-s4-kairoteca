@@ -17,7 +17,7 @@
     font-size: 12px;
     line-height: 14px;
     text-align: center;
-    font-family: 'Roboto', sans-serif;
+    font-family: $robRegular;
     border: 1px solid #979797;
     outline: none;
     background: white;
@@ -46,7 +46,7 @@
     align-items: center;
     justify-content: center;
     text-transform: uppercase;
-    font-family: 'Roboto', sans-serif;
+    font-family: $robRegular;
     font-weight: medium;
     outline: none;
 }
@@ -71,7 +71,7 @@
     justify-content: center;
     margin: 72px 0 94px 0;
     text-transform: uppercase;
-    font-family: 'Roboto', sans-serif;
+    font-family: $robRegular;
     font-weight: medium;
 }
 .form__btn--close {
