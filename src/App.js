@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { Route, Switch, Link, withRouter } from 'react-router-dom';
 import Header from './components/Layout/Header';
 import Main from "./components/Layout/Main";
-import Edit from "./components/Main/Edit";
 import Form from "./components/Main/Form";
 import Footer from "./components/Layout/Footer";
 import api from "./api";
@@ -21,6 +20,7 @@ class App extends Component {
       popId: '',
       bookItemId:'',
       deleteAnimation: '',
+      editBook: true,
       newBook: {
         title: '',
         author: '',
@@ -43,6 +43,7 @@ class App extends Component {
     this.createBook = this.createBook.bind(this);
     this.confirmDelete = this.confirmDelete.bind(this);
     this.goBackApp = this.goBackApp.bind(this);
+    this.changeMe = this.changeMe.bind(this);
   }
 
   componentDidMount() {
@@ -161,6 +162,12 @@ class App extends Component {
    this.props.history.push('/');
  }
 
+ changeMe(){
+   this.setState({
+    editBook: !this.state.editBook
+   })
+ }
+
   async updateBook(e) {
     const bookId = parseInt(e.currentTarget.getAttribute('data-id'));
     const result = await api.updateBook(bookId);
@@ -175,10 +182,10 @@ class App extends Component {
     
         <Switch>
           <Route exact path="/" render={() => (
-            <Main bookItemId={bookItemId} deleteAnimation={deleteAnimation} popId={popId} toggleDeletePopup={this.toggleDeletePopup} deletePopup={deletePopup} deleteBook={this.confirmDelete} getFilter={this.getFilter} bookList={this.filterBookList()} haveBooks={haveBooks} />
+            <Main bookItemId={bookItemId} deleteAnimation={deleteAnimation} popId={popId} toggleDeletePopup={this.toggleDeletePopup} deletePopup={deletePopup} deleteBook={this.confirmDelete} getFilter={this.getFilter} bookList={this.filterBookList()} haveBooks={haveBooks}/>
           )} />
 
-          <Route path="/book/:id" render={props => <ViewDetail match={props.match} bookList={bookList} />} />
+          <Route path="/book/:id" render={props => <ViewDetail match={props.match} bookList={bookList} editBook={this.state.editBook} changeMe={this.changeMe} />} />
           
           <Route path="/add" render={() => (<Form suggestions={bookList} arrayTags={chipData} handleChange={this.handleChange} handleChip={this.handleChip} createBook={this.createBook} newBook={newBook} />)} />
         </Switch>
