@@ -7,20 +7,8 @@ import {Link} from 'react-router-dom';
 
 class CardDetail extends Component {
 
-  colorTags(selectedTag) { 
-    if(selectedTag === 'javascript') {
-      return 'javascript';
-    } else if (selectedTag === 'react') {
-      return 'react';
-    } else if(selectedTag === 'Agile') {
-      return 'agile'
-    } else {
-      return ''
-    }
-  }
-
   render() {
-    const {toggleDeletePopup, deletePopup, deleteBook, popId, item, bookItemId} = this.props;
+    const {toggleDeletePopup, deletePopup, deleteBook, popId, item, bookItemId, colorTags} = this.props;
     const { author, title, tags, status} = this.props.item;
 
     return (
@@ -37,7 +25,7 @@ class CardDetail extends Component {
           <ul className="book__tags--list">
             {tags.map((tag, index) => {
               return (
-                <li className={`book__tags--item ${this.colorTags(tag)}`} key={index}>{tag}</li>
+                <li className={`book__tags--item ${colorTags(tag)}`} key={index}>{tag}</li>
               )
             })}
           </ul>

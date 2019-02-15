@@ -1,12 +1,11 @@
 import React, { Component, Fragment } from "react";
-import PropTypes from "prop-types";
 import { Link } from 'react-router-dom';
 import TextField from '@material-ui/core/TextField';
 import InputLabel from '@material-ui/core/InputLabel';
 
 class ViewDetail extends Component {
   render() {
-    const { bookList } = this.props;
+    const { bookList, colorTags } = this.props;
     const bookId = this.props.match.params.id;
 
     if (bookList.length > 0 && bookId <= bookList.length) {
@@ -47,7 +46,7 @@ class ViewDetail extends Component {
                   <ul className="list__tags--list">
                     {tags.map((tag, index) => {
                       return (
-                        <li className="list__tags--item" key={index}>{tag}</li>
+                        <li className={`list__tags--item ${colorTags(tag)}`} key={index}>{tag}</li>
                       )
                     })}
                   </ul>
