@@ -6,14 +6,14 @@ import Filter from './../Main/Filter';
 
 class Main extends Component {
   render() {
-    const {getFilter, bookItemId, deleteAnimation, popId, toggleDeletePopup, deletePopup, deleteBook, bookList, haveBooks} = this.props;
+    const {getFilter, bookItemId, deleteAnimation, popId, toggleDeletePopup, deletePopup, deleteBook, bookList, haveBooks, colorTags} = this.props;
     return (
       <Fragment>
         <Filter getFilter={getFilter} />
         <div className="main__addbook--container">
           <Link to="/add" className="main__addbook--btn link__router">Añadir libro</Link>
         </div>
-        <List bookItemId={bookItemId} deleteAnimation={deleteAnimation} popId={popId} toggleDeletePopup={toggleDeletePopup} deletePopup={deletePopup} deleteBook={deleteBook} bookList={bookList} haveBooks={haveBooks} />
+        <List bookItemId={bookItemId} deleteAnimation={deleteAnimation} popId={popId} toggleDeletePopup={toggleDeletePopup} deletePopup={deletePopup} deleteBook={deleteBook} bookList={bookList} haveBooks={haveBooks} colorTags={colorTags}/>
       </Fragment>
     );
   }
