@@ -6,9 +6,8 @@ import InputLabel from '@material-ui/core/InputLabel';
 
 class ViewDetail extends Component {
   render() {
-    const { bookList } = this.props;
     const bookId = this.props.match.params.id;
-    const { editBook } = this.props;
+    const { editBook, goBack, bookList } = this.props;
 
     if (bookList.length > 0 && bookId <= bookList.length) {
       const myBook = bookList[bookId - 1];
@@ -17,7 +16,11 @@ class ViewDetail extends Component {
       return (
         <Fragment>
           <div className="detail__wrapper">
-            <button onClick={this.props.changeMe} >EDITAME</button>
+            <div className="btn__container">
+              <button className="form__btn" onClick={this.props.changeMe} >EDITAME</button>
+              <input type="submit" value="Enviar" className="form__btn" />
+              <button className="form__btn form__btn--close" onClick={goBack} >Cerrar</button>
+            </div>
             <ul className="list__view-details">
               <li className="list__item">
                 <InputLabel id="list__item--title" htmlFor="standard-read-only-input">Título</InputLabel>
@@ -28,7 +31,7 @@ class ViewDetail extends Component {
               <li className="list__item">
                 <InputLabel id="list__item--title" htmlFor="standard-read-only-input">Autor</InputLabel>
                 <TextField className="list__item--content" id="standard-read-only-input" defaultValue={author} margin="normal" InputProps={{
-                  readOnly: false,
+                readOnly: Boolean(editBook),
                 }} />
               </li>
               <li className="list__item">
@@ -40,7 +43,7 @@ class ViewDetail extends Component {
               <li className="list__item">
                 <InputLabel id="list__item--title" htmlFor="standard-read-only-input">Tipo</InputLabel>
                 <TextField className="list__item--content" id="standard-read-only-input" defaultValue={type} margin="normal" InputProps={{
-                  readOnly: true,
+                  readOnly: Boolean(editBook),
                 }} />
               </li>
               <li className="list__item">
@@ -58,7 +61,7 @@ class ViewDetail extends Component {
               <li className="list__item">
                 <InputLabel id="list__item--title" htmlFor="standard-read-only-input">Estado</InputLabel>
                 <TextField className="list__item--content" id="standard-read-only-input" defaultValue={status} margin="normal" InputProps={{
-                  readOnly: true,
+                  readOnly: Boolean(editBook),
                 }} />
               </li>
             </ul>

@@ -104,7 +104,7 @@ class Form extends Component {
               </Select>
             </FormControl>
           </form>
-          <div className="form__btn--container">
+          <div className="btn__container">
             <input type="submit" value="Enviar" className="form__btn" onClick={createBook} />
             <button className="form__btn form__btn--close" onClick={this.goBack} >Cerrar</button>
           </div>
