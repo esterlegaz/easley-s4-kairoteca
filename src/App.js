@@ -143,6 +143,16 @@ class App extends Component {
     api.createBook(newBook);
     this.goBackApp();
     this.paintList();
+    this.setState({
+      newBook: {
+        title: '',
+        author: '',
+        ISBN: '',
+        type: '',
+        tags: [],
+        status: ''
+      },
+    })
   }
   
   goBackApp(){
@@ -154,8 +164,7 @@ class App extends Component {
     return (
       <div className="App">
         <Header />
-        <Link to="/add">Yay</Link>
-
+    
         <Switch>
           <Route exact path="/" render={() => (
             <Main bookItemId={bookItemId} deleteAnimation={deleteAnimation} popId={popId} toggleDeletePopup={this.toggleDeletePopup} deletePopup={deletePopup} deleteBook={this.confirmDelete} getFilter={this.getFilter} bookList={this.filterBookList()} haveBooks={haveBooks} />
