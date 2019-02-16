@@ -18,7 +18,7 @@ class App extends Component {
       chipData: [],
       deletePopup: false,
       popId: '',
-      bookItemId:'',
+      bookItemId: '',
       deleteAnimation: '',
       editBook: true,
       newBook: {
@@ -44,6 +44,7 @@ class App extends Component {
     this.confirmDelete = this.confirmDelete.bind(this);
     this.goBackApp = this.goBackApp.bind(this);
     this.changeMe = this.changeMe.bind(this);
+    this.showEditBook = this.showEditBook.bind(this);
   }
 
   componentDidMount() {
@@ -97,16 +98,16 @@ class App extends Component {
 
   async deleteBook() {
     this.paintList();
-    const {popId} = this.state;
+    const { popId } = this.state;
     const result = await api.deleteBook(popId);
-    this.setState({    
+    this.setState({
       deleteAnimation: '',
       popId: ''
     })
     return result;
   }
 
-  confirmDelete(){
+  confirmDelete() {
     this.setState({
       deleteAnimation: 'delete__book',
       deletePopup: !this.state.deletePopup,
@@ -128,16 +129,16 @@ class App extends Component {
     this.setState((prevState) => {
       const { newBook } = prevState;
       const addBook = { ...newBook, tags: chips }
-      return {newBook: addBook}
+      return { newBook: addBook }
     });
   }
 
-  handleChange(e){
+  handleChange(e) {
     const field = e.currentTarget.getAttribute('data-field');
     const { newBook } = this.state;
     const addBook = { ...newBook, [field]: e.currentTarget.value }
     this.setState({
-        newBook: addBook
+      newBook: addBook
     });
   }
 
@@ -157,16 +158,19 @@ class App extends Component {
       },
     })
   }
-  
-  goBackApp(){
-   this.props.history.push('/');
- }
 
- changeMe(){
-   this.setState({
-    editBook: !this.state.editBook
-   })
- }
+  goBackApp() {
+    this.props.history.push('/');
+    this.setState({
+      editBook: true,
+    })
+  }
+
+  changeMe() {
+    this.setState({
+      editBook: !this.state.editBook
+    })
+  }
 
   async updateBook(e) {
     this.paintList();
@@ -177,18 +181,26 @@ class App extends Component {
     return result;
   }
 
+  showEditBook(e) {
+    const getId = e.currentTarget.getAttribute('data-edit');
+    this.props.history.push(`/book/${getId}`);
+    this.setState({
+      editBook: false
+    })
+  }
+
   render() {
-    const {bookItemId, deleteAnimation, popId, deletePopup, haveBooks, bookList, chipData, newBook} = this.state;
+    const { bookItemId, deleteAnimation, popId, deletePopup, haveBooks, bookList, chipData, newBook } = this.state;
     return (
       <div className="App">
         <Header />
-    
+
         <Switch>
           <Route exact path="/" render={() => (
-            <Main bookItemId={bookItemId} deleteAnimation={deleteAnimation} popId={popId} toggleDeletePopup={this.toggleDeletePopup} deletePopup={deletePopup} deleteBook={this.confirmDelete} getFilter={this.getFilter} bookList={this.filterBookList()} haveBooks={haveBooks}/>
+            <Main showEditBook={this.showEditBook} bookItemId={bookItemId} deleteAnimation={deleteAnimation} popId={popId} toggleDeletePopup={this.toggleDeletePopup} deletePopup={deletePopup} deleteBook={this.confirmDelete} getFilter={this.getFilter} bookList={this.filterBookList()} haveBooks={haveBooks} />
           )} />
 
-          <Route path="/book/:id" render={props => <ViewOrEdit match={props.match} bookList={bookList} editBook={this.state.editBook} changeMe={this.changeMe} goBack={this.goBackApp} handleChange={this.handleChange} newBook={this.state.newBook} handleChip={this.handleChip} arrayTags={this.arrayTags} createBook={this.createBook} updateBook={this.updateBook}/>} />
+          <Route path="/book/:id" render={props => <ViewOrEdit match={props.match} bookList={bookList} editBook={this.state.editBook} changeMe={this.changeMe} goBackApp={this.goBackApp} handleChange={this.handleChange} newBook={this.state.newBook} handleChip={this.handleChip} arrayTags={this.arrayTags} createBook={this.createBook} updateBook={this.updateBook} />} />
 
           <Route path="/add" render={() => (<Form suggestions={bookList} arrayTags={chipData} handleChange={this.handleChange} handleChip={this.handleChip} createBook={this.createBook} newBook={newBook} />)} />
         </Switch>

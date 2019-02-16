@@ -17,7 +17,7 @@ class Icons extends Component {
   render() {
     return (
       <div className="icons__wrapper">
-        <button className="card__detail--icons icons__edit"></button>
+        <button className="card__detail--icons icons__edit" data-edit={this.props.id} onClick={this.props.showEditBook}></button>
         <button className="card__detail--icons icons__delete" data-bookitem={this.props.bookItemId} data-popid={this.props.id} onClick={this.props.toggleDeletePopup}></button>
         {this.showDeletePopup(this.props.deletePopup, this.props.id, this.props.popId)}
       </div>

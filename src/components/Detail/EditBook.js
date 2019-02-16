@@ -43,12 +43,17 @@ class EditBook extends Component {
     render() {
         const { handleChange, newBook, handleChip, arrayTags, createBook } = this.props;
         const bookId = this.props.match.params.id;
-        const { bookList } = this.props;
+        const { bookList, updateBook, goBackApp } = this.props;
         if (bookList.length > 0 && bookId <= bookList.length) {
             const myBook = bookList[bookId - 1];
             const { author, title, tags, status, ISBN, type } = myBook;
             return (
                 <Fragment>
+                    <div className="btn__container">
+                        <input type="submit" value="Enviar" className="form__btn" onClick={updateBook} />
+                        <button className="form__btn form__btn--close" onClick={goBackApp} >Cerrar</button>
+                    </div>
+
                     <form className="form__container" action="/signup" method="post">
                         <FormControl className="form__textfield" variant="outlined" required>
                             <InputLabel htmlFor="outlined-title">Título</InputLabel>
