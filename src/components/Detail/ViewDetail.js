@@ -1,5 +1,4 @@
 import React, { Component, Fragment } from "react";
-import PropTypes from "prop-types";
 import { Link } from 'react-router-dom';
 import TextField from '@material-ui/core/TextField';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -7,7 +6,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 class ViewDetail extends Component {
   render() {
     const bookId = this.props.match.params.id;
-    const { editBook, goBack, bookList } = this.props;
+    const { editBook, goBack, bookList, colorTags } = this.props;
 
     if (bookList.length > 0 && bookId <= bookList.length) {
       const myBook = bookList[bookId - 1];
@@ -52,7 +51,7 @@ class ViewDetail extends Component {
                   <ul className="list__tags--list">
                     {tags.map((tag, index) => {
                       return (
-                        <li className="list__tags--item" key={index}>{tag}</li>
+                        <li className={`list__tags--item ${colorTags(tag)}`} key={index}>{tag}</li>
                       )
                     })}
                   </ul>

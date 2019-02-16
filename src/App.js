@@ -1,12 +1,13 @@
 import React, { Component } from "react";
-import { Route, Switch, Link, withRouter } from 'react-router-dom';
+import { Route, Switch, withRouter } from 'react-router-dom';
 import Header from './components/Layout/Header';
 import Main from "./components/Layout/Main";
 import Form from "./components/Main/Form";
 import Footer from "./components/Layout/Footer";
+import ViewDetail from "./components/Detail/ViewDetail";
 import api from "./api";
 import "./App.scss";
-import Prueba from "./components/Detail/Prueba";
+
 
 class App extends Component {
   constructor(props) {
@@ -44,6 +45,7 @@ class App extends Component {
     this.confirmDelete = this.confirmDelete.bind(this);
     this.goBackApp = this.goBackApp.bind(this);
     this.changeMe = this.changeMe.bind(this);
+    this.colorTags = this.colorTags.bind(this);
   }
 
   componentDidMount() {
@@ -134,10 +136,11 @@ class App extends Component {
 
   handleChange(e){
     const field = e.currentTarget.getAttribute('data-field');
-    const { newBook } = this.state;
-    const addBook = { ...newBook, [field]: e.currentTarget.value }
-    this.setState({
-        newBook: addBook
+    const currentValue = e.currentTarget.value;
+    this.setState((prevState) => {
+      const { newBook } = prevState;
+      const addBook = { ...newBook, [field]: currentValue }
+      return {newBook: addBook}
     });
   }
 
@@ -173,6 +176,36 @@ class App extends Component {
     const result = await api.updateBook(bookId);
     return result;
   }
+  
+ colorTags(selectedTag) { 
+  if(selectedTag === 'javascript') {
+    return 'javascript';
+  } else if (selectedTag === 'react') {
+    return 'react';
+  } else if(selectedTag === 'Agile') {
+    return 'agile'
+  } else if(selectedTag === 'Vue') {
+    return 'vue'
+  } else if(selectedTag === 'programming') {
+    return 'programming'
+  } else if(selectedTag === 'OOP') {
+    return 'oop'
+  } else if(selectedTag === 'Design patterns') {
+    return 'design-patterns'
+  } else if(selectedTag === 'Reactive programing') {
+    return 'reactive-programming'
+  } else if(selectedTag === 'Web components') {
+    return 'web-components'
+  } else if(selectedTag === 'GIT') {
+    return 'git'
+  } else if(selectedTag === 'Testing') {
+    return 'testing'
+  } else if(selectedTag === 'SOLID') {
+    return 'solid'
+  } else {
+    return ''
+  }
+}
 
   render() {
     const {bookItemId, deleteAnimation, popId, deletePopup, haveBooks, bookList, chipData, newBook} = this.state;
@@ -182,11 +215,11 @@ class App extends Component {
     
         <Switch>
           <Route exact path="/" render={() => (
-            <Main bookItemId={bookItemId} deleteAnimation={deleteAnimation} popId={popId} toggleDeletePopup={this.toggleDeletePopup} deletePopup={deletePopup} deleteBook={this.confirmDelete} getFilter={this.getFilter} bookList={this.filterBookList()} haveBooks={haveBooks}/>
+            <Main bookItemId={bookItemId} deleteAnimation={deleteAnimation} popId={popId} toggleDeletePopup={this.toggleDeletePopup} deletePopup={deletePopup} deleteBook={this.confirmDelete} getFilter={this.getFilter} bookList={this.filterBookList()} haveBooks={haveBooks} colorTags={this.colorTags}/>
           )} />
 
-          <Route path="/book/:id" render={props => <Prueba match={props.match} bookList={bookList} editBook={this.state.editBook} changeMe={this.changeMe} goBack={this.goBackApp} handleChange={this.handleChange} newBook={this.state.newBook} handleChip={this.handleChip} arrayTags={this.arrayTags} createBook={this.createBook} />} />
-
+          <Route path="/book/:id" render={props => <ViewDetail match={props.match} bookList={bookList} colorTags={this.colorTags}/>} />
+          
           <Route path="/add" render={() => (<Form suggestions={bookList} arrayTags={chipData} handleChange={this.handleChange} handleChip={this.handleChip} createBook={this.createBook} newBook={newBook} />)} />
         </Switch>
 
