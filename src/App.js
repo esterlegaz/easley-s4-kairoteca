@@ -4,9 +4,10 @@ import Header from './components/Layout/Header';
 import Main from "./components/Layout/Main";
 import Form from "./components/Main/Form";
 import Footer from "./components/Layout/Footer";
+import ViewDetail from "./components/Detail/ViewDetail";
 import api from "./api";
 import "./App.scss";
-import ViewDetail from "./components/Detail/ViewDetail";
+
 
 class App extends Component {
   constructor(props) {
@@ -20,6 +21,7 @@ class App extends Component {
       popId: '',
       bookItemId:'',
       deleteAnimation: '',
+      editBook: true,
       newBook: {
         title: '',
         author: '',
@@ -34,6 +36,7 @@ class App extends Component {
     this.getFilter = this.getFilter.bind(this);
     this.filterBookList = this.filterBookList.bind(this);
     this.getTags = this.getTags.bind(this);
+    this.updateBook = this.updateBook.bind(this);
     this.deleteBook = this.deleteBook.bind(this);
     this.toggleDeletePopup = this.toggleDeletePopup.bind(this);
     this.handleChip = this.handleChip.bind(this);
@@ -41,6 +44,7 @@ class App extends Component {
     this.createBook = this.createBook.bind(this);
     this.confirmDelete = this.confirmDelete.bind(this);
     this.goBackApp = this.goBackApp.bind(this);
+    this.changeMe = this.changeMe.bind(this);
     this.colorTags = this.colorTags.bind(this);
   }
 
@@ -161,6 +165,18 @@ class App extends Component {
    this.props.history.push('/');
  }
 
+ changeMe(){
+   this.setState({
+    editBook: !this.state.editBook
+   })
+ }
+
+  async updateBook(e) {
+    const bookId = parseInt(e.currentTarget.getAttribute('data-id'));
+    const result = await api.updateBook(bookId);
+    return result;
+  }
+  
  colorTags(selectedTag) { 
   if(selectedTag === 'javascript') {
     return 'javascript';

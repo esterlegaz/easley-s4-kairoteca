@@ -85,9 +85,9 @@ class Form extends Component {
             </FormControl>
 
             <FormControl className="form__textfield" variant="outlined" required>
-              <p>Tags <span>*</span></p>
+              {/* <label class="custom-label">Tags <span>*</span></label> */}
               <Chips className="form__input" label="tags"
-                value={newBook.tags} onChange={handleChip} suggestions={arrayTags} id="outlined-tags" />
+                value={newBook.tags} onChange={handleChip} suggestions={arrayTags} id="outlined-tags" placeholder="Tags *"/>
             </FormControl>
 
             <FormControl className="form__textfield" variant="outlined" required>
@@ -103,7 +103,7 @@ class Form extends Component {
               </Select>
             </FormControl>
           </form>
-          <div className="form__btn--container">
+          <div className="btn__container">
             <input type="submit" value="Enviar" className="form__btn" onClick={createBook} />
             <button className="form__btn form__btn--close" onClick={this.goBack} >Cerrar</button>
           </div>
