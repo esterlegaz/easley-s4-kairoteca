@@ -175,7 +175,7 @@ class App extends Component {
   async updateBook(e) {
     this.paintList();
     this.goBackApp();
-    const bookId = 2;
+    const bookId = parseInt(e.currentTarget.getAttribute('data-prueba'));
     console.log(bookId);
     const result = await api.updateBook(bookId);
     return result;

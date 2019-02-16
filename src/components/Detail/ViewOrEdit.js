@@ -5,7 +5,7 @@ import EditBook from './EditBook';
 class ViewOrEdit extends Component {
 
     render() {
-        const { editBook, bookList, changeMe, goBackApp, handleChange, newBook, handleChip, arrayTags, createBook, updateBook, match } = this.props;
+        const { editBook, bookList, changeMe, goBackApp, handleChange, newBook, handleChip, arrayTags, updateBook, match } = this.props;
 
         return (
             <div className="detail__wrapper">
