@@ -86,9 +86,9 @@ class Form extends Component {
             </FormControl>
 
             <FormControl className="form__textfield" variant="outlined" required>
-              <p>Tags <span>*</span></p>
+              {/* <label class="custom-label">Tags <span>*</span></label> */}
               <Chips className="form__input" label="tags"
-                value={newBook.tags} onChange={handleChip} suggestions={arrayTags} id="outlined-tags" />
+                value={newBook.tags} onChange={handleChip} suggestions={arrayTags} id="outlined-tags" placeholder="Tags *"/>
             </FormControl>
 
             <FormControl className="form__textfield" variant="outlined" required>

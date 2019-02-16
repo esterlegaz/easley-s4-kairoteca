@@ -26,8 +26,19 @@
         .MuiFormLabel-root-16.MuiFormLabel-focused-17{
             color: $colorKairos;
         }
+        .custom-label{
+            position: absolute;
+            color: rgba(0, 0, 0, 0.54);
+            z-index: 1;
+            transform: translate(14px, 20px) scale(1);
+        }
+        div[data-radium="true"]{
+            padding: 12px 14px!important;
+            margin-bottom: 15px;
+        }
     }
 }
+
 
 .form__textfield {
     width: 328px;
