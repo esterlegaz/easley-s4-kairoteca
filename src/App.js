@@ -6,7 +6,7 @@ import Form from "./components/Main/Form";
 import Footer from "./components/Layout/Footer";
 import api from "./api";
 import "./App.scss";
-import Prueba from "./components/Detail/Prueba";
+import ViewOrEdit from "./components/Detail/ViewOrEdit";
 
 class App extends Component {
   constructor(props) {
@@ -169,7 +169,10 @@ class App extends Component {
  }
 
   async updateBook(e) {
-    const bookId = parseInt(e.currentTarget.getAttribute('data-id'));
+    this.paintList();
+    this.goBackApp();
+    const bookId = 2;
+    console.log(bookId);
     const result = await api.updateBook(bookId);
     return result;
   }
@@ -185,7 +188,7 @@ class App extends Component {
             <Main bookItemId={bookItemId} deleteAnimation={deleteAnimation} popId={popId} toggleDeletePopup={this.toggleDeletePopup} deletePopup={deletePopup} deleteBook={this.confirmDelete} getFilter={this.getFilter} bookList={this.filterBookList()} haveBooks={haveBooks}/>
           )} />
 
-          <Route path="/book/:id" render={props => <Prueba match={props.match} bookList={bookList} editBook={this.state.editBook} changeMe={this.changeMe} goBack={this.goBackApp} handleChange={this.handleChange} newBook={this.state.newBook} handleChip={this.handleChip} arrayTags={this.arrayTags} createBook={this.createBook} />} />
+          <Route path="/book/:id" render={props => <ViewOrEdit match={props.match} bookList={bookList} editBook={this.state.editBook} changeMe={this.changeMe} goBack={this.goBackApp} handleChange={this.handleChange} newBook={this.state.newBook} handleChip={this.handleChip} arrayTags={this.arrayTags} createBook={this.createBook} updateBook={this.updateBook}/>} />
 
           <Route path="/add" render={() => (<Form suggestions={bookList} arrayTags={chipData} handleChange={this.handleChange} handleChip={this.handleChip} createBook={this.createBook} newBook={newBook} />)} />
         </Switch>
