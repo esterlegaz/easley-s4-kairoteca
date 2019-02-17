@@ -46,6 +46,7 @@ class App extends Component {
     this.goBackApp = this.goBackApp.bind(this);
     this.changeMe = this.changeMe.bind(this);
     this.showEditBook = this.showEditBook.bind(this);
+    this.updateBook = this.updateBook.bind(this);
   }
 
   componentDidMount() {
@@ -184,9 +185,10 @@ class App extends Component {
     const dataType = e.currentTarget.getAttribute('data-type');
     const dataStatus = e.currentTarget.getAttribute('data-status');
     const { newBook } = this.state;
-    const editBook = { ...newBook, id: bookId, title: dataTitle, author: dataAuthor, ISBN: dataISBN, type: dataType, status: dataStatus}
-    this.setState({
-      newBook: editBook
+    this.setState((prevState) => {
+      const { newBook } = prevState;
+      const editBook = { ...newBook, id: bookId, title: dataTitle, author: dataAuthor, ISBN: dataISBN, type: dataType, status: dataStatus}
+      return { newBook: editBook }
     });
     console.log(newBook);
     const result = await api.updateBook(newBook);
