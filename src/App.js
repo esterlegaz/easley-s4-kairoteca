@@ -204,6 +204,18 @@ class App extends Component {
     })
   }
 
+  // requiredForm(){
+  //   if (this.state.newBook.title === ''){
+  //       return (
+  //         alert('NO')
+  //       )
+  //   }else{
+  //     return(
+  //       this.createBook()
+  //     )
+  //   }
+  // }
+
   render() {
     const { bookItemId, deleteAnimation, popId, deletePopup, haveBooks, bookList, chipData, newBook } = this.state;
     return (
@@ -217,7 +229,7 @@ class App extends Component {
 
           <Route path="/book/:id" render={props => <ViewOrEdit match={props.match} bookList={bookList} editBook={this.state.editBook} changeMe={this.changeMe} goBackApp={this.goBackApp} handleChange={this.handleChange} newBook={this.state.newBook} handleChip={this.handleChip} arrayTags={this.arrayTags} createBook={this.createBook} updateBook={this.updateBook} />} />
 
-          <Route path="/add" render={() => (<Form suggestions={bookList} arrayTags={chipData} handleChange={this.handleChange} handleChip={this.handleChip} createBook={this.createBook} newBook={newBook} />)} />
+          <Route path="/add" render={() => (<Form suggestions={bookList} arrayTags={chipData} handleChange={this.handleChange} handleChip={this.handleChip} createBook={this.createBook} newBook={newBook} requiredForm={this.requiredForm} />)} />
         </Switch>
 
         <Footer />

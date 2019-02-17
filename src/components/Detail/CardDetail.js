@@ -2,14 +2,14 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import Status from './Status';
 import Icons from './Icons';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 
 class CardDetail extends Component {
 
   render() {
-    const {toggleDeletePopup, deletePopup, deleteBook, popId, item, bookItemId, showEditBook} = this.props;
-    const { author, title, tags, status} = this.props.item;
+    const { toggleDeletePopup, deletePopup, deleteBook, popId, item, bookItemId, showEditBook } = this.props;
+    const { author, title, tags, status } = this.props.item;
 
     return (
       <div>

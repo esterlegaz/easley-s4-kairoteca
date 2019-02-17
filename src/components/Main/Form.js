@@ -48,16 +48,20 @@ class Form extends Component {
 
     this.goBack = this.goBack.bind(this);
   }
-  goBack(){
+  goBack() {
     this.props.history.push('/');
   }
+
+  submit = event => {
+    event.preventDefault();
+    console.log("SUBMIT", event);   };
   render() {
-    const {handleChange, newBook, handleChip, arrayTags, createBook} = this.props;
+    const { handleChange, newBook, handleChip, arrayTags, createBook } = this.props;
 
     return (
       <Fragment>
-          <form className="form__container" action="/signup" method="post">
-            <FormControl className="form__textfield" variant="outlined" required>
+          <form className="form__container" action="/signup" method="post" onSubmit={this.submit.bind(this)} >
+            <FormControl className="form__textfield" variant="outlined" required >
               <InputLabel htmlFor="outlined-title">Título</InputLabel>
               <OutlinedInput id="outlined-title" className="form__input" label="Título" onKeyUp={handleChange} inputProps={{ "data-field": "title" }} />
             </FormControl>
@@ -67,12 +71,12 @@ class Form extends Component {
               <OutlinedInput className="form__input" label="Autor" id="outlined-author" onKeyUp={handleChange} inputProps={{ "data-field": "author" }} />
             </FormControl>
 
-            <FormControl className="form__textfield" variant="outlined" required>
+            <FormControl className="form__textfield" variant="outlined" required >
               <InputLabel htmlFor="outlined-ISBN">ISBN</InputLabel>
-              <OutlinedInput className="form__input" label="ISBN" id="outlined-ISBN" onKeyUp={handleChange} inputProps={{ "data-field": "ISBN" }} />
+              <OutlinedInput className="form__input" label="ISBN" id="outlined-ISBN" onKeyUp={handleChange} inputProps={{ "data-field": "ISBN"}} />
             </FormControl>
 
-            <FormControl className="form__textfield" variant="outlined" required>
+            <FormControl className="form__textfield" variant="outlined" required >
               <InputLabel htmlFor="type">Tipo</InputLabel>
               <Select className="form__input" native value={newBook.type} onChange={handleChange} input={
                 <OutlinedInput className="form__input" name="type" id="type" inputProps={{ "data-field": "type" }} />}>
@@ -85,7 +89,7 @@ class Form extends Component {
               </Select>
             </FormControl>
 
-            <FormControl className="form__textfield" variant="outlined" required>
+            <FormControl className="form__textfield" variant="outlined" required >
               <p>Tags <span>*</span></p>
               <Chips className="form__input" label="tags"
                 value={newBook.tags} onChange={handleChip} suggestions={arrayTags} id="outlined-tags" />
@@ -94,7 +98,7 @@ class Form extends Component {
             <FormControl className="form__textfield" variant="outlined" required>
               <InputLabel htmlFor="status">Estado</InputLabel>
               <Select className="form__input" native value={newBook.status} onChange={handleChange} input={
-                <OutlinedInput name="status" id="status" inputProps={{ "data-field": "status" }} />}>
+                <OutlinedInput name="status" id="status"inputProps={{ "data-field": "status" }} />}>
                 {state.map(option => {
                   return (
                     <option value={option.value}>{option.label}</option>
@@ -108,8 +112,7 @@ class Form extends Component {
             <input type="submit" value="Enviar" className="form__btn" onClick={createBook} />
             <button className="form__btn form__btn--close" onClick={this.goBack} >Cerrar</button>
           </div>
-    </Fragment>
-
+      </Fragment>
     );
   }
 }
