@@ -169,34 +169,35 @@ class App extends Component {
   }
 
 
-  changeMe() {
-    this.setState({
-      editBook: !this.state.editBook
-    })
-  }
-
-  async updateBook(e) {
-    this.paintList();
-    this.goBackApp();
+  changeMe(e) {
     const bookId = parseInt(e.currentTarget.getAttribute('data-update'));
     const dataTitle = e.currentTarget.getAttribute('data-title');
     const dataAuthor = e.currentTarget.getAttribute('data-author');
     const dataISBN = e.currentTarget.getAttribute('data-isbn');
     const dataType = e.currentTarget.getAttribute('data-type');
     const dataStatus = e.currentTarget.getAttribute('data-status');
-    const { newBook } = this.state;
+    const {newBook} = this.state;
+    console.log(newBook);
     this.setState((prevState) => {
       const { newBook } = prevState;
       const editBook = { ...newBook, id: bookId, title: dataTitle, author: dataAuthor, ISBN: dataISBN, type: dataType, status: dataStatus}
       return { newBook: editBook }
     });
-    console.log(newBook);
+    this.setState({
+      editBook: !this.state.editBook
+    });
+  }
+
+  async updateBook() {
+    this.paintList();
+    this.goBackApp();
+    const { newBook } = this.state;
     const result = await api.updateBook(newBook);
     return result;
   }
 
   showEditBook(e) {
-    const getId = e.currentTarget.getAttribute('data-edit');
+    const getId = e.currentTarget.getAttribute('data-update');
     this.props.history.push(`/book/${getId}`);
     this.setState({
       editBook: false

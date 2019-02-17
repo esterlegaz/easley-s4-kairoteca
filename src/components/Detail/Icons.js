@@ -15,11 +15,13 @@ class Icons extends Component {
   }
 
   render() {
+    const {showEditBook, id, popId, deletePopup, toggleDeletePopup, bookItemId} = this.props;
+    const { author, title, ISBN, type, status} = this.props.item;
     return (
       <div className="icons__wrapper">
-        <button className="card__detail--icons icons__edit" data-edit={this.props.id} onClick={this.props.showEditBook}></button>
-        <button className="card__detail--icons icons__delete" data-bookitem={this.props.bookItemId} data-popid={this.props.id} onClick={this.props.toggleDeletePopup}></button>
-        {this.showDeletePopup(this.props.deletePopup, this.props.id, this.props.popId)}
+        <button className="card__detail--icons icons__edit" data-update={id} data-title={title} data-author={author} data-isbn={ISBN} data-type={type} data-status={status} data-edit={id} onClick={showEditBook}></button>
+        <button className="card__detail--icons icons__delete" data-bookitem={bookItemId} data-popid={id} onClick={toggleDeletePopup}></button>
+        {this.showDeletePopup(deletePopup, id, popId)}
       </div>
     )
   }

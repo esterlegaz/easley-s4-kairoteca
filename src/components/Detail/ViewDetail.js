@@ -16,7 +16,7 @@ class ViewDetail extends Component {
       return (
         <Fragment>
           <div className="btn__container">
-            <button className="form__btn" onClick={changeMe} >Editar</button>
+            <button className="form__btn" data-update={bookId} data-title={title} data-author={author} data-isbn={ISBN} data-type={type} data-status={status} onClick={changeMe} >Editar</button>
             <button className="form__btn form__btn--close" onClick={goBackApp} >Cerrar</button>
           </div>
           <ul className="list__view-details">
