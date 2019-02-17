@@ -50,7 +50,7 @@ class EditBook extends Component {
             return (
                 <Fragment>
                     <div className="btn__container">
-                        <input type="submit" value="Enviar" className="form__btn" data-prueba={bookId} onClick={updateBook} />
+                        <input type="submit" value="Enviar" className="form__btn" data-update={bookId} data-title={title} data-author={author} data-isbn={ISBN} data-type={type} data-status={status} onClick={updateBook} />
                         <button className="form__btn form__btn--close" onClick={goBackApp} >Cerrar</button>
                     </div>
 

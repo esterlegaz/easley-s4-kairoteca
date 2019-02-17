@@ -27,7 +27,8 @@ class App extends Component {
         ISBN: '',
         type: '',
         tags: [],
-        status: ''
+        status: '',
+        id: ''
       },
     };
 
@@ -166,6 +167,7 @@ class App extends Component {
     })
   }
 
+
   changeMe() {
     this.setState({
       editBook: !this.state.editBook
@@ -175,9 +177,19 @@ class App extends Component {
   async updateBook(e) {
     this.paintList();
     this.goBackApp();
-    const bookId = parseInt(e.currentTarget.getAttribute('data-prueba'));
-    console.log(bookId);
-    const result = await api.updateBook(bookId);
+    const bookId = parseInt(e.currentTarget.getAttribute('data-update'));
+    const dataTitle = e.currentTarget.getAttribute('data-title');
+    const dataAuthor = e.currentTarget.getAttribute('data-author');
+    const dataISBN = e.currentTarget.getAttribute('data-isbn');
+    const dataType = e.currentTarget.getAttribute('data-type');
+    const dataStatus = e.currentTarget.getAttribute('data-status');
+    const { newBook } = this.state;
+    const editBook = { ...newBook, id: bookId, title: dataTitle, author: dataAuthor, ISBN: dataISBN, type: dataType, status: dataStatus}
+    this.setState({
+      newBook: editBook
+    });
+    console.log(newBook);
+    const result = await api.updateBook(newBook);
     return result;
   }
 

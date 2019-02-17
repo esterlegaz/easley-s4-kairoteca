@@ -19,7 +19,7 @@ class CardDetail extends Component {
         </div>
         <div className="book__detail">
           <Link to={`./book/${item.id}`} className="book__list-link">
-            <h2 className="book__title"  data-titleid={item.id}>{title}</h2>
+            <h2 className="book__title" data-titleid={item.id}>{title}</h2>
           </Link>
           <h3 className="book__author">{author}</h3>
           <ul className="book__tags--list">
