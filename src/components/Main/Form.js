@@ -61,6 +61,7 @@ class Form extends Component {
 
     return (
       <Fragment>
+        <div className="createBook__title">Crear un nuevo libro</div>
           <form className="form__container" action="/signup" method="post" onSubmit={this.handleSubmit}>
             <FormControl className="form__textfield" variant="outlined" required>
               <InputLabel htmlFor="outlined-title">Título</InputLabel>

@@ -19,7 +19,7 @@ class App extends Component {
       chipData: [],
       deletePopup: false,
       popId: '',
-      bookItemId:'',
+      bookItemId: '',
       deleteAnimation: '',
       editBook: true,
       newBook: {
@@ -99,16 +99,16 @@ class App extends Component {
 
   async deleteBook() {
     this.paintList();
-    const {popId} = this.state;
+    const { popId } = this.state;
     const result = await api.deleteBook(popId);
-    this.setState({    
+    this.setState({
       deleteAnimation: '',
       popId: ''
     })
     return result;
   }
 
-  confirmDelete(){
+  confirmDelete() {
     this.setState({
       deleteAnimation: 'delete__book',
       deletePopup: !this.state.deletePopup,
@@ -130,17 +130,17 @@ class App extends Component {
     this.setState((prevState) => {
       const { newBook } = prevState;
       const addBook = { ...newBook, tags: chips }
-      return {newBook: addBook}
+      return { newBook: addBook }
     });
   }
 
-  handleChange(e){
+  handleChange(e) {
     const field = e.currentTarget.getAttribute('data-field');
     const currentValue = e.currentTarget.value;
     this.setState((prevState) => {
       const { newBook } = prevState;
       const addBook = { ...newBook, [field]: currentValue }
-      return {newBook: addBook}
+      return { newBook: addBook }
     });
   }
 
@@ -161,69 +161,69 @@ class App extends Component {
         },
       });
     } else {
-        alert('NO')
+      alert('No ha rellenado todos los campos obligatorios')
     }
   }
 
-  goBackApp(){
-   this.props.history.push('/');
- }
+  goBackApp() {
+    this.props.history.push('/');
+  }
 
- changeMe(){
-   this.setState({
-    editBook: !this.state.editBook
-   })
- }
+  changeMe() {
+    this.setState({
+      editBook: !this.state.editBook
+    })
+  }
 
   async updateBook(e) {
     const bookId = parseInt(e.currentTarget.getAttribute('data-id'));
     const result = await api.updateBook(bookId);
     return result;
   }
-  
- colorTags(selectedTag) { 
-  if(selectedTag === 'javascript') {
-    return 'javascript';
-  } else if (selectedTag === 'react') {
-    return 'react';
-  } else if(selectedTag === 'Agile') {
-    return 'agile'
-  } else if(selectedTag === 'Vue') {
-    return 'vue'
-  } else if(selectedTag === 'programming') {
-    return 'programming'
-  } else if(selectedTag === 'OOP') {
-    return 'oop'
-  } else if(selectedTag === 'Design patterns') {
-    return 'design-patterns'
-  } else if(selectedTag === 'Reactive programing') {
-    return 'reactive-programming'
-  } else if(selectedTag === 'Web components') {
-    return 'web-components'
-  } else if(selectedTag === 'GIT') {
-    return 'git'
-  } else if(selectedTag === 'Testing') {
-    return 'testing'
-  } else if(selectedTag === 'SOLID') {
-    return 'solid'
-  } else {
-    return ''
+
+  colorTags(selectedTag) {
+    if (selectedTag === 'javascript') {
+      return 'javascript';
+    } else if (selectedTag === 'react') {
+      return 'react';
+    } else if (selectedTag === 'Agile') {
+      return 'agile'
+    } else if (selectedTag === 'Vue') {
+      return 'vue'
+    } else if (selectedTag === 'programming') {
+      return 'programming'
+    } else if (selectedTag === 'OOP') {
+      return 'oop'
+    } else if (selectedTag === 'Design patterns') {
+      return 'design-patterns'
+    } else if (selectedTag === 'Reactive programing') {
+      return 'reactive-programming'
+    } else if (selectedTag === 'Web components') {
+      return 'web-components'
+    } else if (selectedTag === 'GIT') {
+      return 'git'
+    } else if (selectedTag === 'Testing') {
+      return 'testing'
+    } else if (selectedTag === 'SOLID') {
+      return 'solid'
+    } else {
+      return ''
+    }
   }
-}
 
   render() {
-    const {bookItemId, deleteAnimation, popId, deletePopup, haveBooks, bookList, chipData, newBook} = this.state;
+    const { bookItemId, deleteAnimation, popId, deletePopup, haveBooks, bookList, chipData, newBook } = this.state;
     return (
       <div className="App">
         <Header />
-    
+
         <Switch>
           <Route exact path="/" render={() => (
-            <Main bookItemId={bookItemId} deleteAnimation={deleteAnimation} popId={popId} toggleDeletePopup={this.toggleDeletePopup} deletePopup={deletePopup} deleteBook={this.confirmDelete} getFilter={this.getFilter} bookList={this.filterBookList()} haveBooks={haveBooks} colorTags={this.colorTags}/>
+            <Main bookItemId={bookItemId} deleteAnimation={deleteAnimation} popId={popId} toggleDeletePopup={this.toggleDeletePopup} deletePopup={deletePopup} deleteBook={this.confirmDelete} getFilter={this.getFilter} bookList={this.filterBookList()} haveBooks={haveBooks} colorTags={this.colorTags} />
           )} />
 
-          <Route path="/book/:id" render={props => <ViewDetail match={props.match} bookList={bookList} colorTags={this.colorTags}/>} />
-          
+          <Route path="/book/:id" render={props => <ViewDetail match={props.match} bookList={bookList} colorTags={this.colorTags} />} />
+
           <Route path="/add" render={() => (<Form suggestions={bookList} arrayTags={chipData} handleChange={this.handleChange} handleChip={this.handleChip} createBook={this.createBook} newBook={newBook} />)} />
         </Switch>
 
