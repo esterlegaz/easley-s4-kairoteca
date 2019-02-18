@@ -52,7 +52,7 @@ class Form extends Component {
 
     return (
       <Fragment>
-        <div href="../../images/angle-left-solid.svg" className="left__arrow"></div>
+        <div className="left__arrow"></div>
         <div className="createBook__title">Crear un nuevo libro</div>
         <form className="form__container" action="/signup" method="post" onSubmit={this.handleSubmit}>
           <FormControl className="form__textfield" variant="outlined" required>
