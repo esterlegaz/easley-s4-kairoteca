@@ -170,6 +170,14 @@ class App extends Component {
     this.props.history.push('/');
     this.setState({
       editBook: true,
+      newBook: {
+        title: '',
+        author: '',
+        ISBN: '',
+        type: '',
+        tags: [],
+        status: ''
+      }
     })
   }
 
