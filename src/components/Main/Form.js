@@ -47,20 +47,23 @@ class Form extends Component {
     super(props);
 
     this.goBack = this.goBack.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
   goBack() {
     this.props.history.push('/');
   }
 
-  submit = event => {
-    event.preventDefault();
-    console.log("SUBMIT", event);   };
+  handleSubmit(e) {
+    e.preventDefault();
+  }
+
   render() {
     const { handleChange, newBook, handleChip, arrayTags, createBook } = this.props;
 
     return (
       <Fragment>
-          <form className="form__container" action="/signup" method="post" onSubmit={this.submit.bind(this)} >
+          <div className="createBook__title">Crear un nuevo libro</div>
+          <form className="form__container" action="/signup" method="post" onSubmit={this.handleSubmit} >
             <FormControl className="form__textfield" variant="outlined" required >
               <InputLabel htmlFor="outlined-title">Título</InputLabel>
               <OutlinedInput id="outlined-title" className="form__input" label="Título" onKeyUp={handleChange} inputProps={{ "data-field": "title" }} />
@@ -90,7 +93,7 @@ class Form extends Component {
             </FormControl>
 
             <FormControl className="form__textfield" variant="outlined" required >
-              <p>Tags <span>*</span></p>
+              <p class="form__tags">Tags <span>*</span></p>
               <Chips className="form__input" label="tags"
                 value={newBook.tags} onChange={handleChip} suggestions={arrayTags} id="outlined-tags" />
             </FormControl>

@@ -204,18 +204,6 @@ class App extends Component {
     })
   }
 
-  // requiredForm(){
-  //   if (this.state.newBook.title === ''){
-  //       return (
-  //         alert('NO')
-  //       )
-  //   }else{
-  //     return(
-  //       this.createBook()
-  //     )
-  //   }
-  // }
-
   render() {
     const { bookItemId, deleteAnimation, popId, deletePopup, haveBooks, bookList, chipData, newBook } = this.state;
     return (
