@@ -42,12 +42,13 @@ const types = [
 class EditBook extends Component {
 
     render() {
-        const { handleChange, newBook, handleChip, arrayTags, createBook } = this.props;
+        const { handleChange, newBook, handleChip, arrayTags } = this.props;
         const bookId = this.props.match.params.id;
         const { bookList, updateBook, goBackApp } = this.props;
         if (bookList.length > 0 && bookId <= bookList.length) {
             const myBook = bookList[bookId - 1];
             const { author, title, tags, status, ISBN, type } = myBook;
+
             return (
                 <Fragment>
                     <div className="btn__container">
@@ -87,7 +88,7 @@ class EditBook extends Component {
                         <FormControl className="form__textfield" variant="outlined" required>
                             <p>Tags <span>*</span></p>
                             <Chips className="form__input" label="tags"
-                                value={newBook.tags} onChange={handleChip} suggestions={arrayTags} defaultValue={tags} id="outlined-tags" />
+                                value={newBook.tags} onChange={handleChip} suggestions={arrayTags} id="outlined-tags" />
                         </FormControl>
 
                         <FormControl className="form__textfield" variant="outlined" required>

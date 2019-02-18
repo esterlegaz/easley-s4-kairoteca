@@ -180,11 +180,10 @@ class App extends Component {
     const dataISBN = e.currentTarget.getAttribute('data-isbn');
     const dataType = e.currentTarget.getAttribute('data-type');
     const dataStatus = e.currentTarget.getAttribute('data-status');
-    const {newBook} = this.state;
-    console.log(newBook);
+    const dataTags = e.currentTarget.getAttribute('data-tags').split(',');
     this.setState((prevState) => {
       const { newBook } = prevState;
-      const editBook = { ...newBook, id: bookId, title: dataTitle, author: dataAuthor, ISBN: dataISBN, type: dataType, status: dataStatus}
+      const editBook = { ...newBook, id: bookId, title: dataTitle, author: dataAuthor, ISBN: dataISBN, type: dataType, status: dataStatus, tags: dataTags}
       return { newBook: editBook }
     });
     this.setState({

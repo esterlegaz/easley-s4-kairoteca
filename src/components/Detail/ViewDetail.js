@@ -11,11 +11,10 @@ class ViewDetail extends Component {
     if (bookList.length > 0 && bookId <= bookList.length) {
       const myBook = bookList[bookId - 1];
       const { author, title, tags, status, ISBN, type } = myBook;
-
       return (
         <Fragment>
           <div className="btn__container">
-            <button className="form__btn" data-update={bookId} data-title={title} data-author={author} data-isbn={ISBN} data-type={type} data-status={status} onClick={changeMe} >Editar</button>
+            <button className="form__btn" data-update={bookId} data-title={title} data-author={author} data-isbn={ISBN} data-type={type} data-status={status} data-tags={[tags]} onClick={changeMe} >Editar</button>
             <button className="form__btn form__btn--close" onClick={goBackApp} >Cerrar</button>
           </div>
           <ul className="list__view-details">
