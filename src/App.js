@@ -146,7 +146,7 @@ class App extends Component {
 
   createBook() {
     const { newBook } = this.state;
-    if (newBook.title !== '' && newBook.author !== '' && newBook.ISBN !== '' && newBook.type !== '' && newBook.status !== '' && newBook.tags !== []) {
+    if (newBook.title !== '' && newBook.author !== '' && newBook.ISBN !== '' && newBook.type !== '' && newBook.status !== '' && newBook.tags.length !== 0) {
       api.createBook(newBook);
       this.goBackApp();
       this.paintList();
@@ -164,7 +164,7 @@ class App extends Component {
         alert('NO')
     }
   }
-  
+
   goBackApp(){
    this.props.history.push('/');
  }
