@@ -167,7 +167,6 @@ class App extends Component {
     })
   }
 
-
   changeMe(e) {
     const bookId = parseInt(e.currentTarget.getAttribute('data-update'));
     const dataTitle = e.currentTarget.getAttribute('data-title');

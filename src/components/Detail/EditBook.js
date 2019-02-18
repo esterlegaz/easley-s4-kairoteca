@@ -103,8 +103,8 @@ class EditBook extends Component {
                         </FormControl>
                     </form>
                     <div className="btn__container">
-                        <input type="submit" value="Enviar" className="form__btn" onClick={createBook} />
-                        <button className="form__btn form__btn--close" onClick={this.goBack} >Cerrar</button>
+                        <input type="submit" value="Enviar" className="form__btn" onClick={updateBook} />
+                        <button className="form__btn form__btn--close" onClick={goBackApp} >Cerrar</button>
                     </div>
                 </Fragment >
             )

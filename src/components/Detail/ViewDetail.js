@@ -63,7 +63,10 @@ class ViewDetail extends Component {
               }} />
             </li>
           </ul>
-          <Link className="link__close form__btn" to="/">Cerrar</Link>
+          <div className="btn__container">
+            <button className="form__btn" data-update={bookId} data-title={title} data-author={author} data-isbn={ISBN} data-type={type} data-status={status} onClick={changeMe} >Editar</button>
+            <button className="form__btn form__btn--close" onClick={goBackApp} >Cerrar</button>
+          </div>
         </Fragment>
       )
     } else {
