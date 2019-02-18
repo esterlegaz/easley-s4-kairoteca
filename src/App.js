@@ -141,25 +141,29 @@ class App extends Component {
     this.setState((prevState) => {
       const { newBook } = prevState;
       const addBook = { ...newBook, [field]: currentValue }
-      return {newBook: addBook}
+      return { newBook: addBook }
     });
   }
 
   createBook() {
     const { newBook } = this.state;
-    api.createBook(newBook);
-    this.goBackApp();
-    this.paintList();
-    this.setState({
-      newBook: {
-        title: '',
-        author: '',
-        ISBN: '',
-        type: '',
-        tags: [],
-        status: ''
-      },
-    })
+    if (newBook.title !== '' && newBook.author !== '' && newBook.ISBN !== '' && newBook.type !== '' && newBook.status !== '' && newBook.tags.length !== 0) {
+      api.createBook(newBook);
+      this.goBackApp();
+      this.paintList();
+      this.setState({
+        newBook: {
+          title: '',
+          author: '',
+          ISBN: '',
+          type: '',
+          tags: [],
+          status: ''
+        },
+      });
+    } else {
+      alert('No ha rellenado todos los campos obligatorios')
+    }
   }
 
   goBackApp() {
@@ -195,36 +199,36 @@ class App extends Component {
     const result = await api.updateBook(newBook);
     return result;
   }
-  
- colorTags(selectedTag) { 
-  if(selectedTag === 'javascript') {
-    return 'javascript';
-  } else if (selectedTag === 'react') {
-    return 'react';
-  } else if(selectedTag === 'Agile') {
-    return 'agile'
-  } else if(selectedTag === 'Vue') {
-    return 'vue'
-  } else if(selectedTag === 'programming') {
-    return 'programming'
-  } else if(selectedTag === 'OOP') {
-    return 'oop'
-  } else if(selectedTag === 'Design patterns') {
-    return 'design-patterns'
-  } else if(selectedTag === 'Reactive programing') {
-    return 'reactive-programming'
-  } else if(selectedTag === 'Web components') {
-    return 'web-components'
-  } else if(selectedTag === 'GIT') {
-    return 'git'
-  } else if(selectedTag === 'Testing') {
-    return 'testing'
-  } else if(selectedTag === 'SOLID') {
-    return 'solid'
-  } else {
-    return ''
+
+  colorTags(selectedTag) {
+    if (selectedTag === 'javascript') {
+      return 'javascript';
+    } else if (selectedTag === 'react') {
+      return 'react';
+    } else if (selectedTag === 'Agile') {
+      return 'agile'
+    } else if (selectedTag === 'Vue') {
+      return 'vue'
+    } else if (selectedTag === 'programming') {
+      return 'programming'
+    } else if (selectedTag === 'OOP') {
+      return 'oop'
+    } else if (selectedTag === 'Design patterns') {
+      return 'design-patterns'
+    } else if (selectedTag === 'Reactive programing') {
+      return 'reactive-programming'
+    } else if (selectedTag === 'Web components') {
+      return 'web-components'
+    } else if (selectedTag === 'GIT') {
+      return 'git'
+    } else if (selectedTag === 'Testing') {
+      return 'testing'
+    } else if (selectedTag === 'SOLID') {
+      return 'solid'
+    } else {
+      return ''
+    }
   }
-}
 
   showEditBook(e) {
     const getId = e.currentTarget.getAttribute('data-update');
@@ -259,8 +263,8 @@ class App extends Component {
           )} />
 
           <Route path="/book/:id" render={props => <ViewOrEdit match={props.match} bookList={bookList} editBook={this.state.editBook} changeMe={this.changeMe} goBackApp={this.goBackApp} handleChange={this.handleChange} newBook={this.state.newBook} handleChip={this.handleChip} arrayTags={this.arrayTags} createBook={this.createBook} updateBook={this.updateBook} colorTags={this.colorTags}/>} />
-          
-          <Route path="/add" render={() => (<Form suggestions={bookList} arrayTags={chipData} handleChange={this.handleChange} handleChip={this.handleChip} createBook={this.createBook} newBook={newBook} />)} />
+
+          <Route path="/add" render={() => (<Form suggestions={bookList} arrayTags={chipData} handleChange={this.handleChange} handleChip={this.handleChip} createBook={this.createBook} newBook={newBook} goBackApp={this.goBackApp} />)} />
         </Switch>
 
         <Footer />
