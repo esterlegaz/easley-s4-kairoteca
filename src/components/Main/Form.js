@@ -54,7 +54,7 @@ class Form extends Component {
       <Fragment>
         <div className="wrapper__title">
           <div className="left__arrow" onClick={goBackApp}></div>
-          <div className="createBook__createBook__title">Crear un nuevo libro</div>
+          <div className="component__title">Crear un nuevo libro</div>
         </div>
         <form className="form__container" action="/signup" method="post" onSubmit={this.handleSubmit}>
           <FormControl className="form__textfield" variant="outlined" required>
