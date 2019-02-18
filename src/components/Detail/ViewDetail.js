@@ -1,5 +1,4 @@
 import React, { Component, Fragment } from "react";
-import PropTypes from "prop-types";
 import { Link } from 'react-router-dom';
 import TextField from '@material-ui/core/TextField';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -7,7 +6,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 class ViewDetail extends Component {
   render() {
     const bookId = this.props.match.params.id;
-    const { goBackApp, bookList, changeMe } = this.props;
+    const { bookList, colorTags, goBackApp, changeMe } = this.props;
 
     if (bookList.length > 0 && bookId <= bookList.length) {
       const myBook = bookList[bookId - 1];
@@ -50,7 +49,7 @@ class ViewDetail extends Component {
                 <ul className="list__tags--list">
                   {tags.map((tag, index) => {
                     return (
-                      <li className="list__tags--item" key={index}>{tag}</li>
+                      <li className={`list__tags--item ${colorTags(tag)}`} key={index}>{tag}</li>
                     )
                   })}
                 </ul>
@@ -63,10 +62,7 @@ class ViewDetail extends Component {
               }} />
             </li>
           </ul>
-          <div className="btn__container">
-            <button className="form__btn" data-update={bookId} data-title={title} data-author={author} data-isbn={ISBN} data-type={type} data-status={status} onClick={changeMe} >Editar</button>
-            <button className="form__btn form__btn--close" onClick={goBackApp} >Cerrar</button>
-          </div>
+            <Link className="link__close form__btn" to="/">Cerrar</Link>
         </Fragment>
       )
     } else {
