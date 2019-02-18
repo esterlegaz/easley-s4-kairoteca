@@ -4,10 +4,9 @@ import Header from './components/Layout/Header';
 import Main from "./components/Layout/Main";
 import Form from "./components/Main/Form";
 import Footer from "./components/Layout/Footer";
-import ViewDetail from "./components/Detail/ViewDetail";
+import ViewOrEdit from "./components/Detail/ViewOrEdit";
 import api from "./api";
 import "./App.scss";
-
 
 class App extends Component {
   constructor(props) {
@@ -28,7 +27,8 @@ class App extends Component {
         ISBN: '',
         type: '',
         tags: [],
-        status: ''
+        status: '',
+        id: ''
       },
     };
 
@@ -45,6 +45,7 @@ class App extends Component {
     this.confirmDelete = this.confirmDelete.bind(this);
     this.goBackApp = this.goBackApp.bind(this);
     this.changeMe = this.changeMe.bind(this);
+    this.showEditBook = this.showEditBook.bind(this);
     this.colorTags = this.colorTags.bind(this);
   }
 
@@ -167,17 +168,35 @@ class App extends Component {
 
   goBackApp() {
     this.props.history.push('/');
-  }
-
-  changeMe() {
     this.setState({
-      editBook: !this.state.editBook
+      editBook: true,
     })
   }
 
-  async updateBook(e) {
-    const bookId = parseInt(e.currentTarget.getAttribute('data-id'));
-    const result = await api.updateBook(bookId);
+  changeMe(e) {
+    const bookId = parseInt(e.currentTarget.getAttribute('data-update'));
+    const dataTitle = e.currentTarget.getAttribute('data-title');
+    const dataAuthor = e.currentTarget.getAttribute('data-author');
+    const dataISBN = e.currentTarget.getAttribute('data-isbn');
+    const dataType = e.currentTarget.getAttribute('data-type');
+    const dataStatus = e.currentTarget.getAttribute('data-status');
+    const {newBook} = this.state;
+    console.log(newBook);
+    this.setState((prevState) => {
+      const { newBook } = prevState;
+      const editBook = { ...newBook, id: bookId, title: dataTitle, author: dataAuthor, ISBN: dataISBN, type: dataType, status: dataStatus}
+      return { newBook: editBook }
+    });
+    this.setState({
+      editBook: !this.state.editBook
+    });
+  }
+
+  async updateBook() {
+    this.paintList();
+    this.goBackApp();
+    const { newBook } = this.state;
+    const result = await api.updateBook(newBook);
     return result;
   }
 
@@ -211,6 +230,27 @@ class App extends Component {
     }
   }
 
+  showEditBook(e) {
+    const getId = e.currentTarget.getAttribute('data-update');
+    this.props.history.push(`/book/${getId}`);
+    this.setState({
+      editBook: false
+    });
+    const bookId = parseInt(e.currentTarget.getAttribute('data-update'));
+    const dataTitle = e.currentTarget.getAttribute('data-title');
+    const dataAuthor = e.currentTarget.getAttribute('data-author');
+    const dataISBN = e.currentTarget.getAttribute('data-isbn');
+    const dataType = e.currentTarget.getAttribute('data-type');
+    const dataStatus = e.currentTarget.getAttribute('data-status');
+    const {newBook} = this.state;
+    console.log(newBook);
+    this.setState((prevState) => {
+      const { newBook } = prevState;
+      const editBook = { ...newBook, id: bookId, title: dataTitle, author: dataAuthor, ISBN: dataISBN, type: dataType, status: dataStatus}
+      return { newBook: editBook }
+    });
+  }
+
   render() {
     const { bookItemId, deleteAnimation, popId, deletePopup, haveBooks, bookList, chipData, newBook } = this.state;
     return (
@@ -218,11 +258,11 @@ class App extends Component {
         <Header />
 
         <Switch>
-          <Route exact path="/" render={() => (
-            <Main bookItemId={bookItemId} deleteAnimation={deleteAnimation} popId={popId} toggleDeletePopup={this.toggleDeletePopup} deletePopup={deletePopup} deleteBook={this.confirmDelete} getFilter={this.getFilter} bookList={this.filterBookList()} haveBooks={haveBooks} colorTags={this.colorTags} />
+          <Route exact path="/" render={props => (
+            <Main showEditBook={this.showEditBook} bookItemId={bookItemId} deleteAnimation={deleteAnimation} popId={popId} toggleDeletePopup={this.toggleDeletePopup} deletePopup={deletePopup} deleteBook={this.confirmDelete} getFilter={this.getFilter} bookList={this.filterBookList()} haveBooks={haveBooks} colorTags={this.colorTags} match={props.match}/>
           )} />
 
-          <Route path="/book/:id" render={props => <ViewDetail match={props.match} bookList={bookList} colorTags={this.colorTags} />} />
+          <Route path="/book/:id" render={props => <ViewOrEdit match={props.match} bookList={bookList} editBook={this.state.editBook} changeMe={this.changeMe} goBackApp={this.goBackApp} handleChange={this.handleChange} newBook={this.state.newBook} handleChip={this.handleChip} arrayTags={this.arrayTags} createBook={this.createBook} updateBook={this.updateBook} colorTags={this.colorTags}/>} />
 
           <Route path="/add" render={() => (<Form suggestions={bookList} arrayTags={chipData} handleChange={this.handleChange} handleChip={this.handleChip} createBook={this.createBook} newBook={newBook} goBackApp={this.goBackApp} />)} />
         </Switch>
