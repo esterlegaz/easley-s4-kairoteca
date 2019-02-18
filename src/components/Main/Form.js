@@ -13,11 +13,11 @@ const types = [
     label: '',
   },
   {
-    value: 'Digital',
+    value: 'digital',
     label: 'Digital',
   },
   {
-    value: 'Físico',
+    value: 'físico',
     label: 'Físico',
   },
 ]
@@ -28,15 +28,15 @@ const state = [
     label: '',
   },
   {
-    value: 'Disponible',
+    value: 'disponible',
     label: 'Disponible',
   },
   {
-    value: 'Prestado',
+    value: 'prestado',
     label: 'Prestado',
   },
   {
-    value: 'Pendiente',
+    value: 'pending',
     label: 'Pendiente',
   },
 ];

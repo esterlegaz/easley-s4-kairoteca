@@ -196,6 +196,9 @@ class App extends Component {
     this.paintList();
     this.goBackApp();
     const { newBook } = this.state;
+    this.setState ({
+      editBook: !this.state.editBook
+    });
     const result = await api.updateBook(newBook);
     return result;
   }

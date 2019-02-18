@@ -4,39 +4,40 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import OutlinedInput from '@material-ui/core/OutlinedInput';
 import Chips from 'react-chips';
+
 const types = [
     {
-        value: '',
-        label: '',
+      value: '',
+      label: '',
     },
     {
-        value: 'Digital',
-        label: 'Digital',
+      value: 'digital',
+      label: 'Digital',
     },
     {
-        value: 'Físico',
-        label: 'Físico',
+      value: 'físico',
+      label: 'Físico',
     },
-]
-
-const state = [
+  ]
+  
+  const state = [
     {
-        value: '',
-        label: '',
-    },
-    {
-        value: 'Disponible',
-        label: 'Disponible',
+      value: '',
+      label: '',
     },
     {
-        value: 'Prestado',
-        label: 'Prestado',
+      value: 'disponible',
+      label: 'Disponible',
     },
     {
-        value: 'Pendiente',
-        label: 'Pendiente',
+      value: 'prestado',
+      label: 'Prestado',
     },
-];
+    {
+      value: 'pending',
+      label: 'Pendiente',
+    },
+  ];
 
 class EditBook extends Component {
 
@@ -75,9 +76,9 @@ class EditBook extends Component {
                             <Select className="form__input" native value={newBook.type} defaultValue={type} onChange={handleChange} input={
                                 <OutlinedInput className="form__input" name="type" id="type" inputProps={{ "data-field": "type" }} />}>
                                 {types.map(option => {
-                                    return (
-                                        <option value={option.value}>{option.label}</option>
-                                    )
+                                   return (
+                                    <option value={option.value} selected={option.value === type ? true:false}>{option.label}</option>
+                                ); 
                                 }
                                 )}
                             </Select>
@@ -95,8 +96,8 @@ class EditBook extends Component {
                                 <OutlinedInput name="status" id="status" defaultValue={status} inputProps={{ "data-field": "status" }} />}>
                                 {state.map(option => {
                                     return (
-                                        <option value={option.value}>{option.label}</option>
-                                    )
+                                        <option value={option.value} selected={option.value === status ? true:false}>{option.label}</option>
+                                    ); 
                                 }
                                 )}
                             </Select>
