@@ -13,7 +13,7 @@ class List extends Component {
   }
 
   render() {
-    const {toggleDeletePopup, deletePopup, deleteBook, haveBooks, bookList, popId, showEditBook} = this.props;
+    const {toggleDeletePopup, deletePopup, deleteBook, haveBooks, bookList, popId, showEditBook, match} = this.props;
 
     if (haveBooks && bookList.length > 0) {
       return (
@@ -23,7 +23,7 @@ class List extends Component {
               const bookItemId = `book-${item.id}`;
               return (
                 <li key={item.id} id={bookItemId} className={`book__list ${this.applyClass(bookItemId)}`}>
-                  <CardDetail showEditBook={showEditBook} bookItemId={bookItemId} popId={popId} toggleDeletePopup={toggleDeletePopup} deletePopup={deletePopup} deleteBook={deleteBook} item={item} />
+                  <CardDetail showEditBook={showEditBook} bookItemId={bookItemId} popId={popId} toggleDeletePopup={toggleDeletePopup} deletePopup={deletePopup} deleteBook={deleteBook} item={item} match={match}/>
                 </li>
               )
             })}

@@ -8,14 +8,14 @@ import {Link} from 'react-router-dom';
 class CardDetail extends Component {
 
   render() {
-    const {toggleDeletePopup, deletePopup, deleteBook, popId, item, bookItemId, showEditBook} = this.props;
+    const {toggleDeletePopup, deletePopup, deleteBook, popId, item, bookItemId, showEditBook, match} = this.props;
     const { author, title, tags, status} = this.props.item;
 
     return (
       <div>
         <div className="book__information">
           <Status status={status} />
-          <Icons item={item} showEditBook={showEditBook} bookItemId={bookItemId} popId={popId} toggleDeletePopup={toggleDeletePopup} deletePopup={deletePopup} id={item.id} deleteBook={deleteBook} />
+          <Icons item={item} showEditBook={showEditBook} bookItemId={bookItemId} popId={popId} toggleDeletePopup={toggleDeletePopup} deletePopup={deletePopup} id={item.id} deleteBook={deleteBook} match={match}/>
         </div>
         <div className="book__detail">
           <Link to={`./book/${item.id}`} className="book__list-link">

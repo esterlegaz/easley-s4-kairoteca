@@ -46,7 +46,6 @@ class App extends Component {
     this.goBackApp = this.goBackApp.bind(this);
     this.changeMe = this.changeMe.bind(this);
     this.showEditBook = this.showEditBook.bind(this);
-    this.updateBook = this.updateBook.bind(this);
   }
 
   componentDidMount() {
@@ -201,7 +200,20 @@ class App extends Component {
     this.props.history.push(`/book/${getId}`);
     this.setState({
       editBook: false
-    })
+    });
+    const bookId = parseInt(e.currentTarget.getAttribute('data-update'));
+    const dataTitle = e.currentTarget.getAttribute('data-title');
+    const dataAuthor = e.currentTarget.getAttribute('data-author');
+    const dataISBN = e.currentTarget.getAttribute('data-isbn');
+    const dataType = e.currentTarget.getAttribute('data-type');
+    const dataStatus = e.currentTarget.getAttribute('data-status');
+    const {newBook} = this.state;
+    console.log(newBook);
+    this.setState((prevState) => {
+      const { newBook } = prevState;
+      const editBook = { ...newBook, id: bookId, title: dataTitle, author: dataAuthor, ISBN: dataISBN, type: dataType, status: dataStatus}
+      return { newBook: editBook }
+    });
   }
 
   render() {
@@ -211,8 +223,8 @@ class App extends Component {
         <Header />
 
         <Switch>
-          <Route exact path="/" render={() => (
-            <Main showEditBook={this.showEditBook} bookItemId={bookItemId} deleteAnimation={deleteAnimation} popId={popId} toggleDeletePopup={this.toggleDeletePopup} deletePopup={deletePopup} deleteBook={this.confirmDelete} getFilter={this.getFilter} bookList={this.filterBookList()} haveBooks={haveBooks} />
+          <Route exact path="/" render={props => (
+            <Main showEditBook={this.showEditBook} bookItemId={bookItemId} deleteAnimation={deleteAnimation} popId={popId} toggleDeletePopup={this.toggleDeletePopup} deletePopup={deletePopup} deleteBook={this.confirmDelete} getFilter={this.getFilter} bookList={this.filterBookList()} haveBooks={haveBooks} match={props.match}/>
           )} />
 
           <Route path="/book/:id" render={props => <ViewOrEdit match={props.match} bookList={bookList} editBook={this.state.editBook} changeMe={this.changeMe} goBackApp={this.goBackApp} handleChange={this.handleChange} newBook={this.state.newBook} handleChip={this.handleChip} arrayTags={this.arrayTags} createBook={this.createBook} updateBook={this.updateBook} />} />
