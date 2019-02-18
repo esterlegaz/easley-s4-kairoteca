@@ -224,7 +224,7 @@ class App extends Component {
 
           <Route path="/book/:id" render={props => <ViewDetail match={props.match} bookList={bookList} colorTags={this.colorTags} />} />
 
-          <Route path="/add" render={() => (<Form suggestions={bookList} arrayTags={chipData} handleChange={this.handleChange} handleChip={this.handleChip} createBook={this.createBook} newBook={newBook} />)} />
+          <Route path="/add" render={() => (<Form suggestions={bookList} arrayTags={chipData} handleChange={this.handleChange} handleChip={this.handleChip} createBook={this.createBook} newBook={newBook} goBackApp={this.goBackApp} />)} />
         </Switch>
 
         <Footer />
