@@ -21,3 +21,22 @@
 .agile{
   background-color: $colorKairos !important;
 }
+
+//Title components
+
+.left__arrow{
+  width: 45px;
+  background: url(./images/angle-left-solid.svg) center center no-repeat;
+}
+
+.wrapper__title{
+  display: flex;
+  height: 45px;
+  margin: 30px 0 0 56px;
+}
+
+.createBook__title{
+  font-size: 21px;
+  margin-top: 11px;
+  color: #BDBDBD;
+}
