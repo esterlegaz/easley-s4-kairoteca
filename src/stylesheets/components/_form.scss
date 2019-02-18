@@ -1,34 +1,48 @@
 .form__container {
-    background: white;
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    top: 140px;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    margin: auto;
-    display: grid;
-    grid-template-columns: 1fr;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 68px;
+    .MuiFormControl-root-1{
+        .MuiOutlinedInput-root-23{
+            margin-bottom: 15px;
+        }
+        label{
+            padding: 0 8px;
+            &[data-shrink="true"]{
+                background: #fff;
+                padding: 0 8px;
+                -webkit-transition: all 0.3s ease;
+                -ms-transition: all 0.3s ease;
+                transition: all 0.3s ease;
+            }
+        }
+        .MuiSelect-select-56:focus{
+            background-color: transparent;
+        }
+        .MuiOutlinedInput-root-23.MuiOutlinedInput-focused-24 .MuiOutlinedInput-notchedOutline-30 {
+            border-color: $colorKairos;
+        }
+        .MuiFormLabel-root-16.MuiFormLabel-focused-17{
+            color: $colorKairos;
+        }
+        .custom-label{
+            position: absolute;
+            color: rgba(0, 0, 0, 0.54);
+            z-index: 1;
+            transform: translate(14px, 20px) scale(1);
+        }
+        div[data-radium="true"]{
+            padding: 12px 14px;
+            margin-bottom: 15px;
+        }
+    }
 }
 
 .form__textfield {
     width: 328px;
 }
 
-.form__popup{
-    width: 500px;
-    height: 100vh;
-    position: fixed;
-    left: 25%;
-    right: 25%;
-    top: 50%;
-    bottom: 25%;
-    margin: auto;
-    padding: 45px;
-}
-
 .form__input{
-    margin: 10px;
     width: 328px;
 }

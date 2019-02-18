@@ -1,17 +1,20 @@
 import React, { Component, Fragment } from "react";
+import { Link } from 'react-router-dom';
 import PropTypes from "prop-types";
 import List from './../Main/List';
 import Filter from './../Main/Filter';
 
 class Main extends Component {
   render() {
+    const { getFilter, bookItemId, deleteAnimation, popId, toggleDeletePopup, deletePopup, deleteBook, bookList, haveBooks, showEditBook, colorTags, match } = this.props;
+
     return (
       <Fragment>
-        <Filter getFilter={this.props.getFilter} />
+        <Filter getFilter={getFilter} />
         <div className="main__addbook--container">
-          <button className="main__addbook--btn" onClick={this.props.togglePopup}>Añadir libro</button>
+          <Link to="/add" className="main__addbook--btn link__router">Añadir libro</Link>
         </div>
-        <List popId={this.props.popId} toggleDeletePopup={this.props.toggleDeletePopup} deletePopup={this.props.deletePopup} deleteBook={this.props.deleteBook} bookList={this.props.bookList} haveBooks={this.props.haveBooks} />
+        <List showEditBook={showEditBook} bookItemId={bookItemId} deleteAnimation={deleteAnimation} popId={popId} toggleDeletePopup={toggleDeletePopup} deletePopup={deletePopup} deleteBook={deleteBook} bookList={bookList} haveBooks={haveBooks} colorTags={colorTags} match={match} />
       </Fragment>
     );
   }
@@ -19,11 +22,15 @@ class Main extends Component {
 
 Main.propTypes = {
   getFilter: PropTypes.func.isRequired,
+  bookItemId: PropTypes.string.isRequired,
+  deleteAnimation: PropTypes.string.isRequired,
   toggleDeletePopup: PropTypes.func.isRequired,
   deletePopup: PropTypes.bool.isRequired,
   deleteBook: PropTypes.func.isRequired,
   haveBooks: PropTypes.bool.isRequired,
-  bookList: PropTypes.array.isRequired
+  bookList: PropTypes.array.isRequired,
+  showEditBook: PropTypes.func.isRequired,
+  colorTags: PropTypes.func.isRequired
 };
 
 export default Main;

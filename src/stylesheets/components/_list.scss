@@ -27,3 +27,21 @@
   font-size: 20px;
   color: $colorBookAuthor;
 }
+
+.delete__book{
+    animation-duration: 2s;
+    animation-name: delete;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-in-out;
+}
+
+@keyframes delete{
+    from{
+        opacity: 2;
+    }
+    to {
+        transform:rotateX(-90deg) rotateZ(-90deg);
+        opacity: 0;
+        color: white;
+    }
+}
