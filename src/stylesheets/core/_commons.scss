@@ -6,9 +6,18 @@
     text-decoration: none;
 }
 
-.left__arrow{
-  height: 50px;
-  width: 50px;
-  background: url(./images/angle-left-solid.svg) center center no-repeat;
-  background-size: cover;
+.react {
+  background-color: #61dbfb !important;
+}
+
+.javascript {
+  background-color: #f7df1e !important;
+}
+
+.vue {
+  background-color: #42b883 !important;
+}
+
+.agile{
+  background-color: $colorKairos !important;
 }

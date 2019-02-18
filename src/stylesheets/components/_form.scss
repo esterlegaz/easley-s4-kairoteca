@@ -33,12 +33,11 @@
             transform: translate(14px, 20px) scale(1);
         }
         div[data-radium="true"]{
-            padding: 12px 14px!important;
+            padding: 12px 14px;
             margin-bottom: 15px;
         }
     }
 }
-
 
 .form__textfield {
     width: 328px;
@@ -46,10 +45,4 @@
 
 .form__input{
     width: 328px;
-}
-
-.createBook__title{
-  padding: 42px 0 0 106px;
-  font-size: 21px;
-  color: $colorBookAuthor;
 }

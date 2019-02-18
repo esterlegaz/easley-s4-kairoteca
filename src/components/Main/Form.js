@@ -52,8 +52,6 @@ class Form extends Component {
 
     return (
       <Fragment>
-        <div className="left__arrow"></div>
-        <div className="createBook__title">Crear un nuevo libro</div>
         <form className="form__container" action="/signup" method="post" onSubmit={this.handleSubmit}>
           <FormControl className="form__textfield" variant="outlined" required>
             <InputLabel htmlFor="outlined-title">Título</InputLabel>
@@ -84,7 +82,6 @@ class Form extends Component {
           </FormControl>
 
           <FormControl className="form__textfield" variant="outlined" required>
-            {/* <label class="custom-label">Tags <span>*</span></label> */}
             <Chips className="form__input" label="tags"
               value={newBook.tags} onChange={handleChip} suggestions={arrayTags} id="outlined-tags" placeholder="Tags *" />
           </FormControl>

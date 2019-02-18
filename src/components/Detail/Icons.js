@@ -15,11 +15,11 @@ class Icons extends Component {
   }
 
   render() {
-    const {showEditBook, id, popId, deletePopup, toggleDeletePopup, bookItemId} = this.props;
-    const {author, title, ISBN, type, status} = this.props.item;
+    const { showEditBook, id, popId, deletePopup, toggleDeletePopup, bookItemId } = this.props;
+    const { author, title, ISBN, type, status, tags } = this.props.item;
     return (
       <div className="icons__wrapper">
-        <button className="card__detail--icons icons__edit" data-update={id} data-title={title} data-author={author} data-isbn={ISBN} data-type={type} data-status={status} data-edit={id} onClick={showEditBook} ></button>
+        <button className="card__detail--icons icons__edit" data-update={id} data-title={title} data-author={author} data-isbn={ISBN} data-type={type} data-status={status} data-edit={id} data-tags={tags} onClick={showEditBook} ></button>
         <button className="card__detail--icons icons__delete" data-bookitem={bookItemId} data-popid={id} onClick={toggleDeletePopup}></button>
         {this.showDeletePopup(deletePopup, id, popId)}
       </div>
@@ -32,6 +32,8 @@ Icons.propTypes = {
   deletePopup: PropTypes.bool.isRequired,
   deleteBook: PropTypes.func.isRequired,
   id: PropTypes.number.isRequired,
+  showEditBook: PropTypes.func.isRequired,
+  bookItemId: PropTypes.string.isRequired,
 };
 
 export default Icons;

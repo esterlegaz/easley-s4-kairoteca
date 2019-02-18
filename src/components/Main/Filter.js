@@ -3,8 +3,8 @@ import PropTypes from "prop-types";
 
 class Filter extends Component {
   render() {
-    const {getFilter} = this.props;
-    
+    const { getFilter } = this.props;
+
     return (
       <div className="filter__wrapper">
         <label htmlFor="filter">
