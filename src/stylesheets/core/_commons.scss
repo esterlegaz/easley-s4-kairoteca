@@ -43,9 +43,14 @@
   color: #BDBDBD;
 }
 
-//ViewDetail 
+//ViewDetail and EditView
 
-.wrapper__title__viewDetail{
+.wrapper__title__viewDetail {
+  display: flex;
+  justify-content: space-between;
+}
+
+.wrapper__title__editBook{
   display: flex;
   justify-content: space-between;
 }

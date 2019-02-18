@@ -50,16 +50,17 @@ class EditBook extends Component {
       const { author, title, status, ISBN, type } = myBook;
       return (
         <Fragment>
-          <div className="wrapper__title">
-            <div className="left__arrow" onClick={goBackApp}></div>
-            <div className="component__title">Editar {title}</div>
-          </div>
-          <div className="detail__wrapper">
-            <div className="btn__container">
+          <div className="wrapper__title__editBook">
+            <div className="titleIcon__container">
+              <div className="left__arrow" onClick={goBackApp}></div>
+              <div className="component__title">Editar {title}</div>
+            </div>
+            <div className="btn__container__editBook">
               <input type="submit" value="Enviar" className="form__btn" onClick={updateBook} />
               <button className="form__btn form__btn--close" onClick={goBackApp} >Cerrar</button>
             </div>
-
+          </div>
+          <div className="detail__wrapper">
             <form className="form__container" action="/signup" method="post">
               <FormControl className="form__textfield" variant="outlined" required>
                 <InputLabel htmlFor="outlined-title">Título</InputLabel>
