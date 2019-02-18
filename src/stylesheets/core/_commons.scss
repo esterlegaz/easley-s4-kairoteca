@@ -6,9 +6,19 @@
     text-decoration: none;
 }
 
+//Title components
+
 .left__arrow{
-  height: 50px;
-  width: 50px;
+  width: 35px;
   background: url(./images/angle-left-solid.svg) center center no-repeat;
-  background-size: cover;
+}
+
+.wrapper__title{
+  display: flex;
+  height: 35px;
+}
+
+.createBook__title{
+  font-size: 21px;
+  color: #BDBDBD;
 }
