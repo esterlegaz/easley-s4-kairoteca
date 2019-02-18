@@ -195,11 +195,18 @@ class App extends Component {
     this.paintList();
     this.goBackApp();
     const { newBook } = this.state;
-    this.setState ({
-      editBook: !this.state.editBook
+    await api.updateBook(newBook);
+    this.setState({
+      editBook: !this.state.editBook,
+      newBook: {
+        title: '',
+        author: '',
+        ISBN: '',
+        type: '',
+        tags: [],
+        status: ''
+      }
     });
-    const result = await api.updateBook(newBook);
-    return result;
   }
 
   colorTags(selectedTag) {

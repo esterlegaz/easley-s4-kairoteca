@@ -47,7 +47,7 @@ class EditBook extends Component {
     const { bookList, updateBook, goBackApp } = this.props;
     if (bookList.length > 0 && bookId <= bookList.length) {
       const myBook = bookList[bookId - 1];
-      const { author, title, tags, status, ISBN, type } = myBook;
+      const { author, title, status, ISBN, type } = myBook;
       return (
         <Fragment>
           <div className="btn__container">
