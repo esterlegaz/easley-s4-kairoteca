@@ -14,6 +14,11 @@ class ViewDetail extends Component {
       const { author, title, tags, status, ISBN, type } = myBook;
       return (
         <Fragment>
+          <div className="wrapper__viewDetail__title">
+            <div className="left__arrow" onClick={goBackApp}></div>
+            <div className="viewDetail__title">Crear un nuevo libro</div>
+          </div>
+          <div className="detail__wrapper">
           <div className="btn__container">
             <button className="form__btn" data-update={bookId} data-title={title} data-author={author} data-isbn={ISBN} data-type={type} data-status={status} data-tags={[tags]} onClick={changeMe} >Editar</button>
             <button className="form__btn form__btn--close" onClick={goBackApp} >Cerrar</button>
@@ -63,6 +68,7 @@ class ViewDetail extends Component {
             </li>
           </ul>
           <Link className="link__close form__btn" to="/">Cerrar</Link>
+          </div>
         </Fragment>
       )
     } else {

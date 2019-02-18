@@ -50,6 +50,7 @@ class EditBook extends Component {
       const { author, title, status, ISBN, type } = myBook;
       return (
         <Fragment>
+          <div className="detail__wrapper">
           <div className="btn__container">
             <input type="submit" value="Enviar" className="form__btn" onClick={updateBook} />
             <button className="form__btn form__btn--close" onClick={goBackApp} >Cerrar</button>
@@ -97,7 +98,7 @@ class EditBook extends Component {
                 {state.map((option, index) => {
                   return (
                     <option value={option.value} selected={option.value === status ? true:false}>{option.label}</option>
-                ); 
+                );
                 }
                 )}
               </Select>
@@ -106,6 +107,7 @@ class EditBook extends Component {
           <div className="btn__container">
             <input type="submit" value="Enviar" className="form__btn" onClick={updateBook} />
             <button className="form__btn form__btn--close" onClick={goBackApp} >Cerrar</button>
+          </div>
           </div>
         </Fragment >
       )

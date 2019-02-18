@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import ViewDetail from './ViewDetail';
 import EditBook from './EditBook';
 import PropTypes from "prop-types";
@@ -9,13 +9,13 @@ class ViewOrEdit extends Component {
     const { editBook, bookList, changeMe, goBackApp, handleChange, newBook, handleChip, arrayTags, updateBook, colorTags, match } = this.props;
 
     return (
-      <div className="detail__wrapper">
+      <Fragment>
 
         {editBook ?
           <ViewDetail match={match} bookList={bookList} changeMe={changeMe} goBackApp={goBackApp} colorTags={colorTags} />
           : <EditBook match={match} bookList={bookList} goBackApp={goBackApp} handleChange={handleChange} newBook={newBook} handleChip={handleChip} arrayTags={arrayTags} updateBook={updateBook} />
         }
-      </div>
+      </Fragment>
     )
   }
 };
