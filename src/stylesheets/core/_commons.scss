@@ -30,25 +30,15 @@
   background: url(./images/angle-left-solid.svg) center center no-repeat;
 }
 
-.wrapper__createBook__title{
+.wrapper__title{
   display: flex;
   height: 45px;
   margin: 30px 0 0 56px;
 }
 
-.createBook__title{
+.component__title{
   font-size: 21px;
   margin-top: 11px;
+  margin-left: 12px;
   color: #BDBDBD;
-}
-
-.wrapper__viewDetail__title{
-  display: flex;
-  position: static;
-}
-
-.viewDetail__title{
-  color: #BDBDBD;
-  font-size: 21px;
-  margin-top: 11px;
 }
