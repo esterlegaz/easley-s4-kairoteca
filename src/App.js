@@ -180,11 +180,10 @@ class App extends Component {
     const dataISBN = e.currentTarget.getAttribute('data-isbn');
     const dataType = e.currentTarget.getAttribute('data-type');
     const dataStatus = e.currentTarget.getAttribute('data-status');
-    const { newBook } = this.state;
-    console.log(newBook);
+    const dataTags = e.currentTarget.getAttribute('data-tags').split(',');
     this.setState((prevState) => {
       const { newBook } = prevState;
-      const editBook = { ...newBook, id: bookId, title: dataTitle, author: dataAuthor, ISBN: dataISBN, type: dataType, status: dataStatus }
+      const editBook = { ...newBook, id: bookId, title: dataTitle, author: dataAuthor, ISBN: dataISBN, type: dataType, status: dataStatus, tags: dataTags}
       return { newBook: editBook }
     });
     this.setState({
@@ -196,8 +195,18 @@ class App extends Component {
     this.paintList();
     this.goBackApp();
     const { newBook } = this.state;
-    const result = await api.updateBook(newBook);
-    return result;
+    await api.updateBook(newBook);
+    this.setState({
+      editBook: !this.state.editBook,
+      newBook: {
+        title: '',
+        author: '',
+        ISBN: '',
+        type: '',
+        tags: [],
+        status: ''
+      }
+    });
   }
 
   colorTags(selectedTag) {
@@ -226,11 +235,12 @@ class App extends Component {
     const dataISBN = e.currentTarget.getAttribute('data-isbn');
     const dataType = e.currentTarget.getAttribute('data-type');
     const dataStatus = e.currentTarget.getAttribute('data-status');
+    const dataTags = e.currentTarget.getAttribute('data-tags').split(',');
     const { newBook } = this.state;
     console.log(newBook);
     this.setState((prevState) => {
       const { newBook } = prevState;
-      const editBook = { ...newBook, id: bookId, title: dataTitle, author: dataAuthor, ISBN: dataISBN, type: dataType, status: dataStatus }
+      const editBook = { ...newBook, id: bookId, title: dataTitle, author: dataAuthor, ISBN: dataISBN, type: dataType, status: dataStatus, tags: dataTags }
       return { newBook: editBook }
     });
   }

@@ -1,44 +1,44 @@
 import React, { Component, Fragment } from "react";
 import InputLabel from '@material-ui/core/InputLabel';
+import PropTypes from "prop-types";
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import OutlinedInput from '@material-ui/core/OutlinedInput';
 import Chips from 'react-chips';
-import PropTypes from "prop-types";
 
 const types = [
-  {
-    value: '',
-    label: '',
-  },
-  {
-    value: 'Digital',
-    label: 'Digital',
-  },
-  {
-    value: 'Físico',
-    label: 'Físico',
-  },
-]
-
-const state = [
-  {
-    value: '',
-    label: '',
-  },
-  {
-    value: 'Disponible',
-    label: 'Disponible',
-  },
-  {
-    value: 'Prestado',
-    label: 'Prestado',
-  },
-  {
-    value: 'Pendiente',
-    label: 'Pendiente',
-  },
-];
+    {
+      value: '',
+      label: '',
+    },
+    {
+      value: 'digital',
+      label: 'Digital',
+    },
+    {
+      value: 'físico',
+      label: 'Físico',
+    },
+  ]
+  
+  const state = [
+    {
+      value: '',
+      label: '',
+    },
+    {
+      value: 'disponible',
+      label: 'Disponible',
+    },
+    {
+      value: 'prestado',
+      label: 'Prestado',
+    },
+    {
+      value: 'pending',
+      label: 'Pendiente',
+    },
+  ];
 
 class EditBook extends Component {
   render() {
@@ -47,7 +47,7 @@ class EditBook extends Component {
     const { bookList, updateBook, goBackApp } = this.props;
     if (bookList.length > 0 && bookId <= bookList.length) {
       const myBook = bookList[bookId - 1];
-      const { author, title, tags, status, ISBN, type } = myBook;
+      const { author, title, status, ISBN, type } = myBook;
       return (
         <Fragment>
           <div className="btn__container">
@@ -77,8 +77,8 @@ class EditBook extends Component {
                 <OutlinedInput labelWidth={0} className="form__input" name="type" id="type" inputProps={{ "data-field": "type" }} />}>
                 {types.map((option, optionIndex) => {
                   return (
-                    <option key={optionIndex} value={option.value}>{option.label}</option>
-                  )
+                    <option value={option.value} selected={option.value === type ? true:false}>{option.label}</option>
+                );
                 }
                 )}
               </Select>
@@ -87,7 +87,7 @@ class EditBook extends Component {
             <FormControl className="form__textfield" variant="outlined" required>
               <p>Tags <span>*</span></p>
               <Chips className="form__input" label="tags"
-                value={newBook.tags} onChange={handleChip} suggestions={arrayTags} defaultValue={tags} id="outlined-tags" />
+                value={newBook.tags} onChange={handleChip} suggestions={arrayTags} id="outlined-tags" />
             </FormControl>
 
             <FormControl className="form__textfield" variant="outlined" required>
@@ -96,8 +96,8 @@ class EditBook extends Component {
                 <OutlinedInput labelWidth={0} name="status" id="status" defaultValue={status} inputProps={{ "data-field": "status" }} />}>
                 {state.map((option, index) => {
                   return (
-                    <option key={index} value={option.value}>{option.label}</option>
-                  )
+                    <option value={option.value} selected={option.value === status ? true:false}>{option.label}</option>
+                ); 
                 }
                 )}
               </Select>
