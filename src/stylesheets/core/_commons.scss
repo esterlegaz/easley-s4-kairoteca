@@ -21,3 +21,42 @@
 .agile{
   background-color: $colorKairos !important;
 }
+
+//Title components
+
+.left__arrow{
+  width: 45px;
+  height: 45px;
+  background: url(./images/angle-left-solid.svg) center center no-repeat;
+}
+
+.wrapper__title{
+  display: flex;
+  height: 45px;
+  margin: 30px 0 0 56px;
+}
+
+.component__title{
+  font-size: 21px;
+  margin-top: 11px;
+  margin-left: 12px;
+  color: #BDBDBD;
+}
+
+//ViewDetail and EditView
+
+.wrapper__title__viewDetail {
+  display: flex;
+  justify-content: space-between;
+}
+
+.wrapper__title__editBook{
+  display: flex;
+  justify-content: space-between;
+}
+
+.titleIcon__container{
+  display: flex;
+  height: 45px;
+  margin: 30px 0 0 56px;
+}
