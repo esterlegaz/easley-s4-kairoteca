@@ -14,9 +14,9 @@ class ViewDetail extends Component {
       const { author, title, tags, status, ISBN, type } = myBook;
       return (
         <Fragment>
-          <div className="wrapper__viewDetail__title">
+          <div className="wrapper__title">
             <div className="left__arrow" onClick={goBackApp}></div>
-            <div className="viewDetail__title">Crear un nuevo libro</div>
+            <div className="component__title">Detalle de {title}</div>
           </div>
           <div className="detail__wrapper">
           <div className="btn__container">
