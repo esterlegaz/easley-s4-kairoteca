@@ -146,19 +146,23 @@ class App extends Component {
 
   createBook() {
     const { newBook } = this.state;
-    api.createBook(newBook);
-    this.goBackApp();
-    this.paintList();
-    this.setState({
-      newBook: {
-        title: '',
-        author: '',
-        ISBN: '',
-        type: '',
-        tags: [],
-        status: ''
-      },
-    })
+    if (newBook.title !== '' && newBook.author !== '' && newBook.ISBN !== '' && newBook.type !== '' && newBook.status !== '' && newBook.tags !== []) {
+      api.createBook(newBook);
+      this.goBackApp();
+      this.paintList();
+      this.setState({
+        newBook: {
+          title: '',
+          author: '',
+          ISBN: '',
+          type: '',
+          tags: [],
+          status: ''
+        },
+      });
+    } else {
+        alert('NO')
+    }
   }
   
   goBackApp(){

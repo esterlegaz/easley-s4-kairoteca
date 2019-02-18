@@ -47,15 +47,21 @@ class Form extends Component {
 
     this.goBack = this.goBack.bind(this);
   }
-  goBack(){
+
+  goBack() {
     this.props.history.push('/');
   }
+
+  handleSubmit(e) {
+    e.preventDefault();
+  }
+
   render() {
     const {handleChange, newBook, handleChip, arrayTags, createBook} = this.props;
 
     return (
       <Fragment>
-          <form className="form__container" action="/signup" method="post">
+          <form className="form__container" action="/signup" method="post" onSubmit={this.handleSubmit}>
             <FormControl className="form__textfield" variant="outlined" required>
               <InputLabel htmlFor="outlined-title">Título</InputLabel>
               <OutlinedInput labelWidth={0} id="outlined-title" className="form__input" label="Título" onKeyUp={handleChange} inputProps={{ "data-field": "title" }} />
