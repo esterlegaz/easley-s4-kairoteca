@@ -42,11 +42,6 @@ const state = [
 ];
 
 class Form extends Component {
-  constructor(props) {
-    super(props);
-
-    this.goBack = this.goBack.bind(this);
-  }
 
   handleSubmit(e) {
     e.preventDefault();
@@ -57,6 +52,7 @@ class Form extends Component {
 
     return (
       <Fragment>
+        <div href="../../images/angle-left-solid.svg" className="left__arrow"></div>
         <div className="createBook__title">Crear un nuevo libro</div>
         <form className="form__container" action="/signup" method="post" onSubmit={this.handleSubmit}>
           <FormControl className="form__textfield" variant="outlined" required>
@@ -108,7 +104,7 @@ class Form extends Component {
         </form>
         <div className="btn__container">
           <input type="submit" value="Enviar" className="form__btn" onClick={createBook} />
-          <button className="form__btn form__btn--close" onClick={goBackApp} >Cerrar</button>
+          <button className="form__btn form__btn--close" onClick={goBackApp}>Cerrar</button>
         </div>
       </Fragment>
 
