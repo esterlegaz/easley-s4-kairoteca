@@ -236,8 +236,6 @@ class App extends Component {
     const dataType = e.currentTarget.getAttribute('data-type');
     const dataStatus = e.currentTarget.getAttribute('data-status');
     const dataTags = e.currentTarget.getAttribute('data-tags').split(',');
-    const { newBook } = this.state;
-    console.log(newBook);
     this.setState((prevState) => {
       const { newBook } = prevState;
       const editBook = { ...newBook, id: bookId, title: dataTitle, author: dataAuthor, ISBN: dataISBN, type: dataType, status: dataStatus, tags: dataTags }
