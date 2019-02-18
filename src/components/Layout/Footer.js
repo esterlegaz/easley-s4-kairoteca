@@ -1,8 +1,8 @@
-import React, {Component, Fragment} from "react";
+import React, { Component, Fragment } from "react";
 
 class Footer extends Component {
-  render(){
-    return(
+  render() {
+    return (
       <Fragment>
         <footer className="footer">
           <div className="footer__title">kairoteca</div>

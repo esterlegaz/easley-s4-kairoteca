@@ -180,11 +180,11 @@ class App extends Component {
     const dataISBN = e.currentTarget.getAttribute('data-isbn');
     const dataType = e.currentTarget.getAttribute('data-type');
     const dataStatus = e.currentTarget.getAttribute('data-status');
-    const {newBook} = this.state;
+    const { newBook } = this.state;
     console.log(newBook);
     this.setState((prevState) => {
       const { newBook } = prevState;
-      const editBook = { ...newBook, id: bookId, title: dataTitle, author: dataAuthor, ISBN: dataISBN, type: dataType, status: dataStatus}
+      const editBook = { ...newBook, id: bookId, title: dataTitle, author: dataAuthor, ISBN: dataISBN, type: dataType, status: dataStatus }
       return { newBook: editBook }
     });
     this.setState({
@@ -209,22 +209,6 @@ class App extends Component {
       return 'agile'
     } else if (selectedTag === 'Vue') {
       return 'vue'
-    } else if (selectedTag === 'programming') {
-      return 'programming'
-    } else if (selectedTag === 'OOP') {
-      return 'oop'
-    } else if (selectedTag === 'Design patterns') {
-      return 'design-patterns'
-    } else if (selectedTag === 'Reactive programing') {
-      return 'reactive-programming'
-    } else if (selectedTag === 'Web components') {
-      return 'web-components'
-    } else if (selectedTag === 'GIT') {
-      return 'git'
-    } else if (selectedTag === 'Testing') {
-      return 'testing'
-    } else if (selectedTag === 'SOLID') {
-      return 'solid'
     } else {
       return ''
     }
@@ -242,11 +226,11 @@ class App extends Component {
     const dataISBN = e.currentTarget.getAttribute('data-isbn');
     const dataType = e.currentTarget.getAttribute('data-type');
     const dataStatus = e.currentTarget.getAttribute('data-status');
-    const {newBook} = this.state;
+    const { newBook } = this.state;
     console.log(newBook);
     this.setState((prevState) => {
       const { newBook } = prevState;
-      const editBook = { ...newBook, id: bookId, title: dataTitle, author: dataAuthor, ISBN: dataISBN, type: dataType, status: dataStatus}
+      const editBook = { ...newBook, id: bookId, title: dataTitle, author: dataAuthor, ISBN: dataISBN, type: dataType, status: dataStatus }
       return { newBook: editBook }
     });
   }
@@ -255,14 +239,14 @@ class App extends Component {
     const { bookItemId, deleteAnimation, popId, deletePopup, haveBooks, bookList, chipData, newBook } = this.state;
     return (
       <div className="App">
-        <Header />
+        <Header goBackApp={this.goBackApp}/>
 
         <Switch>
           <Route exact path="/" render={props => (
-            <Main showEditBook={this.showEditBook} bookItemId={bookItemId} deleteAnimation={deleteAnimation} popId={popId} toggleDeletePopup={this.toggleDeletePopup} deletePopup={deletePopup} deleteBook={this.confirmDelete} getFilter={this.getFilter} bookList={this.filterBookList()} haveBooks={haveBooks} colorTags={this.colorTags} match={props.match}/>
+            <Main showEditBook={this.showEditBook} bookItemId={bookItemId} deleteAnimation={deleteAnimation} popId={popId} toggleDeletePopup={this.toggleDeletePopup} deletePopup={deletePopup} deleteBook={this.confirmDelete} getFilter={this.getFilter} bookList={this.filterBookList()} haveBooks={haveBooks} colorTags={this.colorTags} match={props.match} />
           )} />
 
-          <Route path="/book/:id" render={props => <ViewOrEdit match={props.match} bookList={bookList} editBook={this.state.editBook} changeMe={this.changeMe} goBackApp={this.goBackApp} handleChange={this.handleChange} newBook={this.state.newBook} handleChip={this.handleChip} arrayTags={this.arrayTags} createBook={this.createBook} updateBook={this.updateBook} colorTags={this.colorTags}/>} />
+          <Route path="/book/:id" render={props => <ViewOrEdit match={props.match} bookList={bookList} editBook={this.state.editBook} changeMe={this.changeMe} goBackApp={this.goBackApp} handleChange={this.handleChange} newBook={this.state.newBook} handleChip={this.handleChip} arrayTags={chipData} createBook={this.createBook} updateBook={this.updateBook} colorTags={this.colorTags} />} />
 
           <Route path="/add" render={() => (<Form suggestions={bookList} arrayTags={chipData} handleChange={this.handleChange} handleChip={this.handleChip} createBook={this.createBook} newBook={newBook} goBackApp={this.goBackApp} />)} />
         </Switch>

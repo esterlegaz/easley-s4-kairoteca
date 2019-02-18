@@ -3,8 +3,8 @@ import PropTypes from "prop-types";
 
 class DeletePopup extends Component {
   render() {
-    const {id, deleteBook, toggleDeletePopup} = this.props;
-    
+    const { id, deleteBook, toggleDeletePopup } = this.props;
+
     return (
       <div className="delete__popup">
         <div className="delete__popup--content">

@@ -2,6 +2,7 @@ import React, { Component, Fragment } from "react";
 import { Link } from 'react-router-dom';
 import TextField from '@material-ui/core/TextField';
 import InputLabel from '@material-ui/core/InputLabel';
+import PropTypes from "prop-types";
 
 class ViewDetail extends Component {
   render() {
@@ -62,7 +63,7 @@ class ViewDetail extends Component {
               }} />
             </li>
           </ul>
-            <Link className="link__close form__btn" to="/">Cerrar</Link>
+          <Link className="link__close form__btn" to="/">Cerrar</Link>
         </Fragment>
       )
     } else {
@@ -75,6 +76,13 @@ class ViewDetail extends Component {
     }
   };
 }
+
+ViewDetail.propTypes = {
+  bookList: PropTypes.array.isRequired,
+  colorTags: PropTypes.func.isRequired,
+  goBackApp: PropTypes.func.isRequired,
+  changeMe: PropTypes.func.isRequired
+};
 
 export default ViewDetail;
 

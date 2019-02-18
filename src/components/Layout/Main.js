@@ -6,7 +6,7 @@ import Filter from './../Main/Filter';
 
 class Main extends Component {
   render() {
-    const {getFilter, bookItemId, deleteAnimation, popId, toggleDeletePopup, deletePopup, deleteBook, bookList, haveBooks, showEditBook, colorTags, match} = this.props;
+    const { getFilter, bookItemId, deleteAnimation, popId, toggleDeletePopup, deletePopup, deleteBook, bookList, haveBooks, showEditBook, colorTags, match } = this.props;
 
     return (
       <Fragment>
@@ -14,7 +14,7 @@ class Main extends Component {
         <div className="main__addbook--container">
           <Link to="/add" className="main__addbook--btn link__router">Añadir libro</Link>
         </div>
-        <List showEditBook={showEditBook} bookItemId={bookItemId} deleteAnimation={deleteAnimation} popId={popId} toggleDeletePopup={toggleDeletePopup} deletePopup={deletePopup} deleteBook={deleteBook} bookList={bookList} haveBooks={haveBooks} colorTags={colorTags} match={match}/>
+        <List showEditBook={showEditBook} bookItemId={bookItemId} deleteAnimation={deleteAnimation} popId={popId} toggleDeletePopup={toggleDeletePopup} deletePopup={deletePopup} deleteBook={deleteBook} bookList={bookList} haveBooks={haveBooks} colorTags={colorTags} match={match} />
       </Fragment>
     );
   }
@@ -22,11 +22,15 @@ class Main extends Component {
 
 Main.propTypes = {
   getFilter: PropTypes.func.isRequired,
+  bookItemId: PropTypes.string.isRequired,
+  deleteAnimation: PropTypes.string.isRequired,
   toggleDeletePopup: PropTypes.func.isRequired,
   deletePopup: PropTypes.bool.isRequired,
   deleteBook: PropTypes.func.isRequired,
   haveBooks: PropTypes.bool.isRequired,
-  bookList: PropTypes.array.isRequired
+  bookList: PropTypes.array.isRequired,
+  showEditBook: PropTypes.func.isRequired,
+  colorTags: PropTypes.func.isRequired
 };
 
 export default Main;
